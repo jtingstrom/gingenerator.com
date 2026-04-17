@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1208"/>
+      <stop offset="100%" stop-color="#0d0d0d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="1" y="1" width="1198" height="628" rx="0" fill="none" stroke="#d4a84b" stroke-width="2" stroke-opacity="0.2"/>
+  <line x1="40" y1="40" x2="120" y2="40" stroke="#d4a84b" stroke-width="1" stroke-opacity="0.4"/>
+  <line x1="40" y1="40" x2="40" y2="120" stroke="#d4a84b" stroke-width="1" stroke-opacity="0.4"/>
+  <line x1="1160" y1="40" x2="1080" y2="40" stroke="#d4a84b" stroke-width="1" stroke-opacity="0.4"/>
+  <line x1="1160" y1="40" x2="1160" y2="120" stroke="#d4a84b" stroke-width="1" stroke-opacity="0.4"/>
+  <line x1="40" y1="590" x2="120" y2="590" stroke="#d4a84b" stroke-width="1" stroke-opacity="0.4"/>
+  <line x1="40" y1="590" x2="40" y2="510" stroke="#d4a84b" stroke-width="1" stroke-opacity="0.4"/>
+  <line x1="1160" y1="590" x2="1080" y2="590" stroke="#d4a84b" stroke-width="1" stroke-opacity="0.4"/>
+  <line x1="1160" y1="590" x2="1160" y2="510" stroke="#d4a84b" stroke-width="1" stroke-opacity="0.4"/>
+  <g transform="translate(560, 155)" fill="none" stroke="#d4a84b" stroke-width="3" stroke-linejoin="round">
+    <path d="M-40 -40 L40 -40 L10 20 L10 60 L20 60 L20 75 L-20 75 L-20 60 L-10 60 L-10 20 Z"/>
+  </g>
+  <text x="600" y="305" font-family="Georgia, serif" font-size="88" font-weight="400" fill="#f0ece4" text-anchor="middle">Gin <tspan font-style="italic" fill="#d4a84b">Generator</tspan></text>
+  <rect x="460" y="330" width="280" height="1" fill="#d4a84b" opacity="0.4"/>
+  <text x="600" y="388" font-family="Arial, sans-serif" font-size="26" font-weight="300" fill="#888888" text-anchor="middle">Find cocktails with what you have at home</text>
+  <text x="600" y="560" font-family="Arial, sans-serif" font-size="22" fill="#d4a84b" text-anchor="middle" opacity="0.7">gingenerator.com</text>
+</svg>

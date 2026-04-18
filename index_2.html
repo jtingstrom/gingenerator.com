@@ -545,6 +545,8 @@
 <div class="main-right">
   <div class="tip-card" id="tip-card">
     <div class="tip-date" id="tip-date"></div>
+    <img id="tip-img" src="" alt="" style="display:none; width:100%; border-radius:10px; margin-bottom:0.75rem; object-fit:cover; aspect-ratio:4/3;" loading="lazy" />
+    <div class="tip-drink-name" id="tip-drink-name" style="font-size:11px; color:var(--muted); letter-spacing:0.05em; text-transform:uppercase; margin-bottom:0.5rem;"></div>
     <div class="tip-title" id="tip-title"></div>
     <div class="tip-divider"></div>
     <div class="tip-body" id="tip-body"></div>
@@ -902,6 +904,42 @@
     }).join('') + '</div>';
   }
   // ── Daily Tip ─────────────────────────────────────────
+  // Direct image URLs from TheCocktailDB (no API call needed)
+  const tipImages = [
+    { url: 'https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg/preview', name: 'Margarita' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/metwgh1606770327.jpg/preview', name: 'Mojito' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg/preview', name: 'Old Fashioned' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/z0omyp1582479573.jpg/preview', name: 'Gin & Tonic' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/mrz9091589574515.jpg/preview', name: 'Daiquiri' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg/preview', name: 'Old Fashioned' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg/preview', name: 'Margarita' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/kpsajh1504368362.jpg/preview', name: 'Cosmopolitan' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/z0omyp1582479573.jpg/preview', name: 'Gin & Tonic' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/vdwppo1606772270.jpg/preview', name: 'Whiskey Sour' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/metwgh1606770327.jpg/preview', name: 'Mojito' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg/preview', name: 'Margarita' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/iloasq1587661243.jpg/preview', name: 'Aperol Spritz' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg/preview', name: 'Old Fashioned' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg/preview', name: 'Margarita' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg/preview', name: 'Negroni' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/z0omyp1582479573.jpg/preview', name: 'Gin & Tonic' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg/preview', name: 'Old Fashioned' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/z0omyp1582479573.jpg/preview', name: 'Gin & Tonic' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/metwgh1606770327.jpg/preview', name: 'Mojito' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/uphmap1513350097.jpg/preview', name: 'Vodka Martini' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/apnnym1500209578.jpg/preview', name: 'Virgin Mojito' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg/preview', name: 'Negroni' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/uuxwvt1483387873.jpg/preview', name: 'French 75' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg/preview', name: 'Margarita' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/mrz9091589574515.jpg/preview', name: 'Daiquiri' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg/preview', name: 'Old Fashioned' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/yk70e31606771240.jpg/preview', name: 'Manhattan' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg/preview', name: 'Negroni' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/iloasq1587661243.jpg/preview', name: 'Aperol Spritz' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/z0omyp1582479573.jpg/preview', name: 'Gin & Tonic' },
+    { url: 'https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg/preview', name: 'Old Fashioned' },
+  ];
+
   const tips = [
     {
       sv: { title: "Håll glaset rätt", body: "Håll alltid ett cocktailglas i stjälken, aldrig i kupan. Din kroppsvärme höjer annars temperaturen och förstör drycken." },
@@ -1084,6 +1122,18 @@
     document.getElementById('tip-date').textContent = labels[l] + ' · ' + dateStr;
     document.getElementById('tip-title').textContent = d.title;
     document.getElementById('tip-body').textContent = d.body;
+
+    // Show direct image — no API call needed
+    const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+    const img = tipImages[dayOfYear % tipImages.length];
+    const imgEl = document.getElementById('tip-img');
+    const drinkNameEl = document.getElementById('tip-drink-name');
+    if (img && imgEl) {
+      imgEl.src = img.url;
+      imgEl.alt = img.name;
+      imgEl.style.display = 'block';
+      if (drinkNameEl) drinkNameEl.textContent = img.name;
+    }
   }
 
   // Re-render tip when language changes

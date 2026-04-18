@@ -477,6 +477,51 @@
       color: var(--accent);
       border: 1px solid var(--border2);
     }
+
+    .mode-toggle {
+      display: flex;
+      background: var(--surface2);
+      border-radius: 6px;
+      padding: 2px;
+      gap: 2px;
+      margin-bottom: 0.75rem;
+      width: fit-content;
+    }
+    .mode-toggle button {
+      height: 28px;
+      padding: 0 14px;
+      background: none;
+      border: none;
+      border-radius: 5px;
+      color: var(--muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+    }
+    .mode-toggle button.active {
+      background: var(--surface);
+      color: var(--accent);
+      border: 1px solid var(--border2);
+    }
+    .drink-search-wrap { position: relative; }
+    .drink-search-wrap input {
+      width: 100%;
+      height: 44px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .drink-search-wrap input::placeholder { color: var(--muted); }
+    .drink-search-wrap input:focus { border-color: var(--accent); }
     .scrollbar-thin::-webkit-scrollbar { width: 4px; }
     .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
     .scrollbar-thin::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
@@ -552,13 +597,29 @@
 <div class="main-left">
 
   <div class="input-card">
-    <div class="section-label" id="label-ingr">Dina ingredienser</div>
-    <div class="autocomplete-wrap">
-      <input type="text" id="ingr-input" placeholder="Börja skriva en ingrediens…" id="ingr-input" autocomplete="off" />
-      <div class="dropdown scrollbar-thin" id="dropdown"></div>
+    <div class="mode-toggle">
+      <button class="active" id="mode-ingr" onclick="setMode('ingredients')" id="mode-btn-ingr">Ingredients</button>
+      <button id="mode-drink" onclick="setMode('drink')" id="mode-btn-drink">Drink name</button>
     </div>
-    <div class="tags-area" id="tags">
-      <span class="hint-text" id="hint-text">Inga ingredienser valda än.</span>
+
+    <!-- Ingredient mode -->
+    <div id="ingr-mode">
+      <div class="section-label" id="label-ingr">Your ingredients</div>
+      <div class="autocomplete-wrap">
+        <input type="text" id="ingr-input" placeholder="Start typing an ingredient or brand…" autocomplete="off" />
+        <div class="dropdown scrollbar-thin" id="dropdown"></div>
+      </div>
+      <div class="tags-area" id="tags">
+        <span class="hint-text" id="hint-text">No ingredients selected yet.</span>
+      </div>
+    </div>
+
+    <!-- Drink name mode -->
+    <div id="drink-mode" style="display:none;">
+      <div class="section-label" id="label-drink-search">Search by drink name</div>
+      <div class="drink-search-wrap">
+        <input type="text" id="drink-input" placeholder="E.g. Negroni, Mojito, Margarita…" autocomplete="off" />
+      </div>
     </div>
   </div>
 
@@ -606,7 +667,7 @@
 </main>
 
 <footer>
-  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.09</span>
+  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.11</span>
 </footer>
 
 <script>
@@ -794,7 +855,65 @@
     if (segId === 'match-seg') matchMode = btn.dataset.val;
   }
 
+
+  // ── Search mode ───────────────────────────────────────
+  let searchMode = 'ingredients';
+
+  function setMode(mode) {
+    searchMode = mode;
+    document.getElementById('ingr-mode').style.display = mode === 'ingredients' ? 'block' : 'none';
+    document.getElementById('drink-mode').style.display = mode === 'drink' ? 'block' : 'none';
+    document.getElementById('mode-ingr').classList.toggle('active', mode === 'ingredients');
+    document.getElementById('mode-drink').classList.toggle('active', mode === 'drink');
+    document.getElementById('result').innerHTML = '';
+    if (mode === 'drink') {
+      document.getElementById('drink-input').focus();
+    }
+  }
+
+  // Drink name search with debounce
+  let drinkSearchTimer = null;
+  document.addEventListener('DOMContentLoaded', () => {
+    const drinkInput = document.getElementById('drink-input');
+    if (drinkInput) {
+      drinkInput.addEventListener('input', () => {
+        clearTimeout(drinkSearchTimer);
+        const q = drinkInput.value.trim();
+        if (q.length < 2) { document.getElementById('result').innerHTML = ''; return; }
+        drinkSearchTimer = setTimeout(() => searchByDrinkName(q), 400);
+      });
+    }
+  });
+
+  async function searchByDrinkName(query) {
+    const result = document.getElementById('result');
+    result.innerHTML = `<div class="loading"><div class="shaker">🍸</div><p>${t('loading')}</p></div>`;
+    try {
+      const res = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${encodeURIComponent(query)}`);
+      const data = await res.json();
+      if (!data.drinks) {
+        result.innerHTML = `<div class="no-results"><strong>${t('noResults')}</strong>${t('noResultsHint')}</div>`;
+        return;
+      }
+      const drinks = data.drinks.slice(0, 8);
+      if (lang === 'sv' || lang === 'ro') {
+        result.innerHTML = `<div class="loading"><div class="shaker">🌐</div><p>${t('translating')}</p></div>`;
+        const translated = await translateDrinks(drinks);
+        renderDrinks(translated, []);
+      } else {
+        renderDrinks(drinks, []);
+      }
+    } catch(e) {
+      result.innerHTML = `<div class="error">${t('error')}</div>`;
+    }
+  }
+
   async function search() {
+    if (searchMode === 'drink') {
+      const q = document.getElementById('drink-input').value.trim();
+      if (q) searchByDrinkName(q);
+      return;
+    }
     if (selected.size === 0) { alert(t('alertIngr')); return; }
 
     const btn = document.getElementById('gen-btn');
@@ -1188,6 +1307,7 @@
       glass: 'Glas', alcohol: 'Alkohol', nonAlcohol: 'Alkoholfri',
       noInstructions: 'Inga instruktioner tillgängliga.',
       error: 'Något gick fel, försök igen.', alertIngr: 'Välj minst en ingrediens!',
+      modeIngr: 'Ingredienser', modeDrink: 'Drinkar', labelDrinkSearch: 'Sök på drinknamn', placeholderDrink: 'T.ex. Negroni, Mojito, Margarita…',
     },
     en: {
       tagline: 'Enter what you have at home — we\'ll mix the rest.',
@@ -1205,6 +1325,7 @@
       glass: 'Glass', alcohol: 'Alcoholic', nonAlcohol: 'Non-alcoholic',
       noInstructions: 'No instructions available.',
       error: 'Something went wrong, please try again.', alertIngr: 'Select at least one ingredient!',
+      modeIngr: 'Ingredients', modeDrink: 'Drinks', labelDrinkSearch: 'Search by drink name', placeholderDrink: 'E.g. Negroni, Mojito, Margarita…',
     },
     ro: {
       tagline: 'Introdu ce ai acasă — noi facem cocktailul.',
@@ -1222,6 +1343,7 @@
       glass: 'Pahar', alcohol: 'Alcoolic', nonAlcohol: 'Fără alcool',
       noInstructions: 'Nu există instrucțiuni disponibile.',
       error: 'Ceva a mers greșit, încearcă din nou.', alertIngr: 'Selectează cel puțin un ingredient!',
+      modeIngr: 'Ingrediente', modeDrink: 'Băuturi', labelDrinkSearch: 'Caută după numele băuturii', placeholderDrink: 'Ex. Negroni, Mojito, Margarita…',
     }
   };
 
@@ -1235,6 +1357,10 @@
     const tagline = q('.tagline'); if (tagline) tagline.textContent = t('tagline');
     set('label-ingr', t('labelIngr'));
     const inp = document.getElementById('ingr-input'); if (inp) inp.placeholder = t('placeholder');
+    const mIngr = document.getElementById('mode-ingr'); if (mIngr) mIngr.textContent = t('modeIngr');
+    const mDrink = document.getElementById('mode-drink'); if (mDrink) mDrink.textContent = t('modeDrink');
+    const lDrink = document.getElementById('label-drink-search'); if (lDrink) lDrink.textContent = t('labelDrinkSearch');
+    const dInp = document.getElementById('drink-input'); if (dInp) dInp.placeholder = t('placeholderDrink');
     set('hint-text', t('hintText'));
     set('label-show', t('labelShow'));
     set('btn-alla', t('btnAlla'));

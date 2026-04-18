@@ -606,7 +606,7 @@
 </main>
 
 <footer>
-  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.05</span>
+  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.07</span>
 </footer>
 
 <script>
@@ -1168,18 +1168,7 @@
   }
 
   // Re-render tip when language changes
-  const _origSetLang = setLang;
-  // Patch applyLang to also update tip
-  const _origApplyLang = applyLang;
-  function applyLang() {
-    _origApplyLang();
-    renderTip();
-  }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    setLang(lang);
-    renderTip();
-  });
 
   // ── i18n ──────────────────────────────────────────────
   const i18n = {
@@ -1236,7 +1225,7 @@
     }
   };
 
-  let lang = localStorage.getItem('revben_lang') || 'sv';
+  let lang = localStorage.getItem('revben_lang') || 'en';
 
   function t(key) { return (i18n[lang] && i18n[lang][key]) || i18n.sv[key] || key; }
 
@@ -1255,6 +1244,7 @@
     set('btn-any', t('btnAny'));
     set('btn-all', t('btnAll'));
     set('btn-generate-text', t('btnGenerate'));
+    renderTip();
   }
 
   function setLang(l) {

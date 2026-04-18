@@ -480,6 +480,52 @@
     .scrollbar-thin::-webkit-scrollbar { width: 4px; }
     .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
     .scrollbar-thin::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+    .tip-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      position: sticky;
+      top: 1.5rem;
+    }
+    .tip-date {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      opacity: 0.8;
+    }
+    .tip-img-row {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .tip-img-row img {
+      width: 33%;
+      flex-shrink: 0;
+      border-radius: var(--radius);
+      object-fit: cover;
+      aspect-ratio: 1/1;
+      display: none;
+    }
+    .tip-text-col { flex: 1; min-width: 0; }
+    .tip-drink-name { font-size: 11px; color: var(--muted); margin-bottom: 0.4rem; }
+    .tip-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .tip-body { font-size: 15px; color: var(--muted); line-height: 1.8; }
+    .tip-divider {
+      width: 30px; height: 1px;
+      background: var(--accent); opacity: 0.3; margin: 0.6rem 0;
+    }
   </style>
 </head>
 <body>
@@ -502,6 +548,8 @@
 </header>
 
 <main>
+
+<div class="main-left">
 
   <div class="input-card">
     <div class="section-label" id="label-ingr">Dina ingredienser</div>
@@ -537,10 +585,28 @@
   </button>
 
   <div id="result"></div>
+
+</div><!-- /.main-left -->
+
+<div class="main-right">
+  <div class="tip-card" id="tip-card">
+    <div class="tip-date" id="tip-date"></div>
+    <div class="tip-img-row">
+      <img id="tip-img" src="" alt="" loading="lazy" />
+      <div class="tip-text-col">
+        <div class="tip-drink-name" id="tip-drink-name"></div>
+        <div class="tip-title" id="tip-title"></div>
+        <div class="tip-divider"></div>
+        <div class="tip-body" id="tip-body"></div>
+      </div>
+    </div>
+  </div>
+</div><!-- /.main-right -->
+
 </main>
 
 <footer>
-  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.01</span>
+  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.05</span>
 </footer>
 
 <script>
@@ -887,6 +953,234 @@
       </div>`;
     }).join('') + '</div>';
   }
+  // ── Daily Tip ─────────────────────────────────────────
+  // Local images in /img/ folder — cycling through 10 images
+  const tipImages = [
+    { url: '/img/tip1.jpg',  credit: 'Ash Edmonds' },
+    { url: '/img/tip2.jpg',  credit: 'Olena Bohovyk' },
+    { url: '/img/tip3.jpg',  credit: 'Kobby Mendez' },
+    { url: '/img/tip4.jpg',  credit: 'M.S. Meeuwesen' },
+    { url: '/img/tip5.jpg',  credit: 'Clovis Wood' },
+    { url: '/img/tip6.jpg',  credit: 'Gaby Yerden' },
+    { url: '/img/tip7.jpg',  credit: 'Nikita Tikhomirov' },
+    { url: '/img/tip8.jpg',  credit: "Tai's Captures" },
+    { url: '/img/tip9.jpg',  credit: 'Andrea Riezzo' },
+    { url: '/img/tip10.jpg', credit: 'Chas Turansky' },
+  ];
+
+  const tips = [
+    {
+      sv: { title: "Håll glaset rätt", body: "Håll alltid ett cocktailglas i stjälken, aldrig i kupan. Din kroppsvärme höjer annars temperaturen och förstör drycken." },
+      en: { title: "Hold the glass right", body: "Always hold a cocktail glass by the stem, never the bowl. Body heat raises the temperature and ruins the drink." },
+      ro: { title: "Ține paharul corect", body: "Ține întotdeauna un pahar de cocktail de picior, niciodată de cupă. Căldura corpului ridică temperatura și strică băutura." }
+    },
+    {
+      sv: { title: "Kyl glaset i förväg", body: "Fyll glaset med is och vatten medan du blandar din drink. Töm det precis innan du häller i — en kall cocktail smakar mycket bättre." },
+      en: { title: "Pre-chill your glass", body: "Fill the glass with ice and water while you mix your drink. Empty it just before pouring — a cold cocktail tastes much better." },
+      ro: { title: "Răcește paharul în avans", body: "Umple paharul cu gheață și apă în timp ce prepari cocktailul. Goliți-l chiar înainte de a turna — un cocktail rece are un gust mult mai bun." }
+    },
+    {
+      sv: { title: "Shaka eller rör?", body: "Klara drinkar med bara sprit rörs — det ger en silkig textur. Drinkar med juice, ägg eller grädde shakas för att blanda och lufta ordentligt." },
+      en: { title: "Shake or stir?", body: "Clear drinks with only spirits are stirred — it gives a silky texture. Drinks with juice, egg or cream are shaken to properly mix and aerate." },
+      ro: { title: "Agitați sau amestecați?", body: "Băuturile limpezi doar cu spirtoase se amestecă — dă o textură mătăsoasă. Băuturile cu suc, ou sau smântână se agită pentru a se amesteca și aera corespunzător." }
+    },
+    {
+      sv: { title: "Citrus-twisten", body: "Vrid alltid en citrusskiva eller skalet över glaset innan du lägger i den. De oljor som frigörs ger en intensiv doft och smak." },
+      en: { title: "The citrus twist", body: "Always twist a citrus peel over the glass before dropping it in. The oils released give an intense aroma and flavor." },
+      ro: { title: "Torsiunea de citrice", body: "Răsuciți întotdeauna o coajă de citrice deasupra paharului înainte de a o pune înăuntru. Uleiurile eliberate dau o aromă și un gust intensiv." }
+    },
+    {
+      sv: { title: "Färsk juice gör skillnad", body: "Pressad juice på flaska kan inte mäta sig med färskpressad. Pressa alltid lime och citron just innan du använder det — det gör enorm skillnad." },
+      en: { title: "Fresh juice matters", body: "Bottled juice can't compare to freshly squeezed. Always press lime and lemon just before use — it makes an enormous difference." },
+      ro: { title: "Sucul proaspăt contează", body: "Sucul îmbuteliat nu poate fi comparat cu cel proaspăt stors. Stoarceți întotdeauna lime și lămâie chiar înainte de utilizare — face o diferență enormă." }
+    },
+    {
+      sv: { title: "Dubbelsila alltid", body: "Sila din shaker genom ett hawthorne-sil och sedan ett fint te-sil. Det ger en glasklart, isbitsfri drink." },
+      en: { title: "Double strain always", body: "Strain from your shaker through a hawthorne strainer and then a fine tea strainer. It gives a crystal-clear, ice-chip-free drink." },
+      ro: { title: "Strecoară întotdeauna dublu", body: "Strecurați din shaker printr-un filtru hawthorne și apoi printr-un filtru de ceai fin. Oferă o băutură cristal, fără bucăți de gheață." }
+    },
+    {
+      sv: { title: "Rätt is spelar roll", body: "Stora, klara isbitar smälter långsammare och spär inte ut drinken lika snabbt. Investera i en bra isform för hemmabruk." },
+      en: { title: "The right ice matters", body: "Large, clear ice cubes melt slower and don't dilute the drink as fast. Invest in a good ice mold for home use." },
+      ro: { title: "Gheața potrivită contează", body: "Cuburile mari de gheață clară se topesc mai lent și nu diluează băutura la fel de repede. Investiți într-o formă bună de gheață pentru uz casnic." }
+    },
+    {
+      sv: { title: "Sockerkantens hemlighet", body: "Fukta bara halva glasets kant med citron och dipp i socker. Då kan gästen välja om de vill ha sötma i varje klunk eller inte." },
+      en: { title: "The sugar rim secret", body: "Moisten only half the glass rim with citrus and dip in sugar. This lets your guest choose whether they want sweetness in every sip or not." },
+      ro: { title: "Secretul marginii cu zahăr", body: "Umeziți doar jumătate din marginea paharului cu citrice și înmuiați în zahăr. Astfel, oaspetele poate alege dacă dorește sau nu dulceață la fiecare înghițitură." }
+    },
+    {
+      sv: { title: "Gin och tonic-proportioner", body: "Det klassiska förhållandet är 1:3 — en del gin och tre delar tonic. Vill du känna ginets botaniska smak mer, gå ner till 1:2." },
+      en: { title: "Gin and tonic proportions", body: "The classic ratio is 1:3 — one part gin and three parts tonic. If you want to taste the gin's botanicals more, go down to 1:2." },
+      ro: { title: "Proporțiile pentru gin tonic", body: "Raportul clasic este 1:3 — o parte gin și trei părți tonic. Dacă vrei să simți mai mult botanicalele ginului, mergi la 1:2." }
+    },
+    {
+      sv: { title: "Torr shaking med ägg", body: "Shaka drinkar med äggvita utan is först i 15 sekunder — det kallas dry shake. Tillsätt sedan is och shaka igen. Du får ett perfekt skum." },
+      en: { title: "Dry shaking with egg", body: "Shake drinks with egg white without ice first for 15 seconds — this is called a dry shake. Then add ice and shake again. You get a perfect foam." },
+      ro: { title: "Agitare uscată cu ou", body: "Agitați băuturile cu albuș de ou fără gheață mai întâi timp de 15 secunde — se numește dry shake. Adăugați gheață și agitați din nou. Veți obține o spumă perfectă." }
+    },
+    {
+      sv: { title: "Enkelt sirap hemma", body: "Koka lika delar socker och vatten i två minuter. Låt svalna och förvara i kylskåp upp till en månad. Billigare och godare än köpt." },
+      en: { title: "Simple syrup at home", body: "Boil equal parts sugar and water for two minutes. Let cool and store in the fridge for up to a month. Cheaper and better than store-bought." },
+      ro: { title: "Sirop simplu acasă", body: "Fierbeți cantități egale de zahăr și apă timp de două minute. Lăsați să se răcească și păstrați la frigider până la o lună. Mai ieftin și mai bun decât cel cumpărat." }
+    },
+    {
+      sv: { title: "Garnering med intention", body: "En garnering ska alltid vara drickbar och förstärka drickens smakprofil — inte bara se fin ut. Mynta med en syrlig drink, citrus med en fruktig." },
+      en: { title: "Garnish with intention", body: "A garnish should always be drinkable and enhance the drink's flavor profile — not just look pretty. Mint with a sour drink, citrus with a fruity one." },
+      ro: { title: "Garnitură cu intenție", body: "O garnitură ar trebui să fie întotdeauna comestibilă și să îmbunătățească profilul de aromă al băuturii — nu doar să arate frumos. Mentă cu o băutură acrișoară, citrice cu una fructată." }
+    },
+    {
+      sv: { title: "Aperol Spritz-tricket", body: "Häll alltid Prosecco och sodavatten innan Aperol. Det blandas naturligt underifrån och du slipper röra — perfekt genomfärgad drink varje gång." },
+      en: { title: "The Aperol Spritz trick", body: "Always pour Prosecco and soda water before Aperol. It blends naturally from the bottom and you don't need to stir — a perfectly colored drink every time." },
+      ro: { title: "Trucul pentru Aperol Spritz", body: "Turnați întotdeauna Prosecco și apă carbogazoasă înainte de Aperol. Se amestecă natural de jos și nu trebuie să amestecați — o băutură perfect colorată de fiecare dată." }
+    },
+    {
+      sv: { title: "Bitters — lite räcker", body: "Bitters är koncentrerat kryddextrakt. Börja alltid med 1–2 droppar och smaka. Det är lätt att tillsätta mer men omöjligt att ta bort." },
+      en: { title: "Bitters — a little goes far", body: "Bitters are concentrated spice extract. Always start with 1–2 dashes and taste. It's easy to add more but impossible to take away." },
+      ro: { title: "Bitters — puțin merge departe", body: "Bitters sunt extract concentrat de condimente. Începeți întotdeauna cu 1–2 picături și gustați. E ușor să adăugați mai mult, dar imposibil să luați înapoi." }
+    },
+    {
+      sv: { title: "Margaritans tre delar", body: "En klassisk Margarita är 2:1:1 — tequila, triple sec och färsk limejuice. Frysta Margaritas är goda men täcker alltid alkoholsmaken — var försiktig." },
+      en: { title: "The Margarita's three parts", body: "A classic Margarita is 2:1:1 — tequila, triple sec and fresh lime juice. Frozen Margaritas taste great but always mask the alcohol — be careful." },
+      ro: { title: "Cele trei părți ale Margaritei", body: "O Margarita clasică este 2:1:1 — tequila, triple sec și suc proaspăt de lime. Margaritele înghețate sunt delicioase, dar ascund mereu alcoolul — fiți atenți." }
+    },
+    {
+      sv: { title: "Negroni — det perfekta förhållandet", body: "Negroni är lika delar gin, Campari och söt vermouth — 1:1:1. Enkelt att komma ihåg och omöjligt att misslyckas med om du håller proportionerna." },
+      en: { title: "Negroni — the perfect ratio", body: "A Negroni is equal parts gin, Campari and sweet vermouth — 1:1:1. Simple to remember and impossible to mess up if you keep the proportions." },
+      ro: { title: "Negroni — raportul perfect", body: "Un Negroni este în proporții egale de gin, Campari și vermut dulce — 1:1:1. Simplu de reținut și imposibil de greșit dacă păstrați proporțiile." }
+    },
+    {
+      sv: { title: "Smaksätt din egen gin", body: "Häll gin i en glasburk med gurka, peppar, rosmarin eller vad du gillar. Låt stå i 24 timmar. Du har din egen smaksatta gin." },
+      en: { title: "Infuse your own gin", body: "Pour gin into a glass jar with cucumber, pepper, rosemary or whatever you like. Leave for 24 hours. You have your own flavored gin." },
+      ro: { title: "Infuzează-ți propriul gin", body: "Toarnă gin într-un borcan de sticlă cu castraveți, piper, rozmarin sau orice îți place. Lasă 24 de ore. Ai propriul gin aromatizat." }
+    },
+    {
+      sv: { title: "Old Fashioned-ritualen", body: "Muddla sockret med bitters direkt i glaset — aldrig i en shaker. Tillsätt whiskey och en stor isbit. Rör sakta i 30 sekunder. Ingen skynd." },
+      en: { title: "The Old Fashioned ritual", body: "Muddle the sugar with bitters directly in the glass — never in a shaker. Add whiskey and a large ice cube. Stir slowly for 30 seconds. No rush." },
+      ro: { title: "Ritualul Old Fashioned", body: "Zdrobiți zahărul cu bitters direct în pahar — niciodată într-un shaker. Adăugați whiskey și un cub mare de gheață. Amestecați încet timp de 30 de secunde. Nicio grabă." }
+    },
+    {
+      sv: { title: "Tonic-temperatur avgör", body: "Häll alltid tonic direkt från kylskåpet — aldrig rumstempererad. Kall tonic behåller kolsyran längre och ger ett friskare slutresultat." },
+      en: { title: "Tonic temperature matters", body: "Always pour tonic straight from the fridge — never room temperature. Cold tonic retains carbonation longer and gives a fresher result." },
+      ro: { title: "Temperatura tonicului contează", body: "Turnați întotdeauna tonic direct din frigider — niciodată la temperatura camerei. Tonicul rece păstrează mai mult timp gazele și dă un rezultat mai proaspăt." }
+    },
+    {
+      sv: { title: "Muddling — inte för hårt", body: "När du muddlar mynta vill du bara bryta cellväggarna, inte söndermala dem. Pressa lätt 4–5 gånger. Krossar du den för hårt blir drinken bitter." },
+      en: { title: "Muddling — not too hard", body: "When muddling mint you only want to break the cell walls, not grind them. Press gently 4–5 times. Crush too hard and the drink becomes bitter." },
+      ro: { title: "Zdrobirea — nu prea tare", body: "Când zdrobiți menta, vreți doar să rupeți pereții celulari, nu să-i măcinați. Apăsați ușor de 4–5 ori. Zdrobiți prea tare și băutura devine amară." }
+    },
+    {
+      sv: { title: "Vodkas neutralitet — en styrka", body: "Vodka är designad att smaka så lite som möjligt — det gör den perfekt som bas i drinkar där andra smaker ska ta plats." },
+      en: { title: "Vodka's neutrality — a strength", body: "Vodka is designed to taste as little as possible — that makes it perfect as a base in drinks where other flavors should shine." },
+      ro: { title: "Neutralitatea vodcii — un avantaj", body: "Vodca este concepută să aibă un gust cât mai neutru — ceea ce o face perfectă ca bază în băuturi unde alte arome ar trebui să strălucească." }
+    },
+    {
+      sv: { title: "Mocktails — lika seriöst", body: "En bra alkoholfri drink kräver lika mycket eftertanke som en med sprit. Balansera sött, surt och beskt noggrant — och garnera alltid." },
+      en: { title: "Mocktails — equally serious", body: "A good non-alcoholic drink requires just as much thought as one with spirits. Balance sweet, sour and bitter carefully — and always garnish." },
+      ro: { title: "Mocktailuri — la fel de serioase", body: "O băutură nealcoolică bună necesită la fel de multă gândire ca una cu spirtoase. Echilibrați cu grijă dulcele, acrul și amarul — și întotdeauna ornați." }
+    },
+    {
+      sv: { title: "Glastyp påverkar smaken", body: "Tunnväggiga glas upplevs som elegantare och påverkar faktiskt smakupplevelsen positivt. Billiga tjockväggiga glas känns klumpiga i munnen." },
+      en: { title: "Glass type affects taste", body: "Thin-walled glasses feel more elegant and actually positively affect the taste experience. Cheap thick-walled glasses feel clumsy against the lips." },
+      ro: { title: "Tipul de pahar afectează gustul", body: "Paharele cu pereți subțiri par mai elegante și afectează pozitiv experiența gustativă. Paharele ieftine cu pereți groși se simt stângaci la buze." }
+    },
+    {
+      sv: { title: "Champagnens bubblor", body: "Champagneflöjten är snygg men inte optimal — bubblorna försvinner för snabbt. En vid cupglas eller till och med ett vitt vinglas ger bättre aromutveckling." },
+      en: { title: "Champagne bubbles", body: "The champagne flute looks elegant but isn't optimal — bubbles disappear too fast. A wide coupe or even a white wine glass gives better aroma development." },
+      ro: { title: "Bulele de șampanie", body: "Paharul tip flaut arată elegant, dar nu este optim — bulele dispar prea repede. O cupă largă sau chiar un pahar de vin alb oferă o dezvoltare mai bună a aromei." }
+    },
+    {
+      sv: { title: "Citrus + salt = smakförstärkare", body: "En nypa salt i en citrusbaserad drink förstärker alla andra smaker dramatiskt. Prova i din nästa Margarita eller Daiquiri." },
+      en: { title: "Citrus + salt = flavor enhancer", body: "A pinch of salt in a citrus-based drink dramatically enhances all other flavors. Try it in your next Margarita or Daiquiri." },
+      ro: { title: "Citrice + sare = amplificator de gust", body: "Un praf de sare într-o băutură pe bază de citrice îmbunătățește dramatic toate celelalte arome. Încercați în următoarea Margarita sau Daiquiri." }
+    },
+    {
+      sv: { title: "Daiquirins enkelhet", body: "En Daiquiri är rom, limejuice och sockerlag i förhållandet 2:1:1. Shaka ordentligt med is och sila i ett kylt cocktailglas. Perfekt varje gång." },
+      en: { title: "The Daiquiri's simplicity", body: "A Daiquiri is rum, lime juice and simple syrup in a 2:1:1 ratio. Shake well with ice and strain into a chilled cocktail glass. Perfect every time." },
+      ro: { title: "Simplitatea Daiquiri", body: "Un Daiquiri este rom, suc de lime și sirop simplu în raportul 2:1:1. Agitați bine cu gheață și strecurați într-un pahar de cocktail răcit. Perfect de fiecare dată." }
+    },
+    {
+      sv: { title: "Isens roll i stirred drinks", body: "Vid röring vill du ha stor, tät is som kyler utan att spä ut för mycket. Rör i 30–45 sekunder tills glaset är riktigt kallt att ta i." },
+      en: { title: "Ice's role in stirred drinks", body: "When stirring you want large, dense ice that chills without diluting too much. Stir for 30–45 seconds until the glass is really cold to touch." },
+      ro: { title: "Rolul gheții în băuturile amestecate", body: "Când amestecați, doriți gheață mare și densă care răcește fără a dilua prea mult. Amestecați timp de 30–45 de secunde până când paharul este cu adevărat rece la atingere." }
+    },
+    {
+      sv: { title: "Bourbon vs Rye", body: "Bourbon är sötare och mjukare — perfekt i Old Fashioned och Mint Julep. Rye är kryddigare och torrare — bättre i Manhattan och Sazerac." },
+      en: { title: "Bourbon vs Rye", body: "Bourbon is sweeter and smoother — perfect in Old Fashioned and Mint Julep. Rye is spicier and drier — better in Manhattan and Sazerac." },
+      ro: { title: "Bourbon vs Rye", body: "Bourbon-ul este mai dulce și mai fin — perfect în Old Fashioned și Mint Julep. Rye-ul este mai condimentat și mai sec — mai bun în Manhattan și Sazerac." }
+    },
+    {
+      sv: { title: "Smaken sitter i näsan", body: "80% av vad vi upplever som smak är faktiskt doft. Värm glaset lätt i handen och sniffa innan du dricker — det förbättrar hela upplevelsen." },
+      en: { title: "Flavor lives in the nose", body: "80% of what we experience as taste is actually smell. Warm the glass slightly in your hand and sniff before drinking — it improves the whole experience." },
+      ro: { title: "Aroma stă în nas", body: "80% din ceea ce experimentăm ca gust este de fapt miros. Încălziți ușor paharul în mână și mirosiți înainte de a bea — îmbunătățește întreaga experiență." }
+    },
+    {
+      sv: { title: "Spritz-formeln", body: "Alla bra spritz följer 3-2-1: tre delar prosecco, två delar aperitif (Aperol, Campari), en del sodavatten. Lägg till en skiva apelsin och servera." },
+      en: { title: "The Spritz formula", body: "All great spritzes follow 3-2-1: three parts prosecco, two parts aperitif (Aperol, Campari), one part soda water. Add an orange slice and serve." },
+      ro: { title: "Formula Spritz", body: "Toate spritz-urile bune urmează 3-2-1: trei părți prosecco, două părți aperitiv (Aperol, Campari), o parte apă carbogazoasă. Adăugați o felie de portocală și serviți." }
+    },
+    {
+      sv: { title: "Gör din egen tonic", body: "Koka kinin (quinine) med citrusskal, socker och kryddor. Blanda med kolsyrat vatten. Din hemgjorda tonic slår alla flaskor i smak och ger ett riktigt DJ-moment." },
+      en: { title: "Make your own tonic", body: "Boil quinine with citrus peel, sugar and spices. Mix with carbonated water. Your homemade tonic beats every bottle in flavor and makes for a real showstopper." },
+      ro: { title: "Fă-ți propriul tonic", body: "Fierbeți chinina cu coajă de citrice, zahăr și condimente. Amestecați cu apă carbogazoasă. Tonicul tău de casă bate orice sticlă ca aromă și este un adevărat spectacol." }
+    },
+    {
+      sv: { title: "Cognac och isvatten", body: "Prova att tillsätta några droppar vatten i en cognac eller whisky. Det sänker alkoholhalten och öppnar upp aromaerna dramatiskt." },
+      en: { title: "Cognac and a drop of water", body: "Try adding a few drops of water to a cognac or whisky. It lowers the alcohol level and dramatically opens up the aromas." },
+      ro: { title: "Coniac și câteva picături de apă", body: "Încercați să adăugați câteva picături de apă în coniac sau whisky. Scade nivelul de alcool și deschide dramatic aromele." }
+    }
+  ];
+
+  function getDailyTip() {
+    const now = new Date();
+    const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+    return tips[dayOfYear % tips.length];
+  }
+
+  function renderTip() {
+    const tip = getDailyTip();
+    const l = lang || 'sv';
+    const d = tip[l] || tip.sv;
+    const now = new Date();
+    const dateStr = now.toLocaleDateString(
+      l === 'sv' ? 'sv-SE' : l === 'ro' ? 'ro-RO' : 'en-GB',
+      { day: 'numeric', month: 'long' }
+    );
+    const labels = { sv: "Dagens tips", en: "Tip of the day", ro: "Sfatul zilei" };
+    document.getElementById('tip-date').textContent = labels[l] + ' · ' + dateStr;
+    document.getElementById('tip-title').textContent = d.title;
+    document.getElementById('tip-body').textContent = d.body;
+
+    // Show direct image — no API call needed
+    const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+    const img = tipImages[dayOfYear % tipImages.length];
+    const imgEl = document.getElementById('tip-img');
+    const drinkNameEl = document.getElementById('tip-drink-name');
+    if (img && imgEl) {
+      imgEl.src = img.url;
+      imgEl.alt = img.credit;
+      imgEl.style.display = 'block';
+      imgEl.style.width = '33%';
+      if (drinkNameEl) {
+        drinkNameEl.innerHTML = 'Photo: <a href="https://unsplash.com" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:none;">' + img.credit + ' / Unsplash</a>';
+      }
+    }
+  }
+
+  // Re-render tip when language changes
+  const _origSetLang = setLang;
+  // Patch applyLang to also update tip
+  const _origApplyLang = applyLang;
+  function applyLang() {
+    _origApplyLang();
+    renderTip();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    setLang(lang);
+    renderTip();
+  });
+
   // ── i18n ──────────────────────────────────────────────
   const i18n = {
     sv: {

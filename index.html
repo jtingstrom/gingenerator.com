@@ -531,16 +531,20 @@
       margin-bottom: 1rem;
     }
     .category-pills {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 8px;
       margin-top: 0.6rem;
+    }
+    @media (max-width: 500px) {
+      .category-pills { grid-template-columns: repeat(2, 1fr); }
     }
     .cat-pill {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
-      padding: 6px 14px;
+      padding: 7px 14px;
       background: var(--surface2);
       border: 1px solid var(--border);
       border-radius: 999px;
@@ -550,6 +554,7 @@
       transition: border-color 0.15s, color 0.15s, background 0.15s;
       font-family: 'DM Sans', sans-serif;
       font-weight: 400;
+      white-space: nowrap;
     }
     .cat-pill:hover {
       border-color: var(--border2);
@@ -721,7 +726,7 @@
 </main>
 
 <footer>
-  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.13</span>
+  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.14</span>
 </footer>
 
 <script>

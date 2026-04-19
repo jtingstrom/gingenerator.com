@@ -522,6 +522,45 @@
     }
     .drink-search-wrap input::placeholder { color: var(--muted); }
     .drink-search-wrap input:focus { border-color: var(--accent); }
+
+    .categories-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .category-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 0.6rem;
+    }
+    .cat-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+    }
+    .cat-pill:hover {
+      border-color: var(--border2);
+      color: var(--text);
+    }
+    .cat-pill.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(212,168,75,0.08);
+    }
+    .cat-pill .cat-icon { font-size: 14px; }
     .scrollbar-thin::-webkit-scrollbar { width: 4px; }
     .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
     .scrollbar-thin::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
@@ -596,6 +635,21 @@
 
 <div class="main-left">
 
+  <!-- Flavor categories -->
+  <div class="categories-card">
+    <div class="section-label" id="label-categories">Flavor profile</div>
+    <div class="category-pills" id="category-pills">
+      <button class="cat-pill" data-cat="sour" onclick="toggleCategory(this)"><span class="cat-icon">🍋</span> <span>Sour</span></button>
+      <button class="cat-pill" data-cat="sweet" onclick="toggleCategory(this)"><span class="cat-icon">🍓</span> <span>Sweet</span></button>
+      <button class="cat-pill" data-cat="bitter" onclick="toggleCategory(this)"><span class="cat-icon">🌿</span> <span>Bitter</span></button>
+      <button class="cat-pill" data-cat="strong" onclick="toggleCategory(this)"><span class="cat-icon">🥃</span> <span>Strong</span></button>
+      <button class="cat-pill" data-cat="refreshing" onclick="toggleCategory(this)"><span class="cat-icon">✨</span> <span>Refreshing</span></button>
+      <button class="cat-pill" data-cat="creamy" onclick="toggleCategory(this)"><span class="cat-icon">🍦</span> <span>Creamy</span></button>
+      <button class="cat-pill" data-cat="tropical" onclick="toggleCategory(this)"><span class="cat-icon">🌴</span> <span>Tropical</span></button>
+      <button class="cat-pill" data-cat="spicy" onclick="toggleCategory(this)"><span class="cat-icon">🌶️</span> <span>Spicy</span></button>
+    </div>
+  </div>
+
   <div class="input-card">
     <div class="mode-toggle">
       <button class="active" id="mode-ingr" onclick="setMode('ingredients')" id="mode-btn-ingr">Ingredients</button>
@@ -667,7 +721,7 @@
 </main>
 
 <footer>
-  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.11</span>
+  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.13</span>
 </footer>
 
 <script>
@@ -856,6 +910,65 @@
   }
 
 
+
+  // ── Flavor categories ─────────────────────────────────
+  const categoryDrinks = {
+    sour:       ['Margarita','Daiquiri','Whiskey Sour','Gimlet','Pisco Sour','Sidecar','Clover Club','Bees Knees','Tom Collins','Lemon Drop'],
+    sweet:      ['Cosmopolitan','Sex on the Beach','Piña Colada','Amaretto Sour','Kir Royale','Bellini','Tequila Sunrise','Harvey Wallbanger','Screwdriver','Fuzzy Navel'],
+    bitter:     ['Negroni','Aperol Spritz','Americano','Campari Orange','Boulevardier','Paper Plane','Jungle Bird','Cynar Spritz','Bitter Sweet Symphony'],
+    strong:     ['Old Fashioned','Manhattan','Martini','Sazerac','Vieux Carré','Rob Roy','Godfather','Rusty Nail','Black Russian','Toronto'],
+    refreshing: ['Gin & Tonic','Mojito','Moscow Mule','Dark N Stormy','Paloma','Hugo Spritz','French 75','Airmail','Shandy','Tom Collins'],
+    creamy:     ['Espresso Martini','White Russian','Brandy Alexander','Grasshopper','Mudslide','Baileys on ice','Pina Colada','Eggnog','Flip','Pink Squirrel'],
+    tropical:   ['Piña Colada','Mai Tai','Blue Lagoon','Sex on the Beach','Jungle Bird','Bahama Mama','Blue Hawaiian','Painkiller','Zombie','Hurricane'],
+    spicy:      ['Moscow Mule','Bloody Mary','Spicy Margarita','Jalapeño Paloma','Spicy Mezcal Mule','Ginger Rogers','Spicy Tequila Sunrise'],
+  };
+
+  let activeCategory = null;
+
+  window.toggleCategory = function(btn) {
+    const cat = btn.dataset.cat;
+    const pills = document.querySelectorAll('.cat-pill');
+    if (activeCategory === cat) {
+      activeCategory = null;
+      pills.forEach(p => p.classList.remove('active'));
+    } else {
+      activeCategory = cat;
+      pills.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+    }
+  };
+
+  async function searchByCategory(cat) {
+    const drinks = categoryDrinks[cat];
+    const result = document.getElementById('result');
+    result.innerHTML = `<div class="loading"><div class="shaker">🍸</div><p>${t('loading')}</p></div>`;
+    try {
+      const promises = drinks.map(name =>
+        fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${encodeURIComponent(name)}`)
+          .then(r => r.json())
+          .then(d => d.drinks ? d.drinks[0] : null)
+          .catch(() => null)
+      );
+      const results = (await Promise.all(promises)).filter(Boolean);
+      const unique = [];
+      const seen = new Set();
+      results.forEach(d => { if (!seen.has(d.idDrink)) { seen.add(d.idDrink); unique.push(d); } });
+      if (unique.length === 0) {
+        result.innerHTML = `<div class="no-results"><strong>${t('noResults')}</strong></div>`;
+        return;
+      }
+      if (lang === 'sv' || lang === 'ro') {
+        result.innerHTML = `<div class="loading"><div class="shaker">🌐</div><p>${t('translating')}</p></div>`;
+        const translated = await translateDrinks(unique);
+        renderDrinks(translated, []);
+      } else {
+        renderDrinks(unique, []);
+      }
+    } catch(e) {
+      result.innerHTML = `<div class="error">${t('error')}</div>`;
+    }
+  }
+
   // ── Search mode ───────────────────────────────────────
   let searchMode = 'ingredients';
 
@@ -912,6 +1025,10 @@
     if (searchMode === 'drink') {
       const q = document.getElementById('drink-input').value.trim();
       if (q) searchByDrinkName(q);
+      return;
+    }
+    if (activeCategory && selected.size === 0) {
+      await searchByCategory(activeCategory);
       return;
     }
     if (selected.size === 0) { alert(t('alertIngr')); return; }
@@ -974,6 +1091,12 @@
       let filtered = details;
       if (drinkType !== 'alla') {
         filtered = details.filter(d => d.strAlcoholic === drinkType);
+      }
+      // Filter by flavor category if active
+      if (activeCategory) {
+        const catNames = categoryDrinks[activeCategory].map(n => n.toLowerCase());
+        const catFiltered = filtered.filter(d => catNames.some(n => d.strDrink.toLowerCase().includes(n) || n.includes(d.strDrink.toLowerCase())));
+        if (catFiltered.length > 0) filtered = catFiltered;
       }
 
       if (filtered.length === 0) {
@@ -1073,18 +1196,40 @@
     }).join('') + '</div>';
   }
   // ── Daily Tip ─────────────────────────────────────────
-  // Local images in /img/ folder — cycling through 10 images
+  // Tip images — local files in /img/ folder
   const tipImages = [
-    { url: '/img/tip1.jpg',  credit: 'Ash Edmonds' },
-    { url: '/img/tip2.jpg',  credit: 'Olena Bohovyk' },
-    { url: '/img/tip3.jpg',  credit: 'Kobby Mendez' },
-    { url: '/img/tip4.jpg',  credit: 'M.S. Meeuwesen' },
-    { url: '/img/tip5.jpg',  credit: 'Clovis Wood' },
-    { url: '/img/tip6.jpg',  credit: 'Gaby Yerden' },
-    { url: '/img/tip7.jpg',  credit: 'Nikita Tikhomirov' },
-    { url: '/img/tip8.jpg',  credit: "Tai's Captures" },
-    { url: '/img/tip9.jpg',  credit: 'Andrea Riezzo' },
-    { url: '/img/tip10.jpg', credit: 'Chas Turansky' },
+    { url: '/img/Gintonic1.jpg', credit: 'Jez Timms' },
+    { url: '/img/Mojito1.jpg', credit: 'Sam Hojati' },
+    { url: '/img/OldFashioned1.jpg', credit: 'C S' },
+    { url: '/img/Negroni1.jpg', credit: 'Vlady Nykulyak' },
+    { url: '/img/Daiquiri1.jpg', credit: 'Kike Salazar N' },
+    { url: '/img/Cosmopolitan1.jpg', credit: 'Wesley Tingey' },
+    { url: '/img/Manhattan1.jpg', credit: 'Jakub Dziubak' },
+    { url: '/img/Margarita1.jpg', credit: 'Aleksandar Andreev' },
+    { url: '/img/Gintonic2.jpg', credit: 'Nikolay Dimitrov' },
+    { url: '/img/WhiskeySour1.jpg', credit: 'Poul Hoang' },
+    { url: '/img/Mojito2.jpg', credit: 'Mae Mu' },
+    { url: '/img/AperolSpritz1.jpg', credit: 'Sebastian Wagner' },
+    { url: '/img/AperolSpritz2.jpg', credit: 'jack atkinson' },
+    { url: '/img/OldFashioned2.jpg', credit: 'Martina Alpeza' },
+    { url: '/img/Margarita2.jpg', credit: 'Kike Salazar N' },
+    { url: '/img/Negroni2.jpg', credit: 'Pylyp Sukhenko' },
+    { url: '/img/Gintonic3.jpg', credit: 'Francesco Esposito' },
+    { url: '/img/OldFashioned3.jpg', credit: 'Bon Vivant' },
+    { url: '/img/Gintonic4.jpg', credit: 'Louis Hansel' },
+    { url: '/img/Mojito3.jpg', credit: 'amin ramezani' },
+    { url: '/img/Cosmopolitan2.jpg', credit: 'Nikita Tikhomirov' },
+    { url: '/img/AperolSpritz3.jpg', credit: 'Olena Bohovyk' },
+    { url: '/img/Manhattan2.jpg', credit: 'Emily Andreeva' },
+    { url: '/img/EspressoMartini1.jpg', credit: 'Anima Visual' },
+    { url: '/img/Margarita3.jpg', credit: 'Julie Sd' },
+    { url: '/img/Daiquiri2.jpg', credit: 'Maria Dempsey' },
+    { url: '/img/OldFashioned4.jpg', credit: 'Himal Rana' },
+    { url: '/img/Manhattan3.jpg', credit: 'Wesley Sanchez' },
+    { url: '/img/Negroni3.jpg', credit: 'Johann Trasch' },
+    { url: '/img/AperolSpritz4.jpg', credit: 'Gabriella Clare Marino' },
+    { url: '/img/Gintonic5.jpg', credit: 'mj tang' },
+    { url: '/img/WhiskeySour2.jpg', credit: 'Dexter Fernandes' },
   ];
 
   const tips = [
@@ -1307,7 +1452,7 @@
       glass: 'Glas', alcohol: 'Alkohol', nonAlcohol: 'Alkoholfri',
       noInstructions: 'Inga instruktioner tillgängliga.',
       error: 'Något gick fel, försök igen.', alertIngr: 'Välj minst en ingrediens!',
-      modeIngr: 'Ingredienser', modeDrink: 'Drinkar', labelDrinkSearch: 'Sök på drinknamn', placeholderDrink: 'T.ex. Negroni, Mojito, Margarita…',
+      labelCategories: 'Smakprofil', modeIngr: 'Ingredienser', modeDrink: 'Drinkar', labelDrinkSearch: 'Sök på drinknamn', placeholderDrink: 'T.ex. Negroni, Mojito, Margarita…',
     },
     en: {
       tagline: 'Enter what you have at home — we\'ll mix the rest.',
@@ -1325,7 +1470,7 @@
       glass: 'Glass', alcohol: 'Alcoholic', nonAlcohol: 'Non-alcoholic',
       noInstructions: 'No instructions available.',
       error: 'Something went wrong, please try again.', alertIngr: 'Select at least one ingredient!',
-      modeIngr: 'Ingredients', modeDrink: 'Drinks', labelDrinkSearch: 'Search by drink name', placeholderDrink: 'E.g. Negroni, Mojito, Margarita…',
+      labelCategories: 'Flavor profile', modeIngr: 'Ingredients', modeDrink: 'Drinks', labelDrinkSearch: 'Search by drink name', placeholderDrink: 'E.g. Negroni, Mojito, Margarita…',
     },
     ro: {
       tagline: 'Introdu ce ai acasă — noi facem cocktailul.',
@@ -1343,7 +1488,7 @@
       glass: 'Pahar', alcohol: 'Alcoolic', nonAlcohol: 'Fără alcool',
       noInstructions: 'Nu există instrucțiuni disponibile.',
       error: 'Ceva a mers greșit, încearcă din nou.', alertIngr: 'Selectează cel puțin un ingredient!',
-      modeIngr: 'Ingrediente', modeDrink: 'Băuturi', labelDrinkSearch: 'Caută după numele băuturii', placeholderDrink: 'Ex. Negroni, Mojito, Margarita…',
+      labelCategories: 'Profil de aromă', modeIngr: 'Ingrediente', modeDrink: 'Băuturi', labelDrinkSearch: 'Caută după numele băuturii', placeholderDrink: 'Ex. Negroni, Mojito, Margarita…',
     }
   };
 
@@ -1351,12 +1496,19 @@
 
   function t(key) { return (i18n[lang] && i18n[lang][key]) || i18n.sv[key] || key; }
 
+  const catLabels = {"sv": {"label": "Smakprofil", "sour": "Syrlig", "sweet": "Söt", "bitter": "Bitter", "strong": "Stark", "refreshing": "Frisk", "creamy": "Krämig", "tropical": "Tropisk", "spicy": "Kryddig"}, "en": {"label": "Flavor profile", "sour": "Sour", "sweet": "Sweet", "bitter": "Bitter", "strong": "Strong", "refreshing": "Refreshing", "creamy": "Creamy", "tropical": "Tropical", "spicy": "Spicy"}, "ro": {"label": "Profil de aromă", "sour": "Acru", "sweet": "Dulce", "bitter": "Amar", "strong": "Tare", "refreshing": "Răcoritor", "creamy": "Cremos", "tropical": "Tropical", "spicy": "Picant"}};
   function applyLang() {
     const set = (id, val) => { const e = document.getElementById(id); if (e) e.textContent = val; };
     const q = document.querySelector.bind(document);
     const tagline = q('.tagline'); if (tagline) tagline.textContent = t('tagline');
     set('label-ingr', t('labelIngr'));
     const inp = document.getElementById('ingr-input'); if (inp) inp.placeholder = t('placeholder');
+    const lCat = document.getElementById('label-categories'); if (lCat) lCat.textContent = catLabels[lang]?.label || 'Flavor profile';
+    document.querySelectorAll('.cat-pill').forEach(p => {
+      const cat = p.dataset.cat;
+      const span = p.querySelector('span:last-child');
+      if (span && catLabels[lang]) span.textContent = catLabels[lang][cat] || cat;
+    });
     const mIngr = document.getElementById('mode-ingr'); if (mIngr) mIngr.textContent = t('modeIngr');
     const mDrink = document.getElementById('mode-drink'); if (mDrink) mDrink.textContent = t('modeDrink');
     const lDrink = document.getElementById('label-drink-search'); if (lDrink) lDrink.textContent = t('labelDrinkSearch');

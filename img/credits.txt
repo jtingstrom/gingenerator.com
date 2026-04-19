@@ -1,10 +1,119 @@
-tip1 - Ash Edmonds 
-Tip2 - Olena Bohovyk 
-Tip3 - Kobby Mendez 
-Tip4 - M.S. Meeuwesen 
-Tip5 - Clovis Wood 
-Tip6 - Gaby Yerden 
-Tip7 - Nikita Tikhomirov
-Tip8 - Tai's Captures 
-Tip9 - Andrea Riezzo 
-Tip10 - Chas Turansky
+Gintonic1 - Jez Timms
+Gintonic2 - Nikolay Dimitrov 
+Gintonic3 - Francesco Esposito
+Gintonic4 - Louis Hansel
+Gintonic5 - mj tang 
+Gintonic6 - Fábio Alves 
+Gintonic7 - Stefan Schauberger 
+Gintonic8 - Fábio Alves 
+Gintonic9 - Sexto Abismo | Ginebra
+
+Margarita1 - Aleksandar Andreev 
+Margarita2 - Kike Salazar N 
+Margarita3 - Julie Sd 
+Margarita4 - Hybrid Storytellers 
+Margarita5 - Hybrid Storytellers 
+Margarita6 - Justin Aikin 
+Margarita7 - Taylor Friehl 
+Margarita8 - Taylor Friehl
+Margarita9 - Claude Piché 
+
+Mojito1 - Sam Hojati 
+Mojito2 - Mae Mu 
+Mojito3 - amin ramezani
+Mojito4 - kimia kazemi 
+Mojito5 - Tata Zaremba
+Mojito6 - ABHISHEK HAJARE
+Mojito7 - Victoria Todorova 
+Mojito8 - Anil Sharma 
+Mojito9 - Cliffer Rebelo
+
+Old Fashioned1 - C S
+Old Fashioned2 - Martina Alpeza 
+Old Fashioned3 - Bon Vivant 
+Old Fashioned4 -  Himal Rana 
+Old Fashioned5 - Julianna Arjes 
+Old Fashioned6 - Daniel
+Old Fashioned7 - Misunderstood Whiskey 
+Old Fashioned8 - Aleksey Cherenkevich 
+Old Fashioned9 - Daniel Herron 
+
+Negroni1 - Vlady Nykulyak 
+Negroni2 - Pylyp Sukhenko 
+Negroni3 - Johann Trasch
+Negroni4 - Pedro Souto 
+Negroni5 - Edson Rosas 
+Negroni6 - CARTIST 
+Negroni7 - Victor Dueñas Teixeira 
+Negroni8 - Artem Mihailov 
+Negroni9 - Eduard Pretsi 
+
+Daiquiri1 - Kike Salazar N 
+Daiquiri2 - Maria Dempsey
+Daiquiri3 - phatthanan tuppocha
+Daiquiri4 - Ani Augustine 
+Daiquiri5 - bckfwd 
+Daiquiri6 - Misunderstood Whiskey
+Daiquiri7 - Sorrawis Chongcharoen 
+Daiquiri8 - Tai's Captures 
+Daiquiri9 - Samuel Regan-Asante 
+
+AperolSpritz1 - Sebastian Wagner 
+AperolSpritz2 - jack atkinson 
+AperolSpritz3 - Olena Bohovyk 
+AperolSpritz4 - Gabriella Clare Marino
+AperolSpritz5 - Markus Spiske 
+AperolSpritz6 - Mihaela Claudia Puscas 
+AperolSpritz7 - Vinicius Pittol 
+AperolSpritz8 - Karl Hörnfeldt 
+AperolSpritz9 - Kajetan Powolny
+
+WhiskeySour1 - Poul Hoang 
+WhiskeySour2 - Dexter Fernandes 
+WhiskeySour3 - Jasmijn Hofstra 
+WhiskeySour4 - qiuqiu qiu 
+WhiskeySour5 - Blake Wisz 
+WhiskeySour6 - Riccardo Andolfo 
+WhiskeySour7 - Michelle LeBlanc 
+WhiskeySour8 - Andrey Grodz 
+WhiskeySour9 - Tiago Catulo 
+
+Manhattan1 - Jakub Dziubak 
+Manhattan2 - Emily Andreeva 
+Manhattan3 - Wesley Sanchez 
+Manhattan4 - Robert Gareth 
+Manhattan5 - Oliver Plattner 
+Manhattan6 - Michael Kahn 
+Manhattan7 - David Valentine 
+Manhattan8 - Nathan Dumlao 
+Manhattan9 - OurWhisky Foundation
+
+Cosmopolitan1 - Wesley Tingey
+Cosmopolitan2 - Nikita Tikhomirov
+Cosmopolitan3 - Timur Romanov 
+Cosmopolitan4 - Nana Fuzimi 
+Cosmopolitan5 - Jenny Pace
+Cosmopolitan6 - Pradeep Javedar
+Cosmopolitan7 - Laure Noverraz 
+Cosmopolitan8 - Ahtziri Lagarde 
+Cosmopolitan9 - Ahtziri Lagarde 
+
+moscowmule1 - Kelly Visel 
+moscowmule2 - Susie Burleson 
+moscowmule3 - Kike Salazar N 
+moscowmule4 - Kike Salazar N
+moscowmule5 - Mel Gardner
+moscowmule6 - Misunderstood Whiskey 
+moscowmule7 - Chris Kursikowski
+moscowmule8 - Chris Kursikowski 
+moscowmule9 -  Gary Meulemans 
+
+espressomartini1 - Anima Visual 
+espressomartini2 - Nick Fewings 
+espressomartini3 - Krists Luhaers 
+espressomartini4 - Kike Salazar N 
+espressomartini5 - Hybrid Storytellers 
+espressomartini6 - Hybrid Storytellers 
+espressomartini7 - Shayna Douglas
+espressomartini8 - Kike Salazar N 
+espressomartini9 - Ambitious Studio* | Rick Barrett 

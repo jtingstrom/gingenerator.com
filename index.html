@@ -726,7 +726,7 @@
 </main>
 
 <footer>
-  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.14</span>
+  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.16</span>
 </footer>
 
 <script>
@@ -772,6 +772,150 @@
   let dropdownItems = [];
 
   // Load ingredient list on start
+
+  // ── Flavor → ingredient mapping ───────────────────────
+  // Maps flavor search terms (sv/en/ro) to DB ingredient names
+  const flavorMap = {
+    // Vanilla
+    'vanilla': ['Vanilla vodka', 'Vanilla extract', 'Creme de Cacao', 'Galliano', 'Licor 43'],
+    'vanilla vodka': ['Vanilla vodka'],
+    'vanilj': ['Vanilla vodka', 'Vanilla extract', 'Creme de Cacao', 'Galliano', 'Licor 43'],
+    'vaniljvodka': ['Vanilla vodka'],
+    'vanilj vodka': ['Vanilla vodka'],
+    'vaniljeekstrakt': ['Vanilla extract'],
+    'vanilie': ['Vanilla vodka', 'Vanilla extract', 'Creme de Cacao', 'Galliano'],
+    'vodka vanilie': ['Vanilla vodka'],
+
+    // Citrus
+    'citrus': ['Lemon vodka', 'Citrus gin', 'Triple sec', 'Cointreau', 'Grand Marnier'],
+    'lemon': ['Lemon vodka', 'Lemon juice', 'Limoncello'],
+    'lime': ['Lime juice', 'Lime vodka'],
+    'orange': ['Orange juice', 'Triple sec', 'Grand Marnier', 'Cointreau', 'Curacao'],
+    'apelsin': ['Orange juice', 'Triple sec', 'Grand Marnier', 'Cointreau', 'Curacao'],
+    'portocală': ['Orange juice', 'Triple sec', 'Grand Marnier', 'Cointreau'],
+    'lemon vodka': ['Lemon vodka'],
+    'citronvodka': ['Lemon vodka'],
+    'vodka citron': ['Lemon vodka'],
+
+    // Raspberry
+    'raspberry': ['Raspberry vodka', 'Raspberry liqueur', 'Chambord raspberry liqueur'],
+    'hallon': ['Raspberry vodka', 'Raspberry liqueur', 'Chambord raspberry liqueur'],
+    'zmeură': ['Raspberry vodka', 'Raspberry liqueur', 'Chambord raspberry liqueur'],
+    'chambord': ['Chambord raspberry liqueur'],
+
+    // Coconut
+    'coconut': ['Coconut rum', 'Malibu', 'Coconut cream', 'Coconut milk'],
+    'kokos': ['Coconut rum', 'Malibu', 'Coconut cream', 'Coconut milk'],
+    'cocos': ['Coconut rum', 'Malibu', 'Coconut cream', 'Coconut milk'],
+    'malibu': ['Malibu'],
+
+    // Coffee
+    'coffee': ['Coffee liqueur', 'Kahlua', 'Espresso'],
+    'kaffe': ['Coffee liqueur', 'Kahlua', 'Espresso'],
+    'cafea': ['Coffee liqueur', 'Kahlua', 'Espresso'],
+    'espresso': ['Espresso', 'Coffee liqueur', 'Kahlua'],
+    'kahlua': ['Kahlua'],
+
+    // Peach
+    'peach': ['Peach schnapps', 'Peach brandy', 'Peach vodka'],
+    'persika': ['Peach schnapps', 'Peach brandy'],
+    'piersică': ['Peach schnapps', 'Peach brandy'],
+
+    // Strawberry
+    'strawberry': ['Strawberry vodka', 'Strawberry schnapps', 'Strawberry syrup'],
+    'jordgubbe': ['Strawberry vodka', 'Strawberry schnapps', 'Strawberry syrup'],
+    'căpșuni': ['Strawberry vodka', 'Strawberry schnapps', 'Strawberry syrup'],
+
+    // Cherry
+    'cherry': ['Cherry brandy', 'Cherry vodka', 'Maraschino cherry juice'],
+    'körsbär': ['Cherry brandy', 'Cherry vodka'],
+    'cireșe': ['Cherry brandy', 'Cherry vodka'],
+
+    // Ginger
+    'ginger': ['Ginger beer', 'Ginger ale', 'Ginger syrup'],
+    'ingefära': ['Ginger beer', 'Ginger ale', 'Ginger syrup'],
+    'ghimbir': ['Ginger beer', 'Ginger ale', 'Ginger syrup'],
+
+    // Mint
+    'mint': ['Creme de Menthe', 'Mint syrup', 'Peppermint schnapps'],
+    'mynta': ['Creme de Menthe', 'Mint syrup'],
+    'mentă': ['Creme de Menthe', 'Mint syrup'],
+    'pepparmint': ['Creme de Menthe', 'Peppermint schnapps'],
+
+    // Hazelnut
+    'hazelnut': ['Frangelico', 'Hazelnut syrup'],
+    'hasselnöt': ['Frangelico', 'Hazelnut syrup'],
+    'alune': ['Frangelico', 'Hazelnut syrup'],
+
+    // Almond
+    'almond': ['Amaretto', 'Orgeat syrup'],
+    'mandel': ['Amaretto', 'Orgeat syrup'],
+    'migdale': ['Amaretto', 'Orgeat syrup'],
+    'amaretto': ['Amaretto'],
+
+    // Chocolate
+    'chocolate': ['Creme de Cacao', 'Chocolate syrup', 'White Creme de Cacao'],
+    'choklad': ['Creme de Cacao', 'Chocolate syrup'],
+    'ciocolată': ['Creme de Cacao', 'Chocolate syrup'],
+
+    // Apple
+    'apple': ['Apple juice', 'Applejack', 'Apple schnapps', 'Apple vodka'],
+    'äpple': ['Apple juice', 'Applejack', 'Apple schnapps'],
+    'măr': ['Apple juice', 'Applejack'],
+
+    // Mango
+    'mango': ['Mango juice', 'Mango vodka', 'Mango liqueur'],
+
+    // Passion fruit
+    'passion': ['Passion fruit liqueur', 'Passion fruit syrup', 'Passion fruit juice'],
+    'passionsfrukt': ['Passion fruit liqueur', 'Passion fruit syrup', 'Passion fruit juice'],
+    'fructul pasiunii': ['Passion fruit liqueur', 'Passion fruit syrup'],
+
+    // Watermelon
+    'watermelon': ['Watermelon vodka', 'Watermelon juice'],
+    'vattenmelon': ['Watermelon vodka', 'Watermelon juice'],
+    'pepene': ['Watermelon vodka', 'Watermelon juice'],
+
+    // Pomegranate
+    'pomegranate': ['Pomegranate juice', 'Grenadine'],
+    'granatäpple': ['Pomegranate juice', 'Grenadine'],
+    'rodie': ['Pomegranate juice', 'Grenadine'],
+
+    // Elderflower
+    'elderflower': ['Elderflower liqueur', 'St-Germain'],
+    'fläder': ['Elderflower liqueur'],
+    'soc': ['Elderflower liqueur'],
+
+    // Cinnamon
+    'cinnamon': ['Cinnamon schnapps', 'Fireball'],
+    'kanel': ['Cinnamon schnapps'],
+    'scorțișoară': ['Cinnamon schnapps'],
+
+    // Cream/Creamy
+    'cream': ['Baileys irish cream', 'Heavy cream', 'Whipped cream'],
+    'grädde': ['Baileys irish cream', 'Heavy cream', 'Whipped cream'],
+    'smântână': ['Baileys irish cream', 'Heavy cream'],
+
+    // Honey
+    'honey': ['Honey', 'Drambuie', 'Barenjager'],
+    'honung': ['Honey', 'Drambuie'],
+    'miere': ['Honey', 'Drambuie'],
+  };
+
+  // Build flavor entries for search list
+  function buildFlavorEntries() {
+    const entries = [];
+    const seen = new Set();
+    Object.entries(flavorMap).forEach(([flavor, ingredients]) => {
+      const label = flavor.charAt(0).toUpperCase() + flavor.slice(1);
+      if (!seen.has(label.toLowerCase())) {
+        seen.add(label.toLowerCase());
+        entries.push({ label, ingredient: ingredients[0], isFlavor: true, flavorIngredients: ingredients });
+      }
+    });
+    return entries;
+  }
+
   function loadIngredients() {
     allIngredients = ["Light rum", "Applejack", "Gin", "Dark rum", "Sweet Vermouth", "Strawberry schnapps", "Scotch", "Apricot brandy", "Triple sec", "Southern Comfort", "Orange bitters", "Brandy", "Lemon vodka", "Blended whiskey", "Dry Vermouth", "Amaretto", "Tea", "Champagne", "Coffee liqueur", "Bourbon", "Tequila", "Vodka", "Kahlua", "Malibu", "Lime juice", "Lime", "Lemon juice", "Simple syrup", "Grenadine", "Ice", "Water", "Sugar", "Salt", "Coca-Cola", "Soda water", "Tonic water", "Orange juice", "Cranberry juice", "Pineapple juice", "Grapefruit juice", "Tomato juice", "Apple juice", "Lemon", "Orange", "Grapefruit", "Peach schnapps", "Coconut rum", "Spiced rum", "Raspberry liqueur", "Blue Curacao", "Midori melon liqueur", "Baileys irish cream", "Creme de Cacao", "Creme de Menthe", "Blackberry brandy", "Peach brandy", "Cherry brandy", "Sloe gin", "Melon liqueur", "Lychee liqueur", "Passion fruit liqueur", "Elderflower liqueur", "Chambord raspberry liqueur", "Frangelico", "Drambuie", "Galliano", "Sambuca", "Absinthe", "Pernod", "Ouzo", "Jagermeister", "Campari", "Aperol", "Cointreau", "Grand Marnier", "Curacao", "Rum", "White rum", "Cuban rum", "151 proof rum", "Cachaca", "Pisco", "Sake", "Prosecco", "Sparkling wine", "White wine", "Red wine", "Port", "Sherry", "Vermouth", "Bitters", "Angostura bitters", "Peychaud bitters", "Orange flower water", "Rose water", "Coconut cream", "Coconut milk", "Heavy cream", "Whipped cream", "Half-and-half", "Milk", "Egg white", "Egg yolk", "Honey", "Maple syrup", "Agave syrup", "Orgeat syrup", "Falernum", "Raspberry syrup", "Strawberry syrup", "Mint syrup", "Ginger syrup", "Passion fruit syrup", "Coffee syrup", "Vanilla extract", "Chocolate syrup", "Caramel syrup", "Hazelnut syrup", "Cucumber", "Mint", "Basil", "Rosemary", "Thyme", "Ginger", "Pepper", "Celery", "Tomato", "Watermelon", "Mango", "Passion fruit", "Peach", "Strawberry", "Raspberry", "Blueberry", "Blackberry", "Cherry", "Pineapple", "Coconut", "Banana", "Apple", "Pear", "Pomegranate", "Lychee", "Melon", "Fig", "Tamarind", "Lavender", "Cardamom", "Cinnamon", "Nutmeg", "Cloves", "Star anise", "Vanilla", "Club soda", "Ginger beer", "Ginger ale", "Lemon-lime soda", "Root beer", "Cream soda", "Espresso", "Coffee", "Green tea", "Lemonade", "Pomegranate juice", "Mango juice", "Peach juice", "Watermelon juice", "Carrot juice", "Coconut water", "Hot sauce", "Worcestershire sauce", "Tabasco", "Sriracha", "Olive oil", "Condensed milk", "Powdered sugar", "Brown sugar", "Demerara sugar", "Agave", "Molasses", "Corn syrup", "Peanut butter", "Egg", "Cream cheese", "Butter", "Ice cream", "Sorbet", "Chocolate", "Dark chocolate", "White chocolate", "Cocoa powder", "Matcha", "Beetroot", "Hibiscus", "Rose", "Saffron", "Allspice", "Anise", "Fennel", "Dill", "Cilantro", "Parsley", "Sage", "Tarragon", "Chervil", "Chives", "Scallion", "Onion", "Garlic", "Shallot", "Jalape\u00f1o", "Chili", "Cayenne", "Paprika", "Cumin", "Coriander", "Turmeric", "Garam masala", "Curry powder", "Five spice", "Sumac", "Za'atar", "Harissa", "Miso", "Soy sauce", "Fish sauce", "Oyster sauce", "Rice vinegar", "Apple cider vinegar", "Balsamic vinegar", "Red wine vinegar", "White wine vinegar", "Lemon zest", "Orange zest", "Lime zest", "Grapefruit zest", "Peppermint", "Spearmint", "Eucalyptus", "Chamomile", "Elderflower", "Hibiscus flower", "Butterfly pea flower", "Activated charcoal", "Spirulina", "Matcha powder", "Charcoal", "Peach nectar", "Guava juice", "Papaya juice", "Passion fruit juice", "Pear juice", "Apple cider", "Horchata", "Tamarind juice", "Aloe vera", "Rosewater", "Orange blossom water", "Kaffir lime", "Lemongrass", "Galangal", "Makrut lime", "Pandan", "Yuzu", "Calamansi", "Blood orange", "Meyer lemon", "Bergamot", "Pomelo", "Tangelo", "Kumquat", "Clementine", "Mandarin", "Tangerine", "Nectarine", "Apricot", "Plum", "Prune", "Grape", "Currant", "Gooseberry", "Elderberry", "A\u00e7a\u00ed", "Goji berry", "Mulberry", "Boysenberry", "Lingonberry", "Cloudberry", "Sea buckthorn", "Aronia", "Chokeberry", "Hawthorn", "Rosehip", "Quince", "Medlar", "Loquat", "Persimmon", "Pawpaw", "Jackfruit", "Durian", "Rambutan", "Longan", "Mangosteen", "Starfruit", "Dragon fruit", "Pitaya", "Guava", "Papaya", "Cherimoya", "Soursop", "Breadfruit", "Plantain", "Tamarillo", "Pepino", "Feijoa", "Ackee", "Carambola", "Babaco", "Naranjilla", "Granadilla", "Maracuya", "Tumbo", "Tomate de arbol", "Lucuma", "Camu camu", "Maca", "Yacon", "Aguaymanto", "Tuna", "Noni", "Mamey", "Sapote", "Canistel", "Abiu", "Grumichama", "Jabuticaba", "Cupua\u00e7u", "Acerola", "Caj\u00e1", "Siriguela", "Umbu", "Pitanga", "Ara\u00e7\u00e1", "Cagaita", "Pequi", "Buriti", "Bacaba", "Murici", "Tucum\u00e3", "Pupunha", "Cupuacu", "Copoazu", "Graviola", "Biriba", "Bacuri", "Uxi", "Tapereb\u00e1", "Mapati", "Pitomba", "Cambuc\u00e1", "Gabiroba", "Baru", "Coquinho azedo", "Mangaba", "Caju\u00ed", "Maca\u00faba", "Bocaiuva", "Acuri", "Baba\u00e7u", "Inaj\u00e1", "Patau\u00e1", "Andiroba", "Copa\u00edba", "Cumaru", "Breu", "Copal", "Frankincense", "Myrrh", "Benzoin", "Labdanum", "Vetiver", "Patchouli", "Sandalwood", "Cedarwood", "Juniper", "Pine", "Fir", "Spruce", "Tea tree", "Jasmine", "Ylang-ylang", "Neroli", "Petitgrain", "Key lime", "Persian lime", "Finger lime", "Australian lime", "Desert lime", "Native lime", "Round lime", "Sweet lime", "Wild lime", "Tahiti lime", "Mexican lime", "West Indian lime", "Rangpur lime", "Rhind lime", "Spanish lime", "Wild citron"];
     brandList = Object.keys(brandMap);
@@ -789,10 +933,12 @@
       isRo: true
     }));
     // Brands and Swedish entries always included; deduplicate plain ingredients only
+    const flavorEntries = buildFlavorEntries();
     const brandAndSv = [
       ...brandList.map(b => ({ label: b, ingredient: brandMap[b], isBrand: true })),
       ...svEntries,
-      ...roEntries
+      ...roEntries,
+      ...flavorEntries
     ];
     const brandAndSvLabels = new Set(brandAndSv.map(s => s.label.toLowerCase()));
     const ingredientEntries = allIngredients
@@ -823,6 +969,8 @@
       const hl = item.label.replace(re, '<mark>$1</mark>');
       const hint = item.isBrand
         ? '<span style="font-size:12px;color:var(--muted);margin-left:6px;">→ ' + item.ingredient + '</span>'
+        : item.isFlavor
+        ? '<span style="font-size:11px;color:var(--muted);margin-left:6px;">🍹 ' + item.flavorIngredients.slice(0,2).join(', ') + '</span>'
         : item.isSv
         ? '<span style="font-size:11px;color:var(--muted);margin-left:6px;">🇸🇪</span>'
         : item.isRo
@@ -872,13 +1020,24 @@
   function pickItem(idx) {
     const item = dropdownItems[idx];
     if (!item) return;
-    selected.add(item.ingredient);
-    const displayLabel = item.isBrand
-      ? item.label + ' (' + item.ingredient + ')'
-      : item.isSv
-      ? item.label + ' (' + item.ingredient + ')'
-      : item.label;
-    selectedLabels.set(item.ingredient, displayLabel);
+    if (item.isFlavor && item.flavorIngredients) {
+      // Add all flavor variants — search finds any drink containing any of them
+      item.flavorIngredients.forEach(ing => selected.add(ing));
+      // Use 'any' match mode automatically for flavor searches
+      matchMode = 'any';
+      document.querySelectorAll('#match-seg button').forEach(b => b.classList.remove('active'));
+      const anyBtn = document.querySelector('#match-seg button[data-val="any"]');
+      if (anyBtn) anyBtn.classList.add('active');
+      selectedLabels.set(item.flavorIngredients[0], item.label + ' 🍹');
+    } else {
+      selected.add(item.ingredient);
+      const displayLabel = item.isBrand
+        ? item.label + ' (' + item.ingredient + ')'
+        : item.isSv
+        ? item.label + ' (' + item.ingredient + ')'
+        : item.label;
+      selectedLabels.set(item.ingredient, displayLabel);
+    }
     input.value = '';
     closeDropdown();
     renderTags();

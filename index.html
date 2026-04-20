@@ -93,7 +93,7 @@
 
     header {
       width: 100%;
-      max-width: 800px;
+      max-width: 1100px;
       padding: 3.5rem 1.5rem 2.5rem;
       position: relative;
       z-index: 1;
@@ -446,7 +446,7 @@
 
     footer {
       width: 100%;
-      max-width: 800px;
+      max-width: 1100px;
       padding: 0 1.5rem 2rem;
       text-align: center;
       font-size: 14px;
@@ -673,6 +673,39 @@
       width: 30px; height: 1px;
       background: var(--accent); opacity: 0.3; margin: 0.6rem 0;
     }
+
+    .site-nav {
+      width: 100%;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 10;
+    }
+    .site-nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .nav-link {
+      display: block;
+      padding: 0.75rem 1.1rem;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-link.active { color: var(--accent); border-bottom-color: var(--accent); }
+    @media (max-width: 500px) {
+      .nav-link { padding: 0.75rem 0.7rem; font-size: 12px; }
+    }
   </style>
 </head>
 <body>
@@ -693,6 +726,19 @@
   <p class="tagline">Skriv in vad du har hemma — vi blandar resten.</p>
   <!-- lang:tagline -->
 </header>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+      <a href="/" class="nav-link active" data-nav="home" id="nav-home">Generator</a>
+      <a href="/articles.html" class="nav-link" data-nav="articles" id="nav-articles">Articles</a>
+      <a href="/clarification.html" class="nav-link" data-nav="clarification" id="nav-clarification">Clarification</a>
+      <a href="/clearice.html" class="nav-link" data-nav="clearice" id="nav-clearice">Clear Ice</a>
+      <a href="/siphon.html" class="nav-link" data-nav="siphon" id="nav-siphon">Siphon</a>
+      <a href="/distillation.html" class="nav-link" data-nav="distillation" id="nav-distillation">Distillation</a>
+      <a href="/about.html" class="nav-link" data-nav="about" id="nav-about">About</a>
+      <a href="/kontakt.html" class="nav-link" data-nav="kontakt" id="nav-kontakt">Contact</a>
+  </div>
+</nav>
 
 <main>
 
@@ -787,16 +833,19 @@
       <div class="article-excerpt" id="art1-excerpt">How bartenders use milk, egg whites and gelatine to remove cloudiness and create beautifully clear drinks.</div>
     </div>
     <div class="article-item">
+      <a href="/clearice.html" class="article-link" id="art4-title">Clear Ice — Why It Matters</a>
+      <div class="article-excerpt" id="art4-excerpt">Crystal-clear ice melts slower, dilutes less and makes every drink taste better.</div>
+    </div>
+    <div class="article-item">
       <a href="/siphon.html" class="article-link" id="art2-title">The Siphon — Carbonation at Home</a>
-      <div class="article-excerpt" id="art2-excerpt">Everything you need to know about using a siphon to carbonate cocktails, water and infusions at home.</div>
+      <div class="article-excerpt" id="art2-excerpt">Everything about using a siphon to carbonate cocktails and create foams at home.</div>
     </div>
     <div class="article-item">
       <a href="/distillation.html" class="article-link" id="art3-title">Spirit Distillation — From Grain to Glass</a>
-      <div class="article-excerpt" id="art3-excerpt">A guide to how spirits are made — fermentation, distillation and maturation explained in plain language.</div>
+      <div class="article-excerpt" id="art3-excerpt">How spirits are made — fermentation, distillation and maturation explained simply.</div>
     </div>
-    <div class="article-item">
-      <a href="/clearice.html" class="article-link" id="art4-title">Clear Ice — Why It Matters</a>
-      <div class="article-excerpt" id="art4-excerpt">Crystal-clear ice isn't just beautiful — it melts slower, dilutes less and makes every drink taste better.</div>
+    <div style="margin-top:0.75rem; padding-top:0.75rem; border-top: 1px solid var(--border);">
+      <a href="/articles.html" style="font-size:12px; color:var(--accent); text-decoration:none;" id="link-all-articles">All articles →</a>
     </div>
   </div>
 
@@ -810,7 +859,7 @@
 </main>
 
 <footer>
-  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.22</span>
+  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.23</span>
 </footer>
 
 <script>
@@ -1784,6 +1833,20 @@
     }
   };
 
+
+  // Nav labels i18n
+  const navLabels = {
+    sv: { home: 'Generator', articles: 'Artiklar', clarification: 'Klaring', clearice: 'Klar is', siphon: 'Sifon', distillation: 'Destillering', about: 'Om', kontakt: 'Kontakt' },
+    en: { home: 'Generator', articles: 'Articles', clarification: 'Clarification', clearice: 'Clear Ice', siphon: 'Siphon', distillation: 'Distillation', about: 'About', kontakt: 'Contact' },
+    ro: { home: 'Generator', articles: 'Articole', clarification: 'Clarificare', clearice: 'Gheată limpede', siphon: 'Sifon', distillation: 'Distilare', about: 'Despre', kontakt: 'Contact' },
+  };
+  function applyNavLang() {
+    const labels = navLabels[lang] || navLabels.en;
+    Object.entries(labels).forEach(([key, label]) => {
+      const el = document.getElementById('nav-' + key);
+      if (el) el.textContent = label;
+    });
+  }
   let lang = localStorage.getItem('revben_lang') || 'en';
 
   function t(key) { return (i18n[lang] && i18n[lang][key]) || i18n.sv[key] || key; }

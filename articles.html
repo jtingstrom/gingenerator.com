@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Articles – The Gin Generator</title>
+  <meta name="description" content="Articles about cocktail techniques, ingredients and equipment — clarification, siphons, distillation and more." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.gingenerator.com/articles.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.gingenerator.com/articles.html" />
+  <meta property="og:title" content="Articles – The Gin Generator" />
+  <meta property="og:description" content="Articles about cocktail techniques, ingredients and equipment." />
+  <meta property="og:image" content="https://www.gingenerator.com/preview.png" />
+  <meta property="og:site_name" content="The Gin Generator" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #2c2418; --surface: #161616; --surface2: #1f1f1f;
+      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+      --text: #f0ece4; --muted: #888; --accent: #d4a84b;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+    .lang-toggle {
+      position: fixed; top: 1.2rem; right: 1.5rem; z-index: 999;
+      display: flex; background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 999px; padding: 2px; gap: 2px;
+    }
+    .lang-toggle button {
+      height: 28px; padding: 0 12px; background: none; border: none;
+      border-radius: 999px; color: var(--muted); font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 500; cursor: pointer; transition: background 0.12s, color 0.12s;
+    }
+    .lang-toggle button.active { background: var(--surface2); color: var(--accent); border: 1px solid var(--border2); }
+    header { width: 100%; max-width: 1100px; padding: 3.5rem 1.5rem 1.5rem; position: relative; z-index: 1; }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo a { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+    .logo svg { color: var(--accent); flex-shrink: 0; }
+    .logo-text { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 400; color: var(--text); }
+    .logo-text em { font-style: italic; color: var(--accent); }
+    .site-nav {
+      width: 100%;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative; z-index: 10;
+    }
+    .site-nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; gap: 0;
+    }
+    .nav-link {
+      display: block; padding: 0.75rem 1.1rem; font-size: 13px; font-weight: 400;
+      color: var(--muted); text-decoration: none;
+      border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-link.active { color: var(--accent); border-bottom-color: var(--accent); }
+    @media (max-width: 500px) { .nav-link { padding: 0.75rem 0.7rem; font-size: 12px; } }
+    main { width: 100%; max-width: 1100px; padding: 2rem 1.5rem 4rem; position: relative; z-index: 1; }
+    .page-title {
+      font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 400; color: var(--text); margin-bottom: 0.5rem;
+    }
+    .page-title em { font-style: italic; color: var(--accent); }
+    .page-subtitle { font-size: 15px; color: var(--muted); margin-bottom: 2rem; }
+    .divider { width: 50px; height: 1px; background: var(--accent); opacity: 0.3; margin-bottom: 2rem; }
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .article-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.5rem;
+      text-decoration: none; display: block;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .article-card:hover { border-color: var(--accent); background: rgba(212,168,75,0.04); }
+    .article-card-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem;
+    }
+    .article-card-title {
+      font-family: 'Playfair Display', serif; font-size: 1.1rem;
+      font-weight: 400; color: var(--text); margin-bottom: 0.6rem; line-height: 1.3;
+    }
+    .article-card-excerpt { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .article-card-arrow {
+      margin-top: 1rem; font-size: 12px; color: var(--accent); opacity: 0.6;
+    }
+    footer {
+      width: 100%; max-width: 1100px; padding: 0 1.5rem 2rem;
+      text-align: center; font-size: 12px; color: rgba(255,255,255,0.2);
+      position: relative; z-index: 1;
+    }
+    footer a { color: rgba(212,168,75,0.4); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<div class="lang-toggle">
+  <button id="btn-sv" onclick="setLang('sv')">SV</button>
+  <button id="btn-en" onclick="setLang('en')">EN</button>
+  <button id="btn-ro" onclick="setLang('ro')">RO</button>
+</div>
+
+<header>
+  <div class="logo">
+    <a href="/">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M4 3h16l-6 9.5V20h2.5v1.5h-9V20H10v-7.5L4 3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-text">The Gin <em>Generator</em></span>
+    </a>
+  </div>
+</header>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="/" class="nav-link" id="nav-home">Generator</a>
+    <a href="/articles.html" class="nav-link active" id="nav-articles">Articles</a>
+    <a href="/clarification.html" class="nav-link" id="nav-clarification">Clarification</a>
+    <a href="/clearice.html" class="nav-link" id="nav-clearice">Clear Ice</a>
+    <a href="/siphon.html" class="nav-link" id="nav-siphon">Siphon</a>
+    <a href="/distillation.html" class="nav-link" id="nav-distillation">Distillation</a>
+    <a href="/about.html" class="nav-link" id="nav-about">About</a>
+    <a href="/kontakt.html" class="nav-link" id="nav-kontakt">Contact</a>
+  </div>
+</nav>
+
+<main>
+  <h1 class="page-title" id="page-title">All <em>Articles</em></h1>
+  <p class="page-subtitle" id="page-subtitle">Techniques, ingredients and equipment — everything to make better drinks at home.</p>
+  <div class="divider"></div>
+
+  <div class="articles-grid">
+    <a href="/clarification.html" class="article-card">
+      <div class="article-card-label" id="label-technique">Technique</div>
+      <div class="article-card-title" id="title-clarification">Clarification — Crystal Clear Cocktails</div>
+      <div class="article-card-excerpt" id="excerpt-clarification">How bartenders use milk, egg whites and gelatine to remove cloudiness and create beautifully clear drinks.</div>
+      <div class="article-card-arrow">Read →</div>
+    </a>
+    <a href="/clearice.html" class="article-card">
+      <div class="article-card-label" id="label-ingredient">Ingredient</div>
+      <div class="article-card-title" id="title-clearice">Clear Ice — Why It Matters</div>
+      <div class="article-card-excerpt" id="excerpt-clearice">Crystal-clear ice melts slower, dilutes less and makes every drink taste better. How to make it at home.</div>
+      <div class="article-card-arrow">Read →</div>
+    </a>
+    <a href="/siphon.html" class="article-card">
+      <div class="article-card-label" id="label-equipment">Equipment</div>
+      <div class="article-card-title" id="title-siphon">The Siphon — Carbonation at Home</div>
+      <div class="article-card-excerpt" id="excerpt-siphon">Everything about using a siphon to carbonate cocktails, water and infusions at home.</div>
+      <div class="article-card-arrow">Read →</div>
+    </a>
+    <a href="/distillation.html" class="article-card">
+      <div class="article-card-label" id="label-knowledge">Knowledge</div>
+      <div class="article-card-title" id="title-distillation">Spirit Distillation — From Grain to Glass</div>
+      <div class="article-card-excerpt" id="excerpt-distillation">A guide to how spirits are made — fermentation, distillation and maturation explained simply.</div>
+      <div class="article-card-arrow">Read →</div>
+    </a>
+  </div>
+</main>
+
+<footer>
+  <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.23</span>
+</footer>
+
+<!-- Default Statcounter code for GinGenerator https://gingenerator.com -->
+<script type="text/javascript">
+var sc_project=13222790; 
+var sc_invisible=1; 
+var sc_security="6a216fae"; 
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/13222790/0/6a216fae/1/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+
+<script>
+  const navLabels = {
+    sv: { home: 'Generator', articles: 'Artiklar', clarification: 'Klaring', clearice: 'Klar is', siphon: 'Sifon', distillation: 'Destillering', about: 'Om', kontakt: 'Kontakt' },
+    en: { home: 'Generator', articles: 'Articles', clarification: 'Clarification', clearice: 'Clear Ice', siphon: 'Siphon', distillation: 'Distillation', about: 'About', kontakt: 'Contact' },
+    ro: { home: 'Generator', articles: 'Articole', clarification: 'Clarificare', clearice: 'Gheată limpede', siphon: 'Sifon', distillation: 'Distilare', about: 'Despre', kontakt: 'Contact' },
+  };
+
+  const i18n = {
+    en: {
+      pageTitle: 'All <em>Articles</em>',
+      pageSubtitle: 'Techniques, ingredients and equipment — everything to make better drinks at home.',
+      labelTechnique: 'Technique', labelIngredient: 'Ingredient',
+      labelEquipment: 'Equipment', labelKnowledge: 'Knowledge',
+      titleClarification: 'Clarification — Crystal Clear Cocktails',
+      excerptClarification: 'How bartenders use milk, egg whites and gelatine to remove cloudiness and create beautifully clear drinks.',
+      titleClearice: 'Clear Ice — Why It Matters',
+      excerptClearice: 'Crystal-clear ice melts slower, dilutes less and makes every drink taste better.',
+      titleSiphon: 'The Siphon — Carbonation at Home',
+      excerptSiphon: 'Everything about using a siphon to carbonate cocktails, water and infusions at home.',
+      titleDistillation: 'Spirit Distillation — From Grain to Glass',
+      excerptDistillation: 'A guide to how spirits are made — fermentation, distillation and maturation explained simply.',
+      read: 'Read →',
+    },
+    sv: {
+      pageTitle: 'Alla <em>Artiklar</em>',
+      pageSubtitle: 'Tekniker, ingredienser och utrustning — allt för att göra bättre drinkar hemma.',
+      labelTechnique: 'Teknik', labelIngredient: 'Ingrediens',
+      labelEquipment: 'Utrustning', labelKnowledge: 'Kunskap',
+      titleClarification: 'Klaring — kristallklara cocktails',
+      excerptClarification: 'Hur bartenders använder mjölk, äggvita och gelatin för att skapa vackert klara drinkar.',
+      titleClearice: 'Klar is — varför det spelar roll',
+      excerptClearice: 'Kristallklar is smälter långsammare, spär ut mindre och gör varje drink godare.',
+      titleSiphon: 'Sifon — kolsyra hemma',
+      excerptSiphon: 'Allt om att använda sifon för att kolsyresätta cocktails, vatten och infusioner hemma.',
+      titleDistillation: 'Spritdestillering — från säd till glas',
+      excerptDistillation: 'En guide till hur sprit tillverkas — jäsning, destillering och lagring förklaras enkelt.',
+      read: 'Läs →',
+    },
+    ro: {
+      pageTitle: 'Toate <em>Articolele</em>',
+      pageSubtitle: 'Tehnici, ingrediente și echipamente — tot ce trebuie pentru băuturi mai bune acasă.',
+      labelTechnique: 'Tehnică', labelIngredient: 'Ingredient',
+      labelEquipment: 'Echipament', labelKnowledge: 'Cunoștințe',
+      titleClarification: 'Clarificarea — Cocktailuri cristal',
+      excerptClarification: 'Cum folosesc barmanii laptele și albușul de ou pentru băuturi limpezi.',
+      titleClearice: 'Gheată limpede — de ce contează',
+      excerptClearice: 'Gheata cristalina se topeste mai lent, dilueaza mai putin si imbunatateste orice bautura.',
+      titleSiphon: 'Sifonul — Carbogazificare acasă',
+      excerptSiphon: 'Tot despre utilizarea unui sifon pentru cocktailuri și spume acasă.',
+      titleDistillation: 'Distilarea spirtoaselor — De la cereale la pahar',
+      excerptDistillation: 'Un ghid despre fermentare, distilare și maturare explicat în termeni simpli.',
+      read: 'Citește →',
+    },
+  };
+
+  let lang = localStorage.getItem('revben_lang') || 'en';
+
+  function applyNavLang() {
+    const labels = navLabels[lang] || navLabels.en;
+    Object.entries(labels).forEach(([key, label]) => {
+      const el = document.getElementById('nav-' + key);
+      if (el) el.textContent = label;
+    });
+  }
+
+  function applyLang() {
+    const d = i18n[lang] || i18n.en;
+    document.querySelector('html').lang = lang;
+    const set = (id, val) => { const e = document.getElementById(id); if (e) e.innerHTML = val; };
+    set('page-title', d.pageTitle);
+    set('page-subtitle', d.pageSubtitle);
+    set('label-technique', d.labelTechnique);
+    set('label-ingredient', d.labelIngredient);
+    set('label-equipment', d.labelEquipment);
+    set('label-knowledge', d.labelKnowledge);
+    set('title-clarification', d.titleClarification);
+    set('excerpt-clarification', d.excerptClarification);
+    set('title-clearice', d.titleClearice);
+    set('excerpt-clearice', d.excerptClearice);
+    set('title-siphon', d.titleSiphon);
+    set('excerpt-siphon', d.excerptSiphon);
+    set('title-distillation', d.titleDistillation);
+    set('excerpt-distillation', d.excerptDistillation);
+    document.querySelectorAll('.article-card-arrow').forEach(el => el.textContent = d.read);
+    applyNavLang();
+  }
+
+  function setLang(l) {
+    lang = l;
+    localStorage.setItem('revben_lang', l);
+    ['sv','en','ro'].forEach(code => {
+      const b = document.getElementById('btn-' + code);
+      if (b) b.classList.toggle('active', code === l);
+    });
+    applyLang();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => setLang(lang));
+</script>
+</body>
+</html>

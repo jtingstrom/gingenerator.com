@@ -4,7 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Clear Ice – The Gin Generator</title>
-  <meta name="description" content="Crystal-clear ice — why it matters, how it is made, and how to get it at home." />
+  <meta name="description" content="Crystal-clear ice melts slower, dilutes less and makes every drink taste better. How to make it at home." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.gingenerator.com/clearice.html" />
+  <meta property="og:title" content="Clear Ice — Why It Matters – The Gin Generator" />
+  <meta property="og:description" content="Crystal-clear ice melts slower, dilutes less and makes every drink taste better. How to make it at home." />
+  <meta property="og:image" content="https://www.gingenerator.com/preview.png" />
+  <meta property="og:site_name" content="The Gin Generator" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Clear Ice — Why It Matters – The Gin Generator" />
+  <meta name="twitter:description" content="Crystal-clear ice melts slower, dilutes less and makes every drink taste better. How to make it at home." />
+  <meta name="twitter:image" content="https://www.gingenerator.com/preview.png" />
   <link rel="canonical" href="https://www.gingenerator.com/clearice.html" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -38,13 +48,13 @@
       font-size: 12px; font-weight: 500; cursor: pointer; transition: background 0.12s, color 0.12s;
     }
     .lang-toggle button.active { background: var(--surface2); color: var(--accent); border: 1px solid var(--border2); }
-    header { width: 100%; max-width: 760px; padding: 3.5rem 1.5rem 1.5rem; position: relative; z-index: 1; }
+    header { width: 100%; max-width: 1100px; padding: 3.5rem 1.5rem 1.5rem; position: relative; z-index: 1; }
     .logo { display: flex; align-items: center; gap: 12px; }
     .logo a { text-decoration: none; display: flex; align-items: center; gap: 12px; }
     .logo svg { color: var(--accent); flex-shrink: 0; }
     .logo-text { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 400; color: var(--text); }
     .logo-text em { font-style: italic; color: var(--accent); }
-    main { width: 100%; max-width: 760px; padding: 0 1.5rem 4rem; position: relative; z-index: 1; }
+    main { width: 100%; max-width: 1100px; padding: 0 1.5rem 4rem; position: relative; z-index: 1; }
     .back-link {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 13px; color: var(--muted); text-decoration: none;
@@ -61,9 +71,42 @@
     .article-body ul { margin: 0.75rem 0 1.25rem 1.5rem; color: var(--muted); }
     .article-body li { margin-bottom: 0.4rem; }
     .article-body strong { color: var(--accent); font-weight: 500; }
-    footer { width: 100%; max-width: 760px; padding: 0 1.5rem 2rem; text-align: center; font-size: 12px; color: rgba(255,255,255,0.2); position: relative; z-index: 1; }
+    footer { width: 100%; max-width: 1100px; padding: 0 1.5rem 2rem; text-align: center; font-size: 12px; color: rgba(255,255,255,0.2); position: relative; z-index: 1; }
     footer a { color: rgba(212,168,75,0.4); text-decoration: none; }
     footer a:hover { color: var(--accent); }
+
+    .site-nav {
+      width: 100%;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 10;
+    }
+    .site-nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .nav-link {
+      display: block;
+      padding: 0.75rem 1.1rem;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-link.active { color: var(--accent); border-bottom-color: var(--accent); }
+    @media (max-width: 500px) {
+      .nav-link { padding: 0.75rem 0.7rem; font-size: 12px; }
+    }
   </style>
 </head>
 <body>
@@ -84,6 +127,19 @@
     </a>
   </div>
 </header>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+      <a href="/" class="nav-link" data-nav="home" id="nav-home">Generator</a>
+      <a href="/articles.html" class="nav-link" data-nav="articles" id="nav-articles">Articles</a>
+      <a href="/clarification.html" class="nav-link" data-nav="clarification" id="nav-clarification">Clarification</a>
+      <a href="/clearice.html" class="nav-link active" data-nav="clearice" id="nav-clearice">Clear Ice</a>
+      <a href="/siphon.html" class="nav-link" data-nav="siphon" id="nav-siphon">Siphon</a>
+      <a href="/distillation.html" class="nav-link" data-nav="distillation" id="nav-distillation">Distillation</a>
+      <a href="/about.html" class="nav-link" data-nav="about" id="nav-about">About</a>
+      <a href="/kontakt.html" class="nav-link" data-nav="kontakt" id="nav-kontakt">Contact</a>
+  </div>
+</nav>
 
 <main>
   <a href="/" class="back-link" id="back-link">← Back to the generator</a>
@@ -185,6 +241,20 @@
     },
   };
 
+
+  // Nav labels i18n
+  const navLabels = {
+    sv: { home: 'Generator', articles: 'Artiklar', clarification: 'Klaring', clearice: 'Klar is', siphon: 'Sifon', distillation: 'Destillering', about: 'Om', kontakt: 'Kontakt' },
+    en: { home: 'Generator', articles: 'Articles', clarification: 'Clarification', clearice: 'Clear Ice', siphon: 'Siphon', distillation: 'Distillation', about: 'About', kontakt: 'Contact' },
+    ro: { home: 'Generator', articles: 'Articole', clarification: 'Clarificare', clearice: 'Gheată limpede', siphon: 'Sifon', distillation: 'Distilare', about: 'Despre', kontakt: 'Contact' },
+  };
+  function applyNavLang() {
+    const labels = navLabels[lang] || navLabels.en;
+    Object.entries(labels).forEach(([key, label]) => {
+      const el = document.getElementById('nav-' + key);
+      if (el) el.textContent = label;
+    });
+  }
   let lang = localStorage.getItem('revben_lang') || 'en';
 
   function applyLang() {

@@ -726,7 +726,7 @@
 </main>
 
 <footer>
-  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.16</span>
+  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.17</span>
 </footer>
 
 <script>
@@ -1075,6 +1075,32 @@
 
 
 
+
+  // ── Measurement conversion ────────────────────────────
+  function convertMeasure(measure) {
+    if (!measure) return measure;
+    // Only convert for sv and ro
+    if (lang === 'en') return measure;
+    // Match patterns like "1 oz", "1/2 oz", "1 1/2 oz", "2 oz" etc
+    return measure.replace(/(\d+(?:\.\d+)?(?:\s+\d+\/\d+)?|\d+\/\d+)\s*oz/gi, (match, amount) => {
+      // Handle fractions like 1/2, 3/4
+      let val = 0;
+      const parts = amount.trim().split(/\s+/);
+      parts.forEach(p => {
+        if (p.includes('/')) {
+          const [num, den] = p.split('/');
+          val += parseFloat(num) / parseFloat(den);
+        } else {
+          val += parseFloat(p);
+        }
+      });
+      const ml = val * 29.57;
+      // Round to nearest 5ml for clean numbers
+      const rounded = Math.round(ml / 5) * 5;
+      return rounded + ' ml';
+    });
+  }
+
   // ── Flavor categories ─────────────────────────────────
   const categoryDrinks = {
     sour:       ['Margarita','Daiquiri','Whiskey Sour','Gimlet','Pisco Sour','Sidecar','Clover Club','Bees Knees','Tom Collins','Lemon Drop'],
@@ -1344,7 +1370,7 @@
             <ul class="drink-ingr-list">
               ${ingrs.map(i => `
                 <li class="${i.have ? '' : 'missing'}">
-                  ${i.msr ? i.msr.trim() + ' ' : ''}${i.ing}${!i.have ? ' ✗' : ''}
+                  ${i.msr ? convertMeasure(i.msr.trim()) + ' ' : ''}${i.ing}${!i.have ? ' ✗' : ''}
                 </li>`).join('')}
             </ul>
           </div>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Siphon — Carbonation at Home – The Gin Generator</title>
+  <meta name="description" content="<p>A siphon — also called a soda siphon or cream whipper — is one of the most versatile tools in a modern bar. With it you can carbonate cocktails, wa..." />
+  <link rel="canonical" href="https://www.gingenerator.com/siphon.html" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #2c2418; --surface: #161616; --surface2: #1f1f1f;
+      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+      --text: #f0ece4; --muted: #888; --accent: #d4a84b;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+    .lang-toggle {
+      position: fixed; top: 1.2rem; right: 1.5rem; z-index: 999;
+      display: flex; background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 999px; padding: 2px; gap: 2px;
+    }
+    .lang-toggle button {
+      height: 28px; padding: 0 12px; background: none; border: none;
+      border-radius: 999px; color: var(--muted); font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 500; cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+    }
+    .lang-toggle button.active {
+      background: var(--surface2); color: var(--accent); border: 1px solid var(--border2);
+    }
+    header {
+      width: 100%; max-width: 760px;
+      padding: 3.5rem 1.5rem 1.5rem; position: relative; z-index: 1;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo a { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+    .logo svg { color: var(--accent); flex-shrink: 0; }
+    .logo-text {
+      font-family: 'Playfair Display', serif; font-size: 1.4rem;
+      font-weight: 400; color: var(--text);
+    }
+    .logo-text em { font-style: italic; color: var(--accent); }
+    main {
+      width: 100%; max-width: 760px;
+      padding: 0 1.5rem 4rem; position: relative; z-index: 1;
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      margin-bottom: 2rem; transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .article-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 2.5rem;
+    }
+    .article-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 400; line-height: 1.2; color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .divider {
+      width: 50px; height: 1px; background: var(--accent);
+      opacity: 0.3; margin-bottom: 1.5rem;
+    }
+    .article-body { font-size: 16px; color: var(--text); line-height: 1.9; }
+    .article-body p { margin-bottom: 1.25rem; }
+    .article-body h2 {
+      font-family: 'Playfair Display', serif; font-size: 1.3rem;
+      font-weight: 400; color: var(--text); margin: 2rem 0 0.75rem;
+    }
+    .article-body ul {
+      margin: 0.75rem 0 1.25rem 1.5rem; color: var(--muted);
+    }
+    .article-body li { margin-bottom: 0.4rem; }
+    .article-body strong { color: var(--accent); font-weight: 500; }
+    footer {
+      width: 100%; max-width: 760px; padding: 0 1.5rem 2rem;
+      text-align: center; font-size: 12px; color: rgba(255,255,255,0.2);
+      position: relative; z-index: 1;
+    }
+    footer a { color: rgba(212,168,75,0.4); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<div class="lang-toggle">
+  <button id="btn-sv" onclick="setLang('sv')">SV</button>
+  <button id="btn-en" onclick="setLang('en')">EN</button>
+  <button id="btn-ro" onclick="setLang('ro')">RO</button>
+</div>
+
+<header>
+  <div class="logo">
+    <a href="/">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M4 3h16l-6 9.5V20h2.5v1.5h-9V20H10v-7.5L4 3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-text">The Gin <em>Generator</em></span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <a href="/" class="back-link" id="back-link">← Back to the generator</a>
+
+  <div class="article-card">
+    <div class="article-label" id="article-label">Article</div>
+    <h1 id="article-title">The Siphon — Carbonation at Home</h1>
+    <div class="divider"></div>
+    <div class="article-body" id="article-body">
+      <p>A siphon — also called a soda siphon or cream whipper — is one of the most versatile tools in a modern bar. With it you can carbonate cocktails, water and infusions in seconds, or create light airy foams that float on top of a drink.</p>
+<h2>How it works</h2>
+<p>A siphon is a pressurised canister, usually made of stainless steel or aluminium, with a valve and a nozzle. You fill it with liquid, screw on a <strong>N₂O (nitrous oxide)</strong> charger for foams, or a <strong>CO₂</strong> charger for carbonation, shake to dissolve the gas, and dispense.</p>
+<p>The gas dissolves into the liquid under pressure. When you press the lever, the pressure drops and the gas comes out of solution — carbonating the liquid instantly, or creating a foam.</p>
+<h2>Carbonating cocktails</h2>
+<p>Fill the siphon with a finished cocktail — ideally one without egg white, cream or pulpy juice, as these can clog the nozzle. Charge with CO₂, chill for at least 30 minutes, and serve directly into a glass. The result is a cocktail with a fine, persistent fizz that a simple pour over ice cannot achieve.</p>
+<h2>Rapid infusions</h2>
+<p>One of the most exciting uses of a siphon is rapid infusion. Place a spirit and your flavouring — herbs, spices, fruit peel — in the canister. Charge with N₂O and let it sit for one to two minutes. The pressure forces the gas into the liquid and opens up the cell structure of the flavouring, dramatically speeding up infusion. Release the pressure slowly, strain and you have a flavoured spirit in two minutes that would take two days in a jar.</p>
+<h2>Making foams</h2>
+<p>With N₂O chargers you can turn almost any liquid into a foam. A classic pairing is a citrus foam on top of a Gin Sour, or a coffee foam on an Espresso Martini. The liquid needs some structure — lecithin, egg white, cream or gelatine — to hold the bubbles. Experiment with ratios until you find a foam that holds its shape for a few minutes.</p>
+<h2>Tips for home use</h2>
+<ul>
+<li>Always chill the liquid before charging — cold liquid holds gas better</li>
+<li>Strain out any pulp or particles before filling the siphon</li>
+<li>Release pressure before opening — never unscrew the head while charged</li>
+<li>Clean the siphon thoroughly after every use to prevent blockages</li>
+<li>Store charged siphons in the fridge — never in a warm place</li>
+</ul>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/about.html" id="footer-about">About</a> · <a href="/kontakt.html" id="footer-contact">Contact</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.19</span>
+</footer>
+
+<script>
+  const i18n = {
+    en: {
+      backLink: '← Back to the generator',
+      articleLabel: 'Article',
+      title: `The Siphon — Carbonation at Home`,
+      body: `<p>A siphon — also called a soda siphon or cream whipper — is one of the most versatile tools in a modern bar. With it you can carbonate cocktails, water and infusions in seconds, or create light airy foams that float on top of a drink.</p>
+<h2>How it works</h2>
+<p>A siphon is a pressurised canister, usually made of stainless steel or aluminium, with a valve and a nozzle. You fill it with liquid, screw on a <strong>N₂O (nitrous oxide)</strong> charger for foams, or a <strong>CO₂</strong> charger for carbonation, shake to dissolve the gas, and dispense.</p>
+<p>The gas dissolves into the liquid under pressure. When you press the lever, the pressure drops and the gas comes out of solution — carbonating the liquid instantly, or creating a foam.</p>
+<h2>Carbonating cocktails</h2>
+<p>Fill the siphon with a finished cocktail — ideally one without egg white, cream or pulpy juice, as these can clog the nozzle. Charge with CO₂, chill for at least 30 minutes, and serve directly into a glass. The result is a cocktail with a fine, persistent fizz that a simple pour over ice cannot achieve.</p>
+<h2>Rapid infusions</h2>
+<p>One of the most exciting uses of a siphon is rapid infusion. Place a spirit and your flavouring — herbs, spices, fruit peel — in the canister. Charge with N₂O and let it sit for one to two minutes. The pressure forces the gas into the liquid and opens up the cell structure of the flavouring, dramatically speeding up infusion. Release the pressure slowly, strain and you have a flavoured spirit in two minutes that would take two days in a jar.</p>
+<h2>Making foams</h2>
+<p>With N₂O chargers you can turn almost any liquid into a foam. A classic pairing is a citrus foam on top of a Gin Sour, or a coffee foam on an Espresso Martini. The liquid needs some structure — lecithin, egg white, cream or gelatine — to hold the bubbles. Experiment with ratios until you find a foam that holds its shape for a few minutes.</p>
+<h2>Tips for home use</h2>
+<ul>
+<li>Always chill the liquid before charging — cold liquid holds gas better</li>
+<li>Strain out any pulp or particles before filling the siphon</li>
+<li>Release pressure before opening — never unscrew the head while charged</li>
+<li>Clean the siphon thoroughly after every use to prevent blockages</li>
+<li>Store charged siphons in the fridge — never in a warm place</li>
+</ul>`,
+      footerAbout: 'About', footerContact: 'Contact',
+    },
+    sv: {
+      backLink: '← Tillbaka till generatorn',
+      articleLabel: 'Artikel',
+      title: `Sifon — kolsyra hemma`,
+      body: `<p>En sifon — även kallad sodamaskin eller gräddsifon — är ett av de mest mångsidiga verktygen i en modern bar. Med den kan du kolsyresätta cocktails, vatten och infusioner på sekunder, eller skapa lätta luftiga skum som flyter på toppen av en drink.</p>
+<h2>Hur det fungerar</h2>
+<p>En sifon är en trycksatt behållare, vanligtvis tillverkad av rostfritt stål eller aluminium, med en ventil och en munstycke. Du fyller den med vätska, skruvar på en <strong>N₂O (lustgas)</strong>-patron för skum, eller en <strong>CO₂</strong>-patron för kolsyresättning, skakar för att lösa upp gasen och dispenserar.</p>
+<p>Gasen löses upp i vätskan under tryck. När du trycker på spaken sjunker trycket och gasen kommer ur lösningen — och kolsyresätter vätskan omedelbart, eller skapar ett skum.</p>
+<h2>Kolsyresätta cocktails</h2>
+<p>Fyll sifonen med en färdig cocktail — helst en utan äggvita, grädde eller juicer med fruktkött, eftersom dessa kan blockera munstycket. Ladda med CO₂, kyl i minst 30 minuter och servera direkt i ett glas. Resultatet är en cocktail med ett fint, beständigt brusprat som en enkel hälla över is inte kan uppnå.</p>
+<h2>Snabbinfusioner</h2>
+<p>En av de mest spännande användningarna av en sifon är snabbinfusion. Placera en sprit och din smaksättning — örter, kryddor, citrusskal — i behållaren. Ladda med N₂O och låt det stå i en till två minuter. Trycket tvingar gasen in i vätskan och öppnar upp cellstrukturen hos smaksättningen, vilket dramatiskt påskyndar infusionen. Släpp ut trycket långsamt, sila och du har en smaksatt sprit på två minuter som skulle ta två dagar i en burk.</p>
+<h2>Göra skum</h2>
+<p>Med N₂O-patroner kan du förvandla nästan vilken vätska som helst till ett skum. En klassisk kombination är ett citrusskum på toppen av en Gin Sour, eller ett kaffeskum på en Espresso Martini. Vätskan behöver lite struktur — lecitin, äggvita, grädde eller gelatin — för att hålla bubblorna. Experimentera med proportioner tills du hittar ett skum som håller formen i några minuter.</p>
+<h2>Tips för hemmabruk</h2>
+<ul>
+<li>Kyl alltid vätskan före laddning — kall vätska håller gas bättre</li>
+<li>Sila bort eventuellt fruktkött eller partiklar innan du fyller sifonen</li>
+<li>Släpp ut trycket innan du öppnar — skruva aldrig av huvudet när den är laddad</li>
+<li>Rengör sifonen noggrant efter varje användning för att förhindra blockeringar</li>
+<li>Förvara laddade sifoner i kylen — aldrig på ett varmt ställe</li>
+</ul>`,
+      footerAbout: 'Om', footerContact: 'Kontakt',
+    },
+    ro: {
+      backLink: '← Înapoi la generator',
+      articleLabel: 'Articol',
+      title: `Sifonul — Carbogazificare acasă`,
+      body: `<p>Un sifon — numit și sifon de sodă sau dozator de frișcă — este unul dintre cele mai versatile instrumente dintr-un bar modern. Cu el poți carbogazifica cocktailuri, apă și infuzii în câteva secunde, sau poți crea spume ușoare și aeriene care plutesc deasupra unei băuturi.</p>
+<h2>Cum funcționează</h2>
+<p>Un sifon este un recipient presurizat, de obicei din oțel inoxidabil sau aluminiu, cu o supapă și un duză. Îl umpli cu lichid, înșurubezi o cartuș de <strong>N₂O (protoxid de azot)</strong> pentru spume, sau un cartuș de <strong>CO₂</strong> pentru carbogazificare, agitezi pentru a dizolva gazul și distribui.</p>
+<p>Gazul se dizolvă în lichid sub presiune. Când apeși maneta, presiunea scade și gazul iese din soluție — carbogazificând lichidul instantaneu sau creând o spumă.</p>
+<h2>Carbogazificarea cocktailurilor</h2>
+<p>Umple sifonul cu un cocktail finit — de preferință unul fără albuș de ou, smântână sau sucuri cu pulpă, deoarece acestea pot bloca duza. Încarcă cu CO₂, răcește cel puțin 30 de minute și servește direct în pahar. Rezultatul este un cocktail cu o efervescență fină și persistentă pe care o simplă turnare peste gheață nu o poate realiza.</p>
+<h2>Infuzii rapide</h2>
+<p>Una dintre cele mai interesante utilizări ale unui sifon este infuzia rapidă. Pune un distilat și aromatizantul tău — ierburi, condimente, coajă de citrice — în recipient. Încarcă cu N₂O și lasă să stea unu până la două minute. Presiunea forțează gazul în lichid și deschide structura celulară a aromatizantului, accelerând dramatic infuzia. Eliberează presiunea încet, strecoară și ai un distilat aromat în două minute, în loc de două zile într-un borcan.</p>
+<h2>Realizarea spumelor</h2>
+<p>Cu cartușe de N₂O poți transforma aproape orice lichid într-o spumă. O combinație clasică este o spumă de citrice deasupra unui Gin Sour, sau o spumă de cafea pe un Espresso Martini. Lichidul necesită o anumită structură — lecitină, albuș de ou, smântână sau gelatină — pentru a menține bulele. Experimentează cu proporțiile până găsești o spumă care își păstrează forma câteva minute.</p>
+<h2>Sfaturi pentru uz casnic</h2>
+<ul>
+<li>Răcește întotdeauna lichidul înainte de încărcare — lichidul rece reține gazul mai bine</li>
+<li>Strecoară orice pulpă sau particule înainte de a umple sifonul</li>
+<li>Eliberează presiunea înainte de deschidere — nu deșuruba niciodată capul când este încărcat</li>
+<li>Curăță sifonul temeinic după fiecare utilizare pentru a preveni blocajele</li>
+<li>Păstrează sifonurile încărcate la frigider — niciodată într-un loc cald</li>
+</ul>`,
+      footerAbout: 'Despre', footerContact: 'Contact',
+    },
+  };
+
+  let lang = localStorage.getItem('revben_lang') || 'en';
+
+  function applyLang() {
+    const set = (id, val) => { const e = document.getElementById(id); if (e) e.innerHTML = val; };
+    document.querySelector('html').lang = lang;
+    const d = i18n[lang] || i18n.en;
+    set('back-link', d.backLink);
+    set('article-label', d.articleLabel);
+    set('article-title', d.title);
+    set('article-body', d.body);
+    set('footer-about', d.footerAbout);
+    set('footer-contact', d.footerContact);
+  }
+
+  function setLang(l) {
+    lang = l;
+    localStorage.setItem('revben_lang', l);
+    ['sv','en','ro'].forEach(code => {
+      const b = document.getElementById('btn-' + code);
+      if (b) b.classList.toggle('active', code === l);
+    });
+    applyLang();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => setLang(lang));
+</script>
+</body>
+</html>

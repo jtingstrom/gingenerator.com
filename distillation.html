@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spirit Distillation — From Grain to Glass – The Gin Generator</title>
+  <meta name="description" content="<p>Every spirit — gin, vodka, whisky, rum, tequila — begins its life as a humble fermented liquid. Understanding the basics of distillation helps you ..." />
+  <link rel="canonical" href="https://www.gingenerator.com/distillation.html" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #2c2418; --surface: #161616; --surface2: #1f1f1f;
+      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+      --text: #f0ece4; --muted: #888; --accent: #d4a84b;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+    .lang-toggle {
+      position: fixed; top: 1.2rem; right: 1.5rem; z-index: 999;
+      display: flex; background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 999px; padding: 2px; gap: 2px;
+    }
+    .lang-toggle button {
+      height: 28px; padding: 0 12px; background: none; border: none;
+      border-radius: 999px; color: var(--muted); font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 500; cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+    }
+    .lang-toggle button.active {
+      background: var(--surface2); color: var(--accent); border: 1px solid var(--border2);
+    }
+    header {
+      width: 100%; max-width: 760px;
+      padding: 3.5rem 1.5rem 1.5rem; position: relative; z-index: 1;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo a { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+    .logo svg { color: var(--accent); flex-shrink: 0; }
+    .logo-text {
+      font-family: 'Playfair Display', serif; font-size: 1.4rem;
+      font-weight: 400; color: var(--text);
+    }
+    .logo-text em { font-style: italic; color: var(--accent); }
+    main {
+      width: 100%; max-width: 760px;
+      padding: 0 1.5rem 4rem; position: relative; z-index: 1;
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      margin-bottom: 2rem; transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .article-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 2.5rem;
+    }
+    .article-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 400; line-height: 1.2; color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .divider {
+      width: 50px; height: 1px; background: var(--accent);
+      opacity: 0.3; margin-bottom: 1.5rem;
+    }
+    .article-body { font-size: 16px; color: var(--text); line-height: 1.9; }
+    .article-body p { margin-bottom: 1.25rem; }
+    .article-body h2 {
+      font-family: 'Playfair Display', serif; font-size: 1.3rem;
+      font-weight: 400; color: var(--text); margin: 2rem 0 0.75rem;
+    }
+    .article-body ul {
+      margin: 0.75rem 0 1.25rem 1.5rem; color: var(--muted);
+    }
+    .article-body li { margin-bottom: 0.4rem; }
+    .article-body strong { color: var(--accent); font-weight: 500; }
+    footer {
+      width: 100%; max-width: 760px; padding: 0 1.5rem 2rem;
+      text-align: center; font-size: 12px; color: rgba(255,255,255,0.2);
+      position: relative; z-index: 1;
+    }
+    footer a { color: rgba(212,168,75,0.4); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<div class="lang-toggle">
+  <button id="btn-sv" onclick="setLang('sv')">SV</button>
+  <button id="btn-en" onclick="setLang('en')">EN</button>
+  <button id="btn-ro" onclick="setLang('ro')">RO</button>
+</div>
+
+<header>
+  <div class="logo">
+    <a href="/">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M4 3h16l-6 9.5V20h2.5v1.5h-9V20H10v-7.5L4 3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-text">The Gin <em>Generator</em></span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <a href="/" class="back-link" id="back-link">← Back to the generator</a>
+
+  <div class="article-card">
+    <div class="article-label" id="article-label">Article</div>
+    <h1 id="article-title">Spirit Distillation — From Grain to Glass</h1>
+    <div class="divider"></div>
+    <div class="article-body" id="article-body">
+      <p>Every spirit — gin, vodka, whisky, rum, tequila — begins its life as a humble fermented liquid. Understanding the basics of distillation helps you appreciate what is in the glass and why different spirits taste the way they do.</p>
+<h2>Step 1 — Fermentation</h2>
+<p>Before anything can be distilled, sugars must be converted into alcohol. Yeast is added to a sugar-rich liquid — grain mash for whisky, molasses for rum, agave juice for tequila — and over several days the yeast consumes the sugar and produces alcohol and CO₂. The result is a liquid of around <strong>5–15% ABV</strong>, similar to a strong beer or wine.</p>
+<h2>Step 2 — Distillation</h2>
+<p>Distillation separates alcohol from water by exploiting their different boiling points. Alcohol boils at 78°C while water boils at 100°C. By heating the fermented liquid, the alcohol vaporises first. These vapours travel up through the still and are collected and cooled, condensing back into a liquid with a much higher alcohol content.</p>
+<p>There are two main types of still. A <strong>pot still</strong> is a traditional copper kettle that produces spirit in batches — it retains more flavour compounds and is used for malt whisky and cognac. A <strong>column still</strong> (also called a continuous or Coffey still) runs continuously and can produce a much purer, more neutral spirit — used for vodka, grain whisky and many rums.</p>
+<h2>The cuts — heads, hearts and tails</h2>
+<p>Not all of the distillate is desirable. The distiller divides the run into three parts. The <strong>heads</strong> come first — they contain harsh, volatile compounds including methanol and acetone and are discarded. The <strong>hearts</strong> are the good part — the clean, flavourful spirit the distiller wants to keep. The <strong>tails</strong> come last — heavier, oily compounds that can be redistilled or discarded. Making the right cuts is a skill that takes years to master.</p>
+<h2>Maturation</h2>
+<p>Many spirits — whisky, rum, cognac, tequila — are aged in oak barrels after distillation. During maturation the spirit interacts with the wood, taking on colour and flavour compounds such as vanilla, caramel and spice. A newly distilled whisky is clear and raw; years in a barrel transform it into something complex and mellow.</p>
+<h2>Gin — a special case</h2>
+<p>Gin begins as a neutral spirit — essentially vodka — and is then redistilled or infused with botanical ingredients. <strong>Juniper</strong> must be the dominant flavour by law, but distillers add dozens of other botanicals: coriander, angelica root, citrus peel, cardamom, orris root and many more. The combination and ratios are the distillery's closely guarded secret recipe.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/about.html" id="footer-about">About</a> · <a href="/kontakt.html" id="footer-contact">Contact</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.19</span>
+</footer>
+
+<script>
+  const i18n = {
+    en: {
+      backLink: '← Back to the generator',
+      articleLabel: 'Article',
+      title: `Spirit Distillation — From Grain to Glass`,
+      body: `<p>Every spirit — gin, vodka, whisky, rum, tequila — begins its life as a humble fermented liquid. Understanding the basics of distillation helps you appreciate what is in the glass and why different spirits taste the way they do.</p>
+<h2>Step 1 — Fermentation</h2>
+<p>Before anything can be distilled, sugars must be converted into alcohol. Yeast is added to a sugar-rich liquid — grain mash for whisky, molasses for rum, agave juice for tequila — and over several days the yeast consumes the sugar and produces alcohol and CO₂. The result is a liquid of around <strong>5–15% ABV</strong>, similar to a strong beer or wine.</p>
+<h2>Step 2 — Distillation</h2>
+<p>Distillation separates alcohol from water by exploiting their different boiling points. Alcohol boils at 78°C while water boils at 100°C. By heating the fermented liquid, the alcohol vaporises first. These vapours travel up through the still and are collected and cooled, condensing back into a liquid with a much higher alcohol content.</p>
+<p>There are two main types of still. A <strong>pot still</strong> is a traditional copper kettle that produces spirit in batches — it retains more flavour compounds and is used for malt whisky and cognac. A <strong>column still</strong> (also called a continuous or Coffey still) runs continuously and can produce a much purer, more neutral spirit — used for vodka, grain whisky and many rums.</p>
+<h2>The cuts — heads, hearts and tails</h2>
+<p>Not all of the distillate is desirable. The distiller divides the run into three parts. The <strong>heads</strong> come first — they contain harsh, volatile compounds including methanol and acetone and are discarded. The <strong>hearts</strong> are the good part — the clean, flavourful spirit the distiller wants to keep. The <strong>tails</strong> come last — heavier, oily compounds that can be redistilled or discarded. Making the right cuts is a skill that takes years to master.</p>
+<h2>Maturation</h2>
+<p>Many spirits — whisky, rum, cognac, tequila — are aged in oak barrels after distillation. During maturation the spirit interacts with the wood, taking on colour and flavour compounds such as vanilla, caramel and spice. A newly distilled whisky is clear and raw; years in a barrel transform it into something complex and mellow.</p>
+<h2>Gin — a special case</h2>
+<p>Gin begins as a neutral spirit — essentially vodka — and is then redistilled or infused with botanical ingredients. <strong>Juniper</strong> must be the dominant flavour by law, but distillers add dozens of other botanicals: coriander, angelica root, citrus peel, cardamom, orris root and many more. The combination and ratios are the distillery's closely guarded secret recipe.</p>`,
+      footerAbout: 'About', footerContact: 'Contact',
+    },
+    sv: {
+      backLink: '← Tillbaka till generatorn',
+      articleLabel: 'Artikel',
+      title: `Spritdestillering — från säd till glas`,
+      body: `<p>Varje sprit — gin, vodka, whisky, rom, tequila — börjar sitt liv som en enkel jäst vätska. Att förstå grunderna i destillering hjälper dig att uppskatta vad som finns i glaset och varför olika spritar smakar som de gör.</p>
+<h2>Steg 1 — Jäsning</h2>
+<p>Innan något kan destilleras måste socker omvandlas till alkohol. Jäst tillsätts till en sockerrik vätska — sädeskornarnas mäsk för whisky, melass för rom, agavesaft för tequila — och under flera dagar förbrukar jästen sockret och producerar alkohol och CO₂. Resultatet är en vätska på ungefär <strong>5–15% alkohol</strong>, liknande en stark öl eller vin.</p>
+<h2>Steg 2 — Destillering</h2>
+<p>Destillering separerar alkohol från vatten genom att utnyttja deras olika kokpunkter. Alkohol kokar vid 78°C medan vatten kokar vid 100°C. Genom att värma den jästa vätskan ångas alkoholen först. Dessa ångor färdas uppåt genom destilleringen och samlas upp och kyls, kondenseras tillbaka till en vätska med mycket högre alkoholhalt.</p>
+<p>Det finns två huvudtyper av destilleringsutrustning. En <strong>pottdestillering</strong> är en traditionell kopparkittel som producerar sprit i omgångar — den behåller fler smakföreningar och används för maltwhisky och cognac. En <strong>kolonndestillering</strong> körs kontinuerligt och kan producera en mycket renare, mer neutral sprit — används för vodka, sädeswhisky och många romsorter.</p>
+<h2>Snitten — huvuden, hjärtan och svansar</h2>
+<p>Inte allt destillat är önskvärt. Destillatören delar upp körningen i tre delar. <strong>Huvudena</strong> kommer först — de innehåller hårda, flyktiga föreningar inklusive metanol och aceton och kasseras. <strong>Hjärtana</strong> är den goda delen — den rena, smakrika spriten som destillatören vill behålla. <strong>Svansarna</strong> kommer sist — tyngre, oljiga föreningar som kan återdestilleras eller kasseras. Att göra rätt snitt är en färdighet som tar år att bemästra.</p>
+<h2>Lagring</h2>
+<p>Många spritar — whisky, rom, cognac, tequila — lagras i ekfat efter destilleringen. Under lagringen interagerar spriten med träet och tar upp färg och smakföreningar som vanilj, karamell och kryddor. En nydestillerad whisky är klar och rå; år i ett fat förvandlar den till något komplext och mjukt.</p>
+<h2>Gin — ett specialfall</h2>
+<p>Gin börjar som en neutral sprit — i princip vodka — och återdestilleras sedan eller infunderas med botaniska ingredienser. <strong>Enbär</strong> måste vara den dominerande smaken enligt lag, men destillatörer tillsätter dussintals andra botaniska ingredienser: koriander, angelikarot, citrusskal, kardemumma, irisrot och många fler. Kombinationen och proportionerna är destilleriets noga bevakade hemliga recept.</p>`,
+      footerAbout: 'Om', footerContact: 'Kontakt',
+    },
+    ro: {
+      backLink: '← Înapoi la generator',
+      articleLabel: 'Articol',
+      title: `Distilarea spirtoaselor — De la cereale la pahar`,
+      body: `<p>Fiecare distilat — gin, vodcă, whisky, rom, tequila — își începe viața ca un simplu lichid fermentat. Înțelegerea elementelor de bază ale distilării te ajută să apreciezi ce se află în pahar și de ce diferitele spirtoase au gustul pe care îl au.</p>
+<h2>Pasul 1 — Fermentarea</h2>
+<p>Înainte ca ceva să poată fi distilat, zaharurile trebuie convertite în alcool. Drojdia este adăugată într-un lichid bogat în zahăr — borhot de cereale pentru whisky, melasă pentru rom, suc de agave pentru tequila — și timp de câteva zile drojdia consumă zahărul și produce alcool și CO₂. Rezultatul este un lichid de aproximativ <strong>5–15% alcool</strong>, similar cu o bere tare sau un vin.</p>
+<h2>Pasul 2 — Distilarea</h2>
+<p>Distilarea separă alcoolul de apă prin exploatarea punctelor lor de fierbere diferite. Alcoolul fierbe la 78°C, în timp ce apa fierbe la 100°C. Prin încălzirea lichidului fermentat, alcoolul se evaporă primul. Acești vapori urcă prin alambic și sunt colectați și răciți, condensându-se înapoi într-un lichid cu un conținut de alcool mult mai mare.</p>
+<p>Există două tipuri principale de alambic. Un <strong>alambic cu cazan</strong> este un cazan tradițional de cupru care produce distilat în loturi — reține mai mulți compuși aromatici și este folosit pentru whisky de malț și coniac. Un <strong>alambic cu coloană</strong> funcționează continuu și poate produce un distilat mult mai pur și mai neutru — folosit pentru vodcă, whisky din cereale și multe romuri.</p>
+<h2>Fracțiunile — cap, inimă și coadă</h2>
+<p>Nu tot distilatul este dezirabil. Distilatorii împart rulajul în trei părți. <strong>Capul</strong> vine primul — conține compuși duri și volatili, inclusiv metanol și acetonă, și este eliminat. <strong>Inima</strong> este partea bună — distilatul curat și aromat pe care distilatorii vor să îl păstreze. <strong>Coada</strong> vine ultima — compuși mai grei și uleioși care pot fi redistilați sau eliminați. Realizarea tăieturilor corecte este o abilitate care necesită ani de practică.</p>
+<h2>Maturarea</h2>
+<p>Multe spirtoase — whisky, rom, coniac, tequila — sunt învechite în butoaie de stejar după distilare. În timpul maturării, distilatul interacționează cu lemnul, preluând culoare și compuși aromatici precum vanilia, caramelul și condimentele. Un whisky proaspăt distilat este limpede și brut; ani într-un butoi îl transformă în ceva complex și delicat.</p>
+<h2>Gin — un caz special</h2>
+<p>Gin-ul începe ca un distilat neutru — practic vodcă — și este apoi redistilat sau infuzat cu ingrediente botanice. <strong>Ienupărul</strong> trebuie să fie aroma dominantă prin lege, dar distilatorii adaugă zeci de alte botanice: coriandru, rădăcină de angelică, coajă de citrice, cardamom, rădăcină de iris și multe altele. Combinația și proporțiile reprezintă rețeta secretă a distileriei.</p>`,
+      footerAbout: 'Despre', footerContact: 'Contact',
+    },
+  };
+
+  let lang = localStorage.getItem('revben_lang') || 'en';
+
+  function applyLang() {
+    const set = (id, val) => { const e = document.getElementById(id); if (e) e.innerHTML = val; };
+    document.querySelector('html').lang = lang;
+    const d = i18n[lang] || i18n.en;
+    set('back-link', d.backLink);
+    set('article-label', d.articleLabel);
+    set('article-title', d.title);
+    set('article-body', d.body);
+    set('footer-about', d.footerAbout);
+    set('footer-contact', d.footerContact);
+  }
+
+  function setLang(l) {
+    lang = l;
+    localStorage.setItem('revben_lang', l);
+    ['sv','en','ro'].forEach(code => {
+      const b = document.getElementById('btn-' + code);
+      if (b) b.classList.toggle('active', code === l);
+    });
+    applyLang();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => setLang(lang));
+</script>
+</body>
+</html>

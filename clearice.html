@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clear Ice – The Gin Generator</title>
+  <meta name="description" content="Crystal-clear ice — why it matters, how it is made, and how to get it at home." />
+  <link rel="canonical" href="https://www.gingenerator.com/clearice.html" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #2c2418; --surface: #161616; --surface2: #1f1f1f;
+      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+      --text: #f0ece4; --muted: #888; --accent: #d4a84b;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+    .lang-toggle {
+      position: fixed; top: 1.2rem; right: 1.5rem; z-index: 999;
+      display: flex; background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 999px; padding: 2px; gap: 2px;
+    }
+    .lang-toggle button {
+      height: 28px; padding: 0 12px; background: none; border: none;
+      border-radius: 999px; color: var(--muted); font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 500; cursor: pointer; transition: background 0.12s, color 0.12s;
+    }
+    .lang-toggle button.active { background: var(--surface2); color: var(--accent); border: 1px solid var(--border2); }
+    header { width: 100%; max-width: 760px; padding: 3.5rem 1.5rem 1.5rem; position: relative; z-index: 1; }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo a { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+    .logo svg { color: var(--accent); flex-shrink: 0; }
+    .logo-text { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 400; color: var(--text); }
+    .logo-text em { font-style: italic; color: var(--accent); }
+    main { width: 100%; max-width: 760px; padding: 0 1.5rem 4rem; position: relative; z-index: 1; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      margin-bottom: 2rem; transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .article-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem; }
+    .article-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 400; line-height: 1.2; color: var(--text); margin-bottom: 1.5rem; }
+    .divider { width: 50px; height: 1px; background: var(--accent); opacity: 0.3; margin-bottom: 1.5rem; }
+    .article-body { font-size: 16px; color: var(--text); line-height: 1.9; }
+    .article-body p { margin-bottom: 1.25rem; }
+    .article-body h2 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 400; color: var(--text); margin: 2rem 0 0.75rem; }
+    .article-body ul { margin: 0.75rem 0 1.25rem 1.5rem; color: var(--muted); }
+    .article-body li { margin-bottom: 0.4rem; }
+    .article-body strong { color: var(--accent); font-weight: 500; }
+    footer { width: 100%; max-width: 760px; padding: 0 1.5rem 2rem; text-align: center; font-size: 12px; color: rgba(255,255,255,0.2); position: relative; z-index: 1; }
+    footer a { color: rgba(212,168,75,0.4); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<div class="lang-toggle">
+  <button id="btn-sv" onclick="setLang('sv')">SV</button>
+  <button id="btn-en" onclick="setLang('en')">EN</button>
+  <button id="btn-ro" onclick="setLang('ro')">RO</button>
+</div>
+
+<header>
+  <div class="logo">
+    <a href="/">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M4 3h16l-6 9.5V20h2.5v1.5h-9V20H10v-7.5L4 3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-text">The Gin <em>Generator</em></span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <a href="/" class="back-link" id="back-link">← Back to the generator</a>
+  <div class="article-card">
+    <div class="article-label" id="article-label">Article</div>
+    <h1 id="article-title">Clear Ice — Why It Matters</h1>
+    <div class="divider"></div>
+    <div class="article-body" id="article-body"></div>
+  </div>
+</main>
+
+<footer>
+  <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/about.html" id="footer-about">About</a> · <a href="/kontakt.html" id="footer-contact">Contact</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.20</span>
+</footer>
+
+<script>
+  const i18n = {
+    en: {
+      backLink: '← Back to the generator',
+      label: 'Article', title: 'Clear Ice — Why It Matters',
+      footerAbout: 'About', footerContact: 'Contact',
+      body: `<p>Walk into any serious cocktail bar and you will notice something immediately — the ice is different. Large, perfectly clear cubes sit in the glasses like glass sculptures, catching the light. This is not just aesthetics. <strong>Clear ice genuinely makes cocktails taste better.</strong></p>
+<h2>Why is ice usually cloudy?</h2>
+<p>Tap water contains dissolved air and minerals. When water freezes quickly — as it does in a standard freezer — it freezes from the outside in, trapping those gases and impurities in the centre. The result is the cloudy, white core you see in a typical ice cube. That trapped air also weakens the structure of the ice, making it melt faster and dilute your drink more quickly.</p>
+<h2>Why clear ice is better</h2>
+<p>Clear ice is denser and harder than cloudy ice. It melts significantly more slowly, which means your drink stays cold longer without being watered down. A perfectly made Old Fashioned over a single large clear cube will still be at its best 20 minutes after pouring. The same drink over standard ice will be noticeably diluted in half that time.</p>
+<p>There is also a textural difference. Clear ice has no air bubbles to crunch or crack unexpectedly. It is smooth, heavy and substantial in the glass.</p>
+<h2>Directional freezing — the key principle</h2>
+<p>Professional clear ice is made using <strong>directional freezing</strong> — the water freezes from one direction only, pushing the impurities and air ahead of the freezing front until they concentrate at the end, which is then discarded.</p>
+<p>At an industrial level this is done with machines that circulate water constantly. At home, you can achieve the same effect with a simple cooler.</p>
+<h2>The cooler method</h2>
+<p>This is the easiest and most reliable way to make clear ice at home.</p>
+<ul>
+<li>Take a small insulated cooler — a lunch box size works perfectly</li>
+<li>Fill it almost to the top with water (tap water is fine; boiling it first helps remove some dissolved gas)</li>
+<li>Place the cooler in your freezer <strong>without the lid</strong></li>
+<li>Freeze for 24–30 hours — the water will freeze from the top down, pushing impurities to the bottom</li>
+<li>Remove and let it sit at room temperature for 10 minutes</li>
+<li>Tip out — the bottom portion will be cloudy; cut or break it off and discard it</li>
+<li>The top section is your clear ice — cut it into whatever shape you need</li>
+</ul>
+<h2>Cutting and shaping</h2>
+<p>A serrated bread knife works surprisingly well for cutting ice. Score a line where you want to cut, then tap firmly with the spine of the knife. A large chef's knife and a mallet give more control for precise cuts. For spheres, you can use a purpose-made ice sphere press — a beautiful piece of kit that melts a rough chunk into a perfect ball using body heat and pressure.</p>
+<h2>What size and shape?</h2>
+<p><strong>Large cubes (5–6 cm)</strong> are ideal for spirit-forward drinks like Old Fashioned, Negroni and Manhattan — one cube per glass. <strong>Long spears</strong> fit perfectly in a highball for Gin and Tonic or Moscow Mule. <strong>Spheres</strong> are the ultimate showpiece — they have the lowest surface area to volume ratio of any shape, making them the slowest-melting option of all.</p>
+<p>Once you start using clear ice, the cloudy cubes from a standard tray will feel like a compromise. It is one of those small upgrades that genuinely transforms the drinking experience at home.</p>`
+    },
+    sv: {
+      backLink: '← Tillbaka till generatorn',
+      label: 'Artikel', title: 'Klar is — varför det spelar roll',
+      footerAbout: 'Om', footerContact: 'Kontakt',
+      body: `<p>Kliv in på vilken seriös cocktailbar som helst och du märker något direkt — isen är annorlunda. Stora, kristallklara kuber sitter i glasen som glasskulpturer och fångar ljuset. Det är inte bara estetik. <strong>Klar is gör faktiskt cocktails godare.</strong></p>
+<h2>Varför är is vanligtvis grumlig?</h2>
+<p>Kranvatten innehåller löst luft och mineraler. När vatten fryser snabbt — som det gör i en vanlig frys — fryser det utifrån och in och fångar dessa gaser och föroreningar i mitten. Resultatet är den grumliga, vita kärnan du ser i en typisk isbit. Den innespelade luften försämrar också isens struktur, vilket gör att den smälter snabbare och spär ut din drink fortare.</p>
+<h2>Varför klar is är bättre</h2>
+<p>Klar is är tätare och hårdare än grumlig is. Den smälter betydligt långsammare, vilket innebär att din drink håller sig kall längre utan att bli utspädd. En perfekt gjord Old Fashioned på en enda stor klar kub är fortfarande på toppen 20 minuter efter att ha hällts upp. Samma drink på vanlig is är märkbart utspädd på halva den tiden.</p>
+<p>Det finns också en texturskillnad. Klar is har inga luftbubblor som knapar eller spricker oväntat. Den är slät, tung och substantiell i glaset.</p>
+<h2>Riktad frysning — principen</h2>
+<p>Professionell klar is tillverkas med <strong>riktad frysning</strong> — vattnet fryser från en riktning, och skjuter föroreningar och luft framför frysningsfronten tills de koncentreras i änden, som sedan kastas bort.</p>
+<p>På industriell nivå görs detta med maskiner som cirkulerar vatten konstant. Hemma kan du uppnå samma effekt med en enkel kylväska.</p>
+<h2>Kylväskemetoden</h2>
+<ul>
+<li>Ta en liten isolerad kylväska — lunchlåda-storlek fungerar perfekt</li>
+<li>Fyll den nästan till toppen med vatten (kranvatten funkar; att koka det först hjälper till att ta bort löst gas)</li>
+<li>Placera kylväskan i frysen <strong>utan locket</strong></li>
+<li>Frys i 24–30 timmar — vattnet fryser uppifrån och ner och skjuter föroreningar till botten</li>
+<li>Ta ut och låt det stå i rumstemperatur i 10 minuter</li>
+<li>Häll ut — den nedre delen är grumlig; skär eller bryt bort den och kasta</li>
+<li>Den övre delen är din klara is — skär den i vilken form du behöver</li>
+</ul>
+<h2>Skärning och formgivning</h2>
+<p>En brödkniv med taggigt blad fungerar förvånansvärt bra för att skära is. Gör ett märke där du vill skära, tryck sedan bestämt med ryggen av kniven. En stor kockkniv och en klubba ger mer kontroll för precisa snitt. För sfärer kan du använda en issfärpress.</p>
+<h2>Vilken storlek och form?</h2>
+<p><strong>Stora kuber (5–6 cm)</strong> är idealiska för spritbaserade drinkar som Old Fashioned, Negroni och Manhattan. <strong>Långa spjut</strong> passar perfekt i ett highball-glas för Gin och Tonic. <strong>Sfärer</strong> är det ultimata showcaset — de har den lägsta ytarean i förhållande till volym av alla former och smälter allra långsammast.</p>`
+    },
+    ro: {
+      backLink: '← Înapoi la generator',
+      label: 'Articol', title: 'Gheață limpede — de ce contează',
+      footerAbout: 'Despre', footerContact: 'Contact',
+      body: `<p>Intră în orice bar serios de cocktailuri și vei observa ceva imediat — gheața este diferită. Cuburi mari, perfect limpezi stau în pahare ca sculpturi de sticlă, captând lumina. Nu este doar estetică. <strong>Gheața limpede face cocktailurile cu adevărat mai bune.</strong></p>
+<h2>De ce este gheața de obicei tulbure?</h2>
+<p>Apa de la robinet conține aer dizolvat și minerale. Când apa îngheață rapid — cum se întâmplă într-un congelator standard — îngheață dinspre exterior spre interior, captând acele gaze și impurități în centru. Rezultatul este miezul tulbure, alb pe care îl vezi într-un cub de gheață obișnuit. Aerul capturat slăbește și structura gheții, făcând-o să se topească mai repede.</p>
+<h2>De ce gheața limpede este mai bună</h2>
+<p>Gheața limpede este mai densă și mai dură decât gheața tulbure. Se topește semnificativ mai lent, ceea ce înseamnă că băutura ta rămâne rece mai mult timp fără a fi diluată. Un Old Fashioned perfect preparat peste un singur cub mare de gheață limpede va fi încă la cel mai bun nivel la 20 de minute după turnare.</p>
+<h2>Înghețarea direcțională — principiul cheie</h2>
+<p>Gheața limpede profesională este realizată prin <strong>înghețare direcțională</strong> — apa îngheață dintr-o singură direcție, împingând impuritățile și aerul înainte până se concentrează la capăt, care este apoi eliminat.</p>
+<h2>Metoda cu răcitor</h2>
+<ul>
+<li>Ia un răcitor mic izolat — dimensiunea unei cutii de prânz funcționează perfect</li>
+<li>Umple-l aproape până la vârf cu apă</li>
+<li>Pune răcitorul în congelator <strong>fără capac</strong></li>
+<li>Congeleaza 24–30 ore — apa va îngheța de sus în jos, împingând impuritățile la fund</li>
+<li>Scoate și lasă la temperatura camerei 10 minute</li>
+<li>Răstoarnă — partea de jos va fi tulbure; taie-o și arunc-o</li>
+<li>Partea de sus este gheața ta limpede</li>
+</ul>
+<h2>Ce dimensiune și formă?</h2>
+<p><strong>Cuburi mari (5–6 cm)</strong> sunt ideale pentru băuturi pe bază de spirtoase precum Old Fashioned, Negroni și Manhattan. <strong>Sulițe lungi</strong> se potrivesc perfect într-un pahar highball pentru Gin Tonic. <strong>Sferele</strong> sunt piesa de rezistență — au cel mai mic raport suprafață-volum și se topesc cel mai lent.</p>`
+    },
+  };
+
+  let lang = localStorage.getItem('revben_lang') || 'en';
+
+  function applyLang() {
+    const set = (id, val) => { const e = document.getElementById(id); if (e) e.innerHTML = val; };
+    document.querySelector('html').lang = lang;
+    const d = i18n[lang] || i18n.en;
+    set('back-link', d.backLink);
+    set('article-label', d.label);
+    set('article-title', d.title);
+    set('article-body', d.body);
+    set('footer-about', d.footerAbout);
+    set('footer-contact', d.footerContact);
+  }
+
+  function setLang(l) {
+    lang = l;
+    localStorage.setItem('revben_lang', l);
+    ['sv','en','ro'].forEach(code => {
+      const b = document.getElementById('btn-' + code);
+      if (b) b.classList.toggle('active', code === l);
+    });
+    applyLang();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => setLang(lang));
+</script>
+<!-- Default Statcounter code for GinGenerator https://gingenerator.com -->
+<script type="text/javascript">
+var sc_project=13222790; 
+var sc_invisible=1; 
+var sc_security="6a216fae"; 
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/13222790/0/6a216fae/1/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+</body>
+</html>

@@ -116,10 +116,22 @@
 
     main {
       width: 100%;
-      max-width: 800px;
+      max-width: 1100px;
       padding: 0 1.5rem 4rem;
       position: relative;
       z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .main-left { min-width: 0; }
+    .main-right { min-width: 0; }
+
+    @media (max-width: 860px) {
+      main { grid-template-columns: 1fr; }
+      .main-right { order: 1; }
     }
 
     .input-card {
@@ -566,6 +578,53 @@
       background: rgba(212,168,75,0.08);
     }
     .cat-pill .cat-icon { font-size: 14px; }
+
+    .articles-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    .article-item {
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .article-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .article-item:first-child { padding-top: 0; }
+    .article-link {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+      transition: color 0.15s;
+    }
+    .article-link:hover { color: var(--accent); }
+    .article-excerpt {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .sidebar-footer {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sidebar-link {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .sidebar-link:hover { color: var(--accent); }
     .scrollbar-thin::-webkit-scrollbar { width: 4px; }
     .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
     .scrollbar-thin::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
@@ -579,13 +638,12 @@
       top: 1.5rem;
     }
     .tip-date {
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--muted);
       margin-bottom: 0.75rem;
-      opacity: 0.8;
     }
     .tip-img-row {
       display: flex;
@@ -721,12 +779,38 @@
       </div>
     </div>
   </div>
+
+  <div class="articles-card">
+    <div class="section-label" id="label-articles">Articles</div>
+    <div class="article-item">
+      <a href="/clarification.html" class="article-link" id="art1-title">Clarification — Crystal Clear Cocktails</a>
+      <div class="article-excerpt" id="art1-excerpt">How bartenders use milk, egg whites and gelatine to remove cloudiness and create beautifully clear drinks.</div>
+    </div>
+    <div class="article-item">
+      <a href="/siphon.html" class="article-link" id="art2-title">The Siphon — Carbonation at Home</a>
+      <div class="article-excerpt" id="art2-excerpt">Everything you need to know about using a siphon to carbonate cocktails, water and infusions at home.</div>
+    </div>
+    <div class="article-item">
+      <a href="/distillation.html" class="article-link" id="art3-title">Spirit Distillation — From Grain to Glass</a>
+      <div class="article-excerpt" id="art3-excerpt">A guide to how spirits are made — fermentation, distillation and maturation explained in plain language.</div>
+    </div>
+    <div class="article-item">
+      <a href="/clearice.html" class="article-link" id="art4-title">Clear Ice — Why It Matters</a>
+      <div class="article-excerpt" id="art4-excerpt">Crystal-clear ice isn't just beautiful — it melts slower, dilutes less and makes every drink taste better.</div>
+    </div>
+  </div>
+
+  <div class="sidebar-footer">
+    <a href="/about.html" class="sidebar-link">&#9632; <span id="link-about">About The Gin Generator</span></a>
+    <a href="/kontakt.html" class="sidebar-link">&#9632; <span id="link-contact">Contact</span></a>
+  </div>
+
 </div><!-- /.main-right -->
 
 </main>
 
 <footer>
-  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.18</span>
+  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.22</span>
 </footer>
 
 <script>
@@ -1642,6 +1726,12 @@
       glass: 'Glas', alcohol: 'Alkohol', nonAlcohol: 'Alkoholfri',
       noInstructions: 'Inga instruktioner tillgängliga.',
       error: 'Något gick fel, försök igen.', alertIngr: 'Välj minst en ingrediens!',
+      labelArticles: 'Artiklar',
+      art1Title: 'Klaring — kristallklara cocktails', art1Excerpt: 'Hur bartenders använder mjölk, äggvita och gelatin för att skapa vackert klara drinkar.',
+      art2Title: 'Sifon — kolsyra hemma', art2Excerpt: 'Allt om att använda sifon för att kolsyresätta cocktails och skapa skum.',
+      art3Title: 'Spritdestillering — från säd till glas', art3Excerpt: 'En guide till hur sprit tillverkas — jäsning, destillering och lagring förklaras enkelt.',
+      art4Title: 'Klar is — varför det spelar roll', art4Excerpt: 'Kristallklar is smälter långsammare, spär ut mindre och gör varje drink godare.',
+      linkAbout: 'Om The Gin Generator', linkContact: 'Kontakt',
       labelCategories: 'Smakprofil', modeIngr: 'Ingredienser', modeDrink: 'Drinkar', labelDrinkSearch: 'Sök på drinknamn', placeholderDrink: 'T.ex. Negroni, Mojito, Margarita…',
     },
     en: {
@@ -1660,6 +1750,12 @@
       glass: 'Glass', alcohol: 'Alcoholic', nonAlcohol: 'Non-alcoholic',
       noInstructions: 'No instructions available.',
       error: 'Something went wrong, please try again.', alertIngr: 'Select at least one ingredient!',
+      labelArticles: 'Articles',
+      art1Title: 'Clarification — Crystal Clear Cocktails', art1Excerpt: 'How bartenders use milk and egg whites to create beautifully clear drinks.',
+      art2Title: 'The Siphon — Carbonation at Home', art2Excerpt: 'Everything about using a siphon to carbonate cocktails and create foams.',
+      art3Title: 'Spirit Distillation — From Grain to Glass', art3Excerpt: 'A guide to how spirits are made — fermentation, distillation and maturation.',
+      art4Title: 'Clear Ice — Why It Matters', art4Excerpt: 'Crystal-clear ice melts slower, dilutes less and makes every drink taste better.',
+      linkAbout: 'About The Gin Generator', linkContact: 'Contact',
       labelCategories: 'Flavor profile', modeIngr: 'Ingredients', modeDrink: 'Drinks', labelDrinkSearch: 'Search by drink name', placeholderDrink: 'E.g. Negroni, Mojito, Margarita…',
     },
     ro: {
@@ -1678,6 +1774,12 @@
       glass: 'Pahar', alcohol: 'Alcoolic', nonAlcohol: 'Fără alcool',
       noInstructions: 'Nu există instrucțiuni disponibile.',
       error: 'Ceva a mers greșit, încearcă din nou.', alertIngr: 'Selectează cel puțin un ingredient!',
+      labelArticles: 'Articole',
+      art1Title: 'Clarificarea — Cocktailuri cristal', art1Excerpt: 'Cum folosesc barmanii laptele și albușul de ou pentru băuturi limpezi.',
+      art2Title: 'Sifonul — Carbogazificare acasă', art2Excerpt: 'Tot despre utilizarea unui sifon pentru cocktailuri și spume.',
+      art3Title: 'Distilarea spirtoaselor — De la cereale la pahar', art3Excerpt: 'Un ghid despre fermentare, distilare și maturare explicat simplu.',
+      art4Title: 'Gheață limpede — de ce contează', art4Excerpt: 'Gheața cristalină se topește mai lent, diluează mai puțin și îmbunătățește orice băutură.',
+      linkAbout: 'Despre The Gin Generator', linkContact: 'Contact',
       labelCategories: 'Profil de aromă', modeIngr: 'Ingrediente', modeDrink: 'Băuturi', labelDrinkSearch: 'Caută după numele băuturii', placeholderDrink: 'Ex. Negroni, Mojito, Margarita…',
     }
   };
@@ -1699,6 +1801,17 @@
       const span = p.querySelector('span:last-child');
       if (span && catLabels[lang]) span.textContent = catLabels[lang][cat] || cat;
     });
+    set('label-articles', t('labelArticles'));
+    set('art1-title', t('art1Title'));
+    set('art1-excerpt', t('art1Excerpt'));
+    set('art2-title', t('art2Title'));
+    set('art2-excerpt', t('art2Excerpt'));
+    set('art3-title', t('art3Title'));
+    set('art3-excerpt', t('art3Excerpt'));
+    set('art4-title', t('art4Title'));
+    set('art4-excerpt', t('art4Excerpt'));
+    set('link-about', t('linkAbout'));
+    set('link-contact', t('linkContact'));
     const mIngr = document.getElementById('mode-ingr'); if (mIngr) mIngr.textContent = t('modeIngr');
     const mDrink = document.getElementById('mode-drink'); if (mDrink) mDrink.textContent = t('modeDrink');
     const lDrink = document.getElementById('label-drink-search'); if (lDrink) lDrink.textContent = t('labelDrinkSearch');

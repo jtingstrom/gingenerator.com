@@ -162,36 +162,66 @@
   <p class="page-subtitle" id="page-subtitle">Techniques, ingredients and equipment — everything to make better drinks at home.</p>
   <div class="divider"></div>
 
-  <div class="articles-grid">
+  <div class="articles-grid" id="articles-grid">
     <a href="/clarification.html" class="article-card">
-      <div class="article-card-label" id="label-technique">Technique</div>
-      <div class="article-card-title" id="title-clarification">Clarification — Crystal Clear Cocktails</div>
-      <div class="article-card-excerpt" id="excerpt-clarification">How bartenders use milk, egg whites and gelatine to remove cloudiness and create beautifully clear drinks.</div>
+      <div class="article-card-label">Technique</div>
+      <div class="article-card-title">Clarification — Crystal Clear Cocktails</div>
+      <div class="article-card-excerpt">How bartenders use milk, egg whites and gelatine to remove cloudiness and create beautifully clear drinks.</div>
       <div class="article-card-arrow">Read →</div>
     </a>
     <a href="/clearice.html" class="article-card">
-      <div class="article-card-label" id="label-ingredient">Ingredient</div>
-      <div class="article-card-title" id="title-clearice">Clear Ice — Why It Matters</div>
-      <div class="article-card-excerpt" id="excerpt-clearice">Crystal-clear ice melts slower, dilutes less and makes every drink taste better. How to make it at home.</div>
+      <div class="article-card-label">Ingredient</div>
+      <div class="article-card-title">Clear Ice — Why It Matters</div>
+      <div class="article-card-excerpt">Crystal-clear ice melts slower, dilutes less and makes every drink taste better.</div>
       <div class="article-card-arrow">Read →</div>
     </a>
     <a href="/siphon.html" class="article-card">
-      <div class="article-card-label" id="label-equipment">Equipment</div>
-      <div class="article-card-title" id="title-siphon">The Siphon — Carbonation at Home</div>
-      <div class="article-card-excerpt" id="excerpt-siphon">Everything about using a siphon to carbonate cocktails, water and infusions at home.</div>
+      <div class="article-card-label">Equipment</div>
+      <div class="article-card-title">The Siphon — Carbonation at Home</div>
+      <div class="article-card-excerpt">Everything about using a siphon to carbonate cocktails and create foams at home.</div>
       <div class="article-card-arrow">Read →</div>
     </a>
     <a href="/distillation.html" class="article-card">
-      <div class="article-card-label" id="label-knowledge">Knowledge</div>
-      <div class="article-card-title" id="title-distillation">Spirit Distillation — From Grain to Glass</div>
-      <div class="article-card-excerpt" id="excerpt-distillation">A guide to how spirits are made — fermentation, distillation and maturation explained simply.</div>
+      <div class="article-card-label">Knowledge</div>
+      <div class="article-card-title">Spirit Distillation — From Grain to Glass</div>
+      <div class="article-card-excerpt">A guide to how spirits are made — fermentation, distillation and maturation explained simply.</div>
+      <div class="article-card-arrow">Read →</div>
+    </a>
+    <a href="/cocktails-for-occasions.html" class="article-card">
+      <div class="article-card-label">Guide</div>
+      <div class="article-card-title">Cocktails for Every Occasion</div>
+      <div class="article-card-excerpt">The right cocktail can elevate any gathering — from romantic dinners to festive parties.</div>
+      <div class="article-card-arrow">Read →</div>
+    </a>
+    <a href="/cocktail-food-pairing.html" class="article-card">
+      <div class="article-card-label">Guide</div>
+      <div class="article-card-title">Cocktails and Food Pairing</div>
+      <div class="article-card-excerpt">How to match cocktails with cheese, seafood, meat and more for a harmonious flavour experience.</div>
+      <div class="article-card-arrow">Read →</div>
+    </a>
+    <a href="/diy-liqueurs.html" class="article-card">
+      <div class="article-card-label">Recipe</div>
+      <div class="article-card-title">DIY Liqueurs and Infusions</div>
+      <div class="article-card-excerpt">Make your own raspberry schnaps, vanilla vodka and chilli tequila at home.</div>
+      <div class="article-card-arrow">Read →</div>
+    </a>
+    <a href="/classic-cocktails-history.html" class="article-card">
+      <div class="article-card-label">History</div>
+      <div class="article-card-title">Classic Cocktails and Their History</div>
+      <div class="article-card-excerpt">The origins of Old Fashioned, Martini, Negroni, Mojito and Margarita.</div>
+      <div class="article-card-arrow">Read →</div>
+    </a>
+    <a href="/cocktail-trends-2026.html" class="article-card">
+      <div class="article-card-label">Trends</div>
+      <div class="article-card-title">Cocktail Trends 2026</div>
+      <div class="article-card-excerpt">Fermented ingredients, low-ABV drinks, smoke and fire — the hottest trends of the year.</div>
       <div class="article-card-arrow">Read →</div>
     </a>
   </div>
 </main>
 
 <footer>
-  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.24</span>
+  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.27</span>
 </footer>
 
 <!-- Default Statcounter code for GinGenerator https://gingenerator.com -->
@@ -261,6 +291,7 @@ var sc_security="6a216fae";
 
   let lang = localStorage.getItem('revben_lang') || 'en';
 
+  function applySubtitle() {}
   function applyNavLang() {
     const labels = navLabels[lang] || navLabels.en;
     Object.entries(labels).forEach(([key, label]) => {

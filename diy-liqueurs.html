@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIY Liqueurs and Infusions – The Gin Generator</title>
+  <meta name="description" content="Making your own liqueurs and infusions at home is both fun and rewarding. Here is how to make raspberry schnaps, vanilla vodka and chilli tequila." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.gingenerator.com/diy-liqueurs.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.gingenerator.com/diy-liqueurs.html" />
+  <meta property="og:title" content="DIY Liqueurs and Infusions – The Gin Generator" />
+  <meta property="og:description" content="Making your own liqueurs and infusions at home is both fun and rewarding. Here is how to make raspberry schnaps, vanilla vodka and chilli tequila." />
+  <meta property="og:image" content="https://www.gingenerator.com/preview.png" />
+  <meta property="og:site_name" content="The Gin Generator" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DIY Liqueurs and Infusions – The Gin Generator" />
+  <meta name="twitter:description" content="Making your own liqueurs and infusions at home is both fun and rewarding. Here is how to make raspberry schnaps, vanilla vodka and chilli tequila." />
+  <meta name="twitter:image" content="https://www.gingenerator.com/preview.png" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #2c2418; --surface: #161616; --surface2: #1f1f1f;
+      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+      --text: #f0ece4; --muted: #888; --accent: #d4a84b;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+    .lang-toggle {
+      position: fixed; top: 1.2rem; right: 1.5rem; z-index: 999;
+      display: flex; background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 999px; padding: 2px; gap: 2px;
+    }
+    .lang-toggle button {
+      height: 28px; padding: 0 12px; background: none; border: none;
+      border-radius: 999px; color: var(--muted); font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 500; cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+    }
+    .lang-toggle button.active {
+      background: var(--surface2); color: var(--accent); border: 1px solid var(--border2);
+    }
+    .logo a { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+    .logo svg { color: var(--accent); flex-shrink: 0; }
+    .logo-text em { font-style: italic; color: var(--accent); }
+    main {
+      width: 100%; max-width: 1100px;
+      padding: 0 1.5rem 4rem; position: relative; z-index: 1;
+    }
+    .article-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 2.5rem;
+    }
+    .article-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 400; line-height: 1.2; color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .divider {
+      width: 50px; height: 1px; background: var(--accent);
+      opacity: 0.3; margin-bottom: 1.5rem;
+    }
+    .article-body { font-size: 16px; color: var(--text); line-height: 1.9; }
+    .article-body p { margin-bottom: 1.25rem; }
+    .article-body h2 {
+      font-family: 'Playfair Display', serif; font-size: 1.3rem;
+      font-weight: 400; color: var(--text); margin: 2rem 0 0.75rem;
+    }
+    .article-body ul {
+      margin: 0.75rem 0 1.25rem 1.5rem; color: var(--muted);
+    }
+    .article-body li { margin-bottom: 0.4rem; }
+    .article-body strong { color: var(--accent); font-weight: 500; }
+    footer {
+      width: 100%; max-width: 1100px; padding: 0 1.5rem 2rem;
+      text-align: center; font-size: 12px; color: rgba(255,255,255,0.2);
+      position: relative; z-index: 1;
+    }
+    footer a { color: rgba(212,168,75,0.4); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+    @media (max-width: 500px) {
+    }
+
+    header {
+      width: 100%;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 10;
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.25rem 1.5rem 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .logo-wrap { display: flex; align-items: center; gap: 12px; padding-bottom: 1rem; }
+    .logo-wrap a { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+    .logo-wrap svg { color: var(--accent); flex-shrink: 0; }
+    .logo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 400; color: var(--text); line-height: 1.1;
+    }
+    .logo-title em { font-style: italic; color: var(--accent); }
+    .header-sub {
+      font-size: 13px; color: var(--muted);
+      font-weight: 300; padding-bottom: 1.1rem;
+      text-align: right;
+    }
+    @media (max-width: 600px) {
+      .header-sub { display: none; }
+      .header-inner { padding-bottom: 0.75rem; }
+    }
+    nav.site-nav {
+      width: 100%;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: relative; z-index: 9;
+    }
+    .site-nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; gap: 0;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .site-nav-inner::-webkit-scrollbar { display: none; }
+    .nav-link {
+      display: block; padding: 0.65rem 1.1rem; font-size: 13px; font-weight: 400;
+      color: var(--muted); text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-link.active { color: var(--accent); border-bottom-color: var(--accent); }
+    @media (max-width: 500px) { .nav-link { padding: 0.65rem 0.75rem; font-size: 12px; } }
+  
+    .article-body h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; color: var(--accent); margin: 1.5rem 0 0.5rem; font-style: italic; }
+    .article-body ol { margin: 0.75rem 0 1.25rem 1.5rem; color: var(--muted); }
+    .tip { background: var(--surface2); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 0.75rem 1rem; margin: 1.25rem 0; font-size: 14px; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<div class="lang-toggle">
+  <button id="btn-sv" onclick="setLang('sv')">SV</button>
+  <button id="btn-en" onclick="setLang('en')">EN</button>
+  <button id="btn-ro" onclick="setLang('ro')">RO</button>
+</div>
+
+
+
+<main>
+  <div class="article-card">
+    <div class="article-label" id="article-label">Article</div>
+    <h1 id="article-title">DIY Liqueurs and Infusions</h1>
+    <div class="divider"></div>
+    <div class="article-body" id="article-body"></div>
+  </div>
+</main>
+
+<footer>
+  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.27</span>
+</footer>
+
+<!-- Default Statcounter code for GinGenerator https://gingenerator.com -->
+<script type="text/javascript">
+var sc_project=13222790; 
+var sc_invisible=1; 
+var sc_security="6a216fae"; 
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/13222790/0/6a216fae/1/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+
+<script>
+  const navLabels = {
+    sv: { home: 'Generator', articles: 'Artiklar', about: 'Om', kontakt: 'Kontakt' },
+    en: { home: 'Generator', articles: 'Articles', about: 'About', kontakt: 'Contact' },
+    ro: { home: 'Generator', articles: 'Articole', about: 'Despre', kontakt: 'Contact' },
+  };
+  const pageSub = { sv: 'Gör egna likörer och infusioner', en: 'DIY Liqueurs and Infusions', ro: 'Lichioruri și infuzii DIY' };
+  const i18n = {
+    en: { label: 'Article', title: `DIY Liqueurs and Infusions`, body: `<p>Making your own liqueurs and infusions at home is both fun and rewarding. It lets you experiment with flavours and create unique drinks you will not find anywhere else. Here we guide you through three recipes: <strong>raspberry schnaps, vanilla vodka and chilli-infused tequila</strong>.</p>
+<h2>Raspberry Schnaps</h2>
+<h3>Ingredients</h3>
+<ul>
+<li>500 g fresh raspberries</li>
+<li>500 ml vodka or neutral spirit</li>
+<li>200 g caster sugar</li>
+<li>A coffee filter or muslin cloth</li>
+</ul>
+<h3>Method</h3>
+<ol>
+<li>Wash the raspberries and place them in a clean glass jar.</li>
+<li>Pour the vodka over the raspberries so they are fully submerged. Seal the jar and store in a dark, cool place for 2–3 weeks, shaking gently each day.</li>
+<li>Strain through a coffee filter or muslin to remove the raspberry solids. Add the sugar and stir until fully dissolved.</li>
+<li>Return to the jar and leave for a further 1–2 weeks to mature.</li>
+</ol>
+<div class="tip">Add a strip of lemon peel or a vanilla pod during infusion for an extra layer of flavour.</div>
+<h2>Vanilla Vodka</h2>
+<h3>Ingredients</h3>
+<ul>
+<li>1 litre vodka</li>
+<li>2–3 vanilla pods</li>
+<li>A glass jar with a lid</li>
+</ul>
+<h3>Method</h3>
+<ol>
+<li>Split the vanilla pods lengthwise to expose the seeds.</li>
+<li>Place the pods in the jar and pour over the vodka. Seal and store in a dark, cool place for at least 2 weeks — the longer, the more intense the flavour.</li>
+<li>Strain through a filter to remove the vanilla residue.</li>
+<li>Use in cocktails such as a <strong>Vanilla Martini</strong> or enjoy neat over ice.</li>
+</ol>
+<div class="tip">For a faster infusion, gently warm the vodka (do not boil) before adding the vanilla pods.</div>
+<h2>Chilli-Infused Tequila</h2>
+<h3>Ingredients</h3>
+<ul>
+<li>750 ml tequila (preferably 100% agave)</li>
+<li>2–3 fresh chillies (jalapeño for moderate heat, habanero for serious heat)</li>
+<li>A glass jar with a lid</li>
+</ul>
+<h3>Method</h3>
+<ol>
+<li>Slice the chillies thinly. Remove the seeds for a milder result.</li>
+<li>Place the slices in the jar and pour over the tequila. Seal and store in a cool, dark place for 3–5 days. Taste after day 3 to check the heat level.</li>
+<li>When you are happy with the flavour, strain through a filter to remove the chilli residue.</li>
+<li>Use in a <strong>Spicy Margarita</strong> or drink neat if you are feeling brave.</li>
+</ol>
+<div class="tip">Add a slice of lime or orange during infusion for an extra dimension of flavour.</div>`, footerAbout: 'About', footerContact: 'Contact' },
+    sv: { label: 'Artikel', title: `Gör egna likörer och infusioner`, body: `<p>Att skapa egna likörer och infusioner hemma är både roligt och belönande. Det ger dig möjlighet att experimentera med smaker och skapa unika drycker. Här guidar vi dig genom tre recept: <strong>hallonsnaps, vaniljvodka och chili-infunderad tequila</strong>.</p>
+<h2>Hallonsnaps</h2>
+<h3>Ingredienser</h3>
+<ul>
+<li>500 g färska hallon</li>
+<li>500 ml vodka eller neutral sprit</li>
+<li>200 g strösocker</li>
+<li>Kaffefilter eller ostduk</li>
+</ul>
+<h3>Tillagning</h3>
+<ol>
+<li>Tvätta hallonen och placera dem i en ren glasburk.</li>
+<li>Häll vodkan över hallonen så att de täcks helt. Förslut burken och låt stå i 2–3 veckor på en mörk och sval plats. Skaka lätt varje dag.</li>
+<li>Sila genom kaffefilter. Tillsätt sockret och rör om tills det lösts upp.</li>
+<li>Häll tillbaka i burken och låt vila 1–2 veckor till.</li>
+</ol>
+<div class="tip">Lägg till ett citronskal eller en vaniljstång under infusionen för en extra smakdimension.</div>
+<h2>Vaniljvodka</h2>
+<h3>Ingredienser</h3>
+<ul>
+<li>1 liter vodka</li>
+<li>2–3 vaniljstänger</li>
+<li>Glasburk med lock</li>
+</ul>
+<h3>Tillagning</h3>
+<ol>
+<li>Skär vaniljstängerna på längden.</li>
+<li>Placera i burken och häll över vodkan. Låt stå i minst 2 veckor — ju längre, desto starkare smak.</li>
+<li>Sila bort vaniljresterna.</li>
+<li>Perfekt i en <strong>Vanilla Martini</strong> eller ren med lite is.</li>
+</ol>
+<h2>Chili-infunderad tequila</h2>
+<h3>Ingredienser</h3>
+<ul>
+<li>750 ml tequila (helst 100% agave)</li>
+<li>2–3 färska chilipeppar</li>
+<li>Glasburk med lock</li>
+</ul>
+<h3>Tillagning</h3>
+<ol>
+<li>Skär chilin i tunna skivor. Ta bort fröna för mildare smak.</li>
+<li>Lägg i burken och häll över tequilan. Låt stå 3–5 dagar. Smaka av efter dag 3.</li>
+<li>Sila när du är nöjd med styrkan.</li>
+<li>Perfekt i en <strong>Spicy Margarita</strong>.</li>
+</ol>`, footerAbout: 'Om', footerContact: 'Kontakt' },
+    ro: { label: 'Articol', title: `Lichioruri și infuzii DIY`, body: `<p>Prepararea propriilor lichioruri și infuzii acasă este distractivă și satisfăcătoare. Vă ghidăm prin trei rețete: <strong>schnaps de zmeură, vodcă de vanilie și tequila infuzată cu chili</strong>.</p>
+<h2>Schnaps de zmeură</h2>
+<ol>
+<li>Spălați zmeurica și puneți-o într-un borcan de sticlă curat.</li>
+<li>Turnați vodca peste zmeură. Sigilați și lăsați 2–3 săptămâni într-un loc răcoros și întunecat, agitând ușor în fiecare zi.</li>
+<li>Strecurați printr-un filtru de cafea. Adăugați zahărul și amestecați până se dizolvă complet.</li>
+<li>Lăsați să se matureze încă 1–2 săptămâni.</li>
+</ol>
+<h2>Vodcă de vanilie</h2>
+<ol>
+<li>Tăiați păstăile de vanilie pe lungime.</li>
+<li>Puneți în borcan și turnați vodca. Lăsați cel puțin 2 săptămâni.</li>
+<li>Strecurați și folosiți în cocktailuri.</li>
+</ol>
+<h2>Tequila infuzată cu chili</h2>
+<ol>
+<li>Tăiați ardeii chili în felii subțiri.</li>
+<li>Puneți în borcan cu tequila. Lăsați 3–5 zile, gustând după ziua 3.</li>
+<li>Strecurați și folosiți într-o <strong>Margarita picantă</strong>.</li>
+</ol>`, footerAbout: 'Despre', footerContact: 'Contact' },
+  };
+  let lang = localStorage.getItem('revben_lang') || 'en';
+  function applyNavLang() {
+    const labels = navLabels[lang] || navLabels.en;
+    Object.entries(labels).forEach(([k, v]) => { const el = document.getElementById('nav-' + k); if (el) el.textContent = v; });
+  }
+  function applySubtitle() {
+    const el = document.getElementById('header-sub'); if (el) el.textContent = pageSub[lang] || pageSub.en;
+  }
+  function applyLang() {
+    const d = i18n[lang] || i18n.en;
+    document.querySelector('html').lang = lang;
+    const set = (id, val) => { const e = document.getElementById(id); if (e) e.innerHTML = val; };
+    set('article-label', d.label);
+    set('article-title', d.title);
+    set('article-body', d.body);
+    applyNavLang();
+  }
+  function setLang(l) {
+    lang = l; localStorage.setItem('revben_lang', l);
+    ['sv','en','ro'].forEach(c => { const b = document.getElementById('btn-' + c); if (b) b.classList.toggle('active', c === l); });
+    applyLang();
+  }
+  document.addEventListener('DOMContentLoaded', () => setLang(lang));
+</script>
+</body>
+</html>

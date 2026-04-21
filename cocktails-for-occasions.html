@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cocktails for Every Occasion – The Gin Generator</title>
+  <meta name="description" content="The right cocktail can elevate any gathering — from romantic dinners to festive parties. Here are our recommendations for every occasion." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.gingenerator.com/cocktails-for-occasions.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.gingenerator.com/cocktails-for-occasions.html" />
+  <meta property="og:title" content="Cocktails for Every Occasion – The Gin Generator" />
+  <meta property="og:description" content="The right cocktail can elevate any gathering — from romantic dinners to festive parties. Here are our recommendations for every occasion." />
+  <meta property="og:image" content="https://www.gingenerator.com/preview.png" />
+  <meta property="og:site_name" content="The Gin Generator" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cocktails for Every Occasion – The Gin Generator" />
+  <meta name="twitter:description" content="The right cocktail can elevate any gathering — from romantic dinners to festive parties. Here are our recommendations for every occasion." />
+  <meta name="twitter:image" content="https://www.gingenerator.com/preview.png" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #2c2418; --surface: #161616; --surface2: #1f1f1f;
+      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+      --text: #f0ece4; --muted: #888; --accent: #d4a84b;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+    .lang-toggle {
+      position: fixed; top: 1.2rem; right: 1.5rem; z-index: 999;
+      display: flex; background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 999px; padding: 2px; gap: 2px;
+    }
+    .lang-toggle button {
+      height: 28px; padding: 0 12px; background: none; border: none;
+      border-radius: 999px; color: var(--muted); font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 500; cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+    }
+    .lang-toggle button.active {
+      background: var(--surface2); color: var(--accent); border: 1px solid var(--border2);
+    }
+    .logo a { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+    .logo svg { color: var(--accent); flex-shrink: 0; }
+    .logo-text em { font-style: italic; color: var(--accent); }
+    main {
+      width: 100%; max-width: 1100px;
+      padding: 0 1.5rem 4rem; position: relative; z-index: 1;
+    }
+    .article-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 2.5rem;
+    }
+    .article-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 400; line-height: 1.2; color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .divider {
+      width: 50px; height: 1px; background: var(--accent);
+      opacity: 0.3; margin-bottom: 1.5rem;
+    }
+    .article-body { font-size: 16px; color: var(--text); line-height: 1.9; }
+    .article-body p { margin-bottom: 1.25rem; }
+    .article-body h2 {
+      font-family: 'Playfair Display', serif; font-size: 1.3rem;
+      font-weight: 400; color: var(--text); margin: 2rem 0 0.75rem;
+    }
+    .article-body ul {
+      margin: 0.75rem 0 1.25rem 1.5rem; color: var(--muted);
+    }
+    .article-body li { margin-bottom: 0.4rem; }
+    .article-body strong { color: var(--accent); font-weight: 500; }
+    footer {
+      width: 100%; max-width: 1100px; padding: 0 1.5rem 2rem;
+      text-align: center; font-size: 12px; color: rgba(255,255,255,0.2);
+      position: relative; z-index: 1;
+    }
+    footer a { color: rgba(212,168,75,0.4); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+    @media (max-width: 500px) {
+    }
+
+    header {
+      width: 100%;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 10;
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.25rem 1.5rem 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .logo-wrap { display: flex; align-items: center; gap: 12px; padding-bottom: 1rem; }
+    .logo-wrap a { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+    .logo-wrap svg { color: var(--accent); flex-shrink: 0; }
+    .logo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 400; color: var(--text); line-height: 1.1;
+    }
+    .logo-title em { font-style: italic; color: var(--accent); }
+    .header-sub {
+      font-size: 13px; color: var(--muted);
+      font-weight: 300; padding-bottom: 1.1rem;
+      text-align: right;
+    }
+    @media (max-width: 600px) {
+      .header-sub { display: none; }
+      .header-inner { padding-bottom: 0.75rem; }
+    }
+    nav.site-nav {
+      width: 100%;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: relative; z-index: 9;
+    }
+    .site-nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; gap: 0;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .site-nav-inner::-webkit-scrollbar { display: none; }
+    .nav-link {
+      display: block; padding: 0.65rem 1.1rem; font-size: 13px; font-weight: 400;
+      color: var(--muted); text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-link.active { color: var(--accent); border-bottom-color: var(--accent); }
+    @media (max-width: 500px) { .nav-link { padding: 0.65rem 0.75rem; font-size: 12px; } }
+  
+    .article-body h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; color: var(--accent); margin: 1.5rem 0 0.5rem; font-style: italic; }
+    .article-body ol { margin: 0.75rem 0 1.25rem 1.5rem; color: var(--muted); }
+    .tip { background: var(--surface2); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 0.75rem 1rem; margin: 1.25rem 0; font-size: 14px; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<div class="lang-toggle">
+  <button id="btn-sv" onclick="setLang('sv')">SV</button>
+  <button id="btn-en" onclick="setLang('en')">EN</button>
+  <button id="btn-ro" onclick="setLang('ro')">RO</button>
+</div>
+
+
+
+<main>
+  <div class="article-card">
+    <div class="article-label" id="article-label">Article</div>
+    <h1 id="article-title">Cocktails for Every Occasion</h1>
+    <div class="divider"></div>
+    <div class="article-body" id="article-body"></div>
+  </div>
+</main>
+
+<footer>
+  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.27</span>
+</footer>
+
+<!-- Default Statcounter code for GinGenerator https://gingenerator.com -->
+<script type="text/javascript">
+var sc_project=13222790; 
+var sc_invisible=1; 
+var sc_security="6a216fae"; 
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/13222790/0/6a216fae/1/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+
+<script>
+  const navLabels = {
+    sv: { home: 'Generator', articles: 'Artiklar', about: 'Om', kontakt: 'Kontakt' },
+    en: { home: 'Generator', articles: 'Articles', about: 'About', kontakt: 'Contact' },
+    ro: { home: 'Generator', articles: 'Articole', about: 'Despre', kontakt: 'Contact' },
+  };
+  const pageSub = { sv: 'Cocktails för varje tillfälle', en: 'Cocktails for Every Occasion', ro: 'Cocktailuri pentru orice ocazie' };
+  const i18n = {
+    en: { label: 'Article', title: `Cocktails for Every Occasion`, body: `<p>A well-chosen cocktail can lift the mood at any occasion. Whether you're planning a romantic dinner, a festive gathering, or a relaxed evening at home, there is a drink that fits perfectly.</p>
+<h2>Romantic Dinners</h2>
+<p>The goal is elegance and intimacy.</p>
+<ul>
+<li><strong>French 75</strong> — a light, sparkling cocktail with gin, champagne, lemon and sugar. Perfect for celebrating love.</li>
+<li><strong>Espresso Martini</strong> — for those who prefer a bolder drink with a touch of coffee and sweetness.</li>
+</ul>
+<div class="tip">Serve in beautiful glassware and garnish with berries or edible flowers for an extra romantic touch.</div>
+<h2>Festive Gatherings</h2>
+<p>Energy and joy are the goal here.</p>
+<ul>
+<li><strong>Aperol Spritz</strong> — light, bubbly and fruity. Perfect for summer or celebratory occasions.</li>
+<li><strong>Piña Colada</strong> — creamy and tropical, giving a holiday feeling.</li>
+</ul>
+<div class="tip">Serve in large glasses with plenty of ice and fruit garnish to make the drink feel extra festive.</div>
+<h2>Relaxed Evenings</h2>
+<p>Calm, unhurried and satisfying.</p>
+<ul>
+<li><strong>Old Fashioned</strong> — a classic, timeless drink perfect for savouring slowly.</li>
+<li><strong>Hot Toddy</strong> — a warm, comforting drink with whiskey, honey, lemon and spices. Ideal for cold evenings.</li>
+</ul>
+<div class="tip">Use quality ingredients and take your time to really taste the drink.</div>
+<h2>Brunch and Daytime Events</h2>
+<p>Light and refreshing drinks that complement food.</p>
+<ul>
+<li><strong>Mimosa</strong> — a simple, classic mix of champagne and orange juice.</li>
+<li><strong>Bloody Mary</strong> — spicy and vivid, perfect for a late breakfast or brunch.</li>
+</ul>
+<h2>Special Occasions</h2>
+<p>Impress and create a sense of luxury.</p>
+<ul>
+<li><strong>Champagne Cocktail</strong> — elegant, with champagne, a sugar cube, Angostura bitters and lemon peel.</li>
+<li><strong>Sidecar</strong> — a classic with cognac, Cointreau and lemon juice, perfect for marking special moments.</li>
+</ul>
+<h2>Seasonal Drinks</h2>
+<h3>Spring / Summer</h3>
+<ul>
+<li><strong>Mojito</strong> — fresh and bright with mint and lime.</li>
+<li><strong>Gin &amp; Tonic with berries</strong> — add fresh seasonal berries for a summery touch.</li>
+</ul>
+<h3>Autumn / Winter</h3>
+<ul>
+<li><strong>Mulled Wine</strong> — warm and spiced, perfect for autumn evenings.</li>
+<li><strong>Eggnog</strong> — creamy and festive, the classic Christmas drink.</li>
+</ul>
+<div class="tip">Use seasonal ingredients to get the most out of the flavours.</div>`, footerAbout: 'About', footerContact: 'Contact' },
+    sv: { label: 'Artikel', title: `Cocktails för varje tillfälle`, body: `<p>En välvald cocktail kan höja stämningen på vilket tillfälle som helst. Oavsett om du planerar en romantisk middag, en festlig samling eller en avkopplande kväll finns det en drink som passar perfekt.</p>
+<h2>Romantiska middagar</h2>
+<p>Målet är elegans och intimitet.</p>
+<ul>
+<li><strong>French 75</strong> — en lätt, bubblig cocktail med gin, champagne, citron och socker. Perfekt för att fira kärleken.</li>
+<li><strong>Espresso Martini</strong> — för de som föredrar en kraftigare drink med en touch av kaffe och sötma.</li>
+</ul>
+<div class="tip">Servera i vackra glas och garnera med bär eller ätbara blommor för en extra romantisk touch.</div>
+<h2>Festliga tillställningar</h2>
+<p>Energi och glädje är ledorden.</p>
+<ul>
+<li><strong>Aperol Spritz</strong> — lätt, bubblig och fruktig. Perfekt för sommaren eller festliga tillfällen.</li>
+<li><strong>Piña Colada</strong> — krämig och tropisk, ger en känsla av semester.</li>
+</ul>
+<h2>Avkopplande kvällar</h2>
+<ul>
+<li><strong>Old Fashioned</strong> — en klassisk och tidlös drink som är perfekt att njuta av i lugn och ro.</li>
+<li><strong>Hot Toddy</strong> — en varm och tröstande drink med whiskey, honung, citron och kryddor. Idealisk för kalla kvällar.</li>
+</ul>
+<h2>Brunch och dagtidsevenemang</h2>
+<ul>
+<li><strong>Mimosa</strong> — en enkel och klassisk blandning av champagne och apelsinjuice.</li>
+<li><strong>Bloody Mary</strong> — kryddig och pigg, passar perfekt till en sen frukost.</li>
+</ul>
+<h2>Högtidliga tillfällen</h2>
+<ul>
+<li><strong>Champagne Cocktail</strong> — elegant, med champagne, sockerbit, Angostura bitter och citronskal.</li>
+<li><strong>Sidecar</strong> — en klassiker med cognac, Cointreau och citronsaft.</li>
+</ul>
+<h2>Säsongsbetonade drinkar</h2>
+<h3>Vår / Sommar</h3>
+<ul><li><strong>Mojito</strong> — frisk med mynta och lime.</li><li><strong>Gin &amp; Tonic med bär</strong> — lägg till färska bär för en somrig touch.</li></ul>
+<h3>Höst / Vinter</h3>
+<ul><li><strong>Mulled Wine</strong> — varm och kryddig.</li><li><strong>Eggnog</strong> — krämig och festlig, perfekt för julen.</li></ul>`, footerAbout: 'Om', footerContact: 'Kontakt' },
+    ro: { label: 'Articol', title: `Cocktailuri pentru orice ocazie`, body: `<p>Un cocktail bine ales poate ridica atmosfera la orice ocazie. Indiferent dacă planifici o cină romantică, o reuniune festivă sau o seară relaxată, există o băutură care se potrivește perfect.</p>
+<h2>Cine romantice</h2>
+<ul>
+<li><strong>French 75</strong> — un cocktail ușor, spumos, cu gin, șampanie, lămâie și zahăr.</li>
+<li><strong>Espresso Martini</strong> — pentru cei care preferă o băutură mai tare cu o notă de cafea.</li>
+</ul>
+<h2>Reuniuni festive</h2>
+<ul>
+<li><strong>Aperol Spritz</strong> — ușor, spumos și fructat.</li>
+<li><strong>Piña Colada</strong> — cremos și tropical.</li>
+</ul>
+<h2>Seri relaxate</h2>
+<ul>
+<li><strong>Old Fashioned</strong> — un cocktail clasic și atemporal.</li>
+<li><strong>Hot Toddy</strong> — o băutură caldă cu whiskey, miere, lămâie și condimente.</li>
+</ul>
+<h2>Brunch și evenimente de zi</h2>
+<ul>
+<li><strong>Mimosa</strong> — șampanie și suc de portocale.</li>
+<li><strong>Bloody Mary</strong> — picantă și vivace.</li>
+</ul>
+<h2>Ocazii speciale</h2>
+<ul>
+<li><strong>Champagne Cocktail</strong> — elegant și rafinat.</li>
+<li><strong>Sidecar</strong> — coniac, Cointreau și suc de lămâie.</li>
+</ul>`, footerAbout: 'Despre', footerContact: 'Contact' },
+  };
+  let lang = localStorage.getItem('revben_lang') || 'en';
+  function applyNavLang() {
+    const labels = navLabels[lang] || navLabels.en;
+    Object.entries(labels).forEach(([k, v]) => { const el = document.getElementById('nav-' + k); if (el) el.textContent = v; });
+  }
+  function applySubtitle() {
+    const el = document.getElementById('header-sub'); if (el) el.textContent = pageSub[lang] || pageSub.en;
+  }
+  function applyLang() {
+    const d = i18n[lang] || i18n.en;
+    document.querySelector('html').lang = lang;
+    const set = (id, val) => { const e = document.getElementById(id); if (e) e.innerHTML = val; };
+    set('article-label', d.label);
+    set('article-title', d.title);
+    set('article-body', d.body);
+    applyNavLang();
+  }
+  function setLang(l) {
+    lang = l; localStorage.setItem('revben_lang', l);
+    ['sv','en','ro'].forEach(c => { const b = document.getElementById('btn-' + c); if (b) b.classList.toggle('active', c === l); });
+    applyLang();
+  }
+  document.addEventListener('DOMContentLoaded', () => setLang(lang));
+</script>
+</body>
+</html>

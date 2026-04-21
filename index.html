@@ -1845,18 +1845,7 @@
 
 
   // Nav labels i18n
-  const navLabels = {
-    sv: { home: 'Generator', articles: 'Artiklar', clarification: 'Klaring', clearice: 'Klar is', siphon: 'Sifon', distillation: 'Destillering', about: 'Om', kontakt: 'Kontakt' },
-    en: { home: 'Generator', articles: 'Articles', clarification: 'Clarification', clearice: 'Clear Ice', siphon: 'Siphon', distillation: 'Distillation', about: 'About', kontakt: 'Contact' },
-    ro: { home: 'Generator', articles: 'Articole', clarification: 'Clarificare', clearice: 'Gheată limpede', siphon: 'Sifon', distillation: 'Distilare', about: 'Despre', kontakt: 'Contact' },
-  };
-  function applyNavLang() {
-    const labels = navLabels[lang] || navLabels.en;
-    Object.entries(labels).forEach(([key, label]) => {
-      const el = document.getElementById('nav-' + key);
-      if (el) el.textContent = label;
-    });
-  }
+
 
   // Page subtitle
   const pageSub = { sv: 'Skriv in vad du har — vi blandar resten.', en: 'Enter what you have — we mix the rest.', ro: 'Introdu ce ai acasă — noi facem cocktailul.' };
@@ -1865,6 +1854,19 @@
     if (el) el.textContent = pageSub[lang] || pageSub.en;
   }
   let lang = localStorage.getItem('revben_lang') || 'en';
+
+  const navLabels = {
+    sv: { home: 'Generator', articles: 'Artiklar', about: 'Om', kontakt: 'Kontakt' },
+    en: { home: 'Generator', articles: 'Articles', about: 'About', kontakt: 'Contact' },
+    ro: { home: 'Generator', articles: 'Articole', about: 'Despre', kontakt: 'Contact' },
+  };
+  function applyNavLang() {
+    const labels = navLabels[lang] || navLabels.en;
+    Object.entries(labels).forEach(([key, label]) => {
+      const el = document.getElementById('nav-' + key);
+      if (el) el.textContent = label;
+    });
+  }
 
   function t(key) { return (i18n[lang] && i18n[lang][key]) || i18n.sv[key] || key; }
 

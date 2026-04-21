@@ -53,11 +53,6 @@
     .lang-toggle button.active {
       background: var(--surface2); color: var(--accent); border: 1px solid var(--border2);
     }
-    header {
-      width: 100%; max-width: 1100px;
-      padding: 3.5rem 1.5rem 2.5rem; position: relative; z-index: 1;
-    }
-    .logo { display: flex; align-items: center; gap: 12px; margin-bottom: 0.75rem; }
     .logo a { text-decoration: none; display: flex; align-items: center; gap: 12px; }
     .logo svg { color: var(--accent); flex-shrink: 0; }
     h1 {
@@ -65,7 +60,6 @@
       font-weight: 400; letter-spacing: -0.01em; color: var(--text); line-height: 1.1;
     }
     h1 em { font-style: italic; color: var(--accent); }
-    .tagline { font-size: 15px; color: var(--muted); margin-top: 0.5rem; font-weight: 300; }
     main {
       width: 100%; max-width: 1100px;
       padding: 0 1.5rem 4rem; position: relative; z-index: 1;
@@ -110,12 +104,6 @@
       color: var(--accent); font-family: 'Playfair Display', serif;
       font-size: 1.1rem; font-style: italic;
     }
-    .back-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 13px; color: var(--muted); text-decoration: none;
-      margin-bottom: 1.5rem; transition: color 0.15s;
-    }
-    .back-link:hover { color: var(--accent); }
     footer {
       width: 100%; max-width: 1100px; padding: 0 1.5rem 2rem;
       text-align: center; font-size: 12px; color: rgba(255,255,255,0.2);
@@ -123,39 +111,65 @@
     }
     footer a { color: rgba(212,168,75,0.4); text-decoration: none; }
     footer a:hover { color: var(--accent); }
+    @media (max-width: 500px) {
+    }
 
-    .site-nav {
+    header {
       width: 100%;
       background: var(--surface);
-      border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       position: relative;
       z-index: 10;
     }
-    .site-nav-inner {
+    .header-inner {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 1.5rem;
+      padding: 1.25rem 1.5rem 0;
       display: flex;
-      align-items: center;
-      gap: 0;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
     }
+    .logo-wrap { display: flex; align-items: center; gap: 12px; padding-bottom: 1rem; }
+    .logo-wrap a { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+    .logo-wrap svg { color: var(--accent); flex-shrink: 0; }
+    .logo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 400; color: var(--text); line-height: 1.1;
+    }
+    .logo-title em { font-style: italic; color: var(--accent); }
+    .header-sub {
+      font-size: 13px; color: var(--muted);
+      font-weight: 300; padding-bottom: 1.1rem;
+      text-align: right;
+    }
+    @media (max-width: 600px) {
+      .header-sub { display: none; }
+      .header-inner { padding-bottom: 0.75rem; }
+    }
+    nav.site-nav {
+      width: 100%;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: relative; z-index: 9;
+    }
+    .site-nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; gap: 0;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .site-nav-inner::-webkit-scrollbar { display: none; }
     .nav-link {
-      display: block;
-      padding: 0.75rem 1.1rem;
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--muted);
-      text-decoration: none;
+      display: block; padding: 0.65rem 1.1rem; font-size: 13px; font-weight: 400;
+      color: var(--muted); text-decoration: none;
       border-bottom: 2px solid transparent;
       transition: color 0.15s, border-color 0.15s;
       white-space: nowrap;
     }
     .nav-link:hover { color: var(--text); }
     .nav-link.active { color: var(--accent); border-bottom-color: var(--accent); }
-    @media (max-width: 500px) {
-      .nav-link { padding: 0.75rem 0.7rem; font-size: 12px; }
-    }
+    @media (max-width: 500px) { .nav-link { padding: 0.65rem 0.75rem; font-size: 12px; } }
   </style>
 </head>
 <body>
@@ -166,34 +180,9 @@
   <button id="btn-ro" onclick="setLang('ro')">RO</button>
 </div>
 
-<header>
-  <div class="logo">
-    <a href="/">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M4 3h16l-6 9.5V20h2.5v1.5h-9V20H10v-7.5L4 3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
-      </svg>
-      <h1>The Gin <em>Generator</em></h1>
-    </a>
-  </div>
-  <p class="tagline" id="tagline">Vi hör gärna från dig.</p>
-</header>
 
-<nav class="site-nav">
-  <div class="site-nav-inner">
-      <a href="/" class="nav-link" data-nav="home" id="nav-home">Generator</a>
-      <a href="/articles.html" class="nav-link" data-nav="articles" id="nav-articles">Articles</a>
-      <a href="/clarification.html" class="nav-link" data-nav="clarification" id="nav-clarification">Clarification</a>
-      <a href="/clearice.html" class="nav-link" data-nav="clearice" id="nav-clearice">Clear Ice</a>
-      <a href="/siphon.html" class="nav-link" data-nav="siphon" id="nav-siphon">Siphon</a>
-      <a href="/distillation.html" class="nav-link" data-nav="distillation" id="nav-distillation">Distillation</a>
-      <a href="/about.html" class="nav-link" data-nav="about" id="nav-about">About</a>
-      <a href="/kontakt.html" class="nav-link active" data-nav="kontakt" id="nav-kontakt">Contact</a>
-  </div>
-</nav>
 
 <main>
-  <a href="/" class="back-link" id="back-link">← Tillbaka till generatorn</a>
-
   <div class="contact-card">
     <div class="section-label" id="label-contact">Kontakta oss</div>
 
@@ -223,7 +212,7 @@
 </main>
 
 <footer>
-  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · <a href="/kontakt.html" id="footer-contact">Kontakt</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.01</span>
+  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.24</span>
 </footer>
 
 <script>
@@ -276,6 +265,13 @@
       const el = document.getElementById('nav-' + key);
       if (el) el.textContent = label;
     });
+  }
+
+  // Page subtitle
+  const pageSub = { sv: 'Kontakta oss', en: 'Get in touch', ro: 'Contactează-ne' };
+  function applySubtitle() {
+    const el = document.getElementById('header-sub');
+    if (el) el.textContent = pageSub[lang] || pageSub.en;
   }
   let lang = localStorage.getItem('revben_lang') || 'sv';
 

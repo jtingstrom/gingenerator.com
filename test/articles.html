@@ -341,18 +341,6 @@ var sc_security="6a216fae";
     const set = (id, val) => { const e = document.getElementById(id); if (e) e.innerHTML = val; };
     set('page-title', d.pageTitle);
     set('page-subtitle', d.pageSubtitle);
-    set('label-technique', d.labelTechnique);
-    set('label-ingredient', d.labelIngredient);
-    set('label-equipment', d.labelEquipment);
-    set('label-knowledge', d.labelKnowledge);
-    set('title-clarification', d.titleClarification);
-    set('excerpt-clarification', d.excerptClarification);
-    set('title-clearice', d.titleClearice);
-    set('excerpt-clearice', d.excerptClearice);
-    set('title-siphon', d.titleSiphon);
-    set('excerpt-siphon', d.excerptSiphon);
-    set('title-distillation', d.titleDistillation);
-    set('excerpt-distillation', d.excerptDistillation);
     document.querySelectorAll('.article-card-arrow').forEach(el => el.textContent = d.read);
     const ids = ['clarification','clearice','siphon','distillation','occasions','foodpairing','diy','history','trends'];
     ids.forEach(id => {

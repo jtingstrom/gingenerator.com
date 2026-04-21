@@ -738,7 +738,6 @@
         <span class="logo-title">The Gin <em>Generator</em></span>
       </a>
     </div>
-    <div class="header-sub" id="header-sub"></div>
   </div>
 </header>
 <nav class="site-nav">
@@ -1846,10 +1845,7 @@
 
   // Page subtitle
   const pageSub = { sv: 'Skriv in vad du har — vi blandar resten.', en: 'Enter what you have — we mix the rest.', ro: 'Introdu ce ai acasă — noi facem cocktailul.' };
-  function applySubtitle() {
-    const el = document.getElementById('header-sub');
-    if (el) el.textContent = pageSub[lang] || pageSub.en;
-  }
+  function applySubtitle() {}
   let lang = localStorage.getItem('revben_lang') || 'en';
 
   const navLabels = {

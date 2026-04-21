@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cocktails and Food Pairing – The Gin Generator</title>
+  <meta name="description" content="Just like wine, cocktails can be paired with food to create a harmonious flavour experience. Here are our tips and suggestions." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.gingenerator.com/cocktail-food-pairing.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.gingenerator.com/cocktail-food-pairing.html" />
+  <meta property="og:title" content="Cocktails and Food Pairing – The Gin Generator" />
+  <meta property="og:description" content="Just like wine, cocktails can be paired with food to create a harmonious flavour experience. Here are our tips and suggestions." />
+  <meta property="og:image" content="https://www.gingenerator.com/preview.png" />
+  <meta property="og:site_name" content="The Gin Generator" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cocktails and Food Pairing – The Gin Generator" />
+  <meta name="twitter:description" content="Just like wine, cocktails can be paired with food to create a harmonious flavour experience. Here are our tips and suggestions." />
+  <meta name="twitter:image" content="https://www.gingenerator.com/preview.png" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #2c2418; --surface: #161616; --surface2: #1f1f1f;
+      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+      --text: #f0ece4; --muted: #888; --accent: #d4a84b;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+    .lang-toggle {
+      position: fixed; top: 1.2rem; right: 1.5rem; z-index: 999;
+      display: flex; background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 999px; padding: 2px; gap: 2px;
+    }
+    .lang-toggle button {
+      height: 28px; padding: 0 12px; background: none; border: none;
+      border-radius: 999px; color: var(--muted); font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 500; cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+    }
+    .lang-toggle button.active {
+      background: var(--surface2); color: var(--accent); border: 1px solid var(--border2);
+    }
+    .logo a { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+    .logo svg { color: var(--accent); flex-shrink: 0; }
+    .logo-text em { font-style: italic; color: var(--accent); }
+    main {
+      width: 100%; max-width: 1100px;
+      padding: 0 1.5rem 4rem; position: relative; z-index: 1;
+    }
+    .article-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 2.5rem;
+    }
+    .article-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 400; line-height: 1.2; color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .divider {
+      width: 50px; height: 1px; background: var(--accent);
+      opacity: 0.3; margin-bottom: 1.5rem;
+    }
+    .article-body { font-size: 16px; color: var(--text); line-height: 1.9; }
+    .article-body p { margin-bottom: 1.25rem; }
+    .article-body h2 {
+      font-family: 'Playfair Display', serif; font-size: 1.3rem;
+      font-weight: 400; color: var(--text); margin: 2rem 0 0.75rem;
+    }
+    .article-body ul {
+      margin: 0.75rem 0 1.25rem 1.5rem; color: var(--muted);
+    }
+    .article-body li { margin-bottom: 0.4rem; }
+    .article-body strong { color: var(--accent); font-weight: 500; }
+    footer {
+      width: 100%; max-width: 1100px; padding: 0 1.5rem 2rem;
+      text-align: center; font-size: 12px; color: rgba(255,255,255,0.2);
+      position: relative; z-index: 1;
+    }
+    footer a { color: rgba(212,168,75,0.4); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+    @media (max-width: 500px) {
+    }
+
+        header {
+      width: 100%;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 10;
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 0;
+    }
+    .logo-wrap {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 0.4rem;
+    }
+    .logo-wrap a { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+    .logo-wrap svg { color: var(--accent); flex-shrink: 0; }
+    .logo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 400; color: var(--text); line-height: 1.1;
+    }
+    .logo-title em { font-style: italic; color: var(--accent); }
+    .header-sub {
+      font-size: 15px; color: var(--muted);
+      font-weight: 300; padding-bottom: 1.25rem;
+    }
+    @media (max-width: 600px) {
+      .header-sub { display: none; }
+      .header-inner { padding-bottom: 0.75rem; }
+    }
+    nav.site-nav {
+      width: 100%;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: relative; z-index: 9;
+    }
+    .site-nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; gap: 0;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .site-nav-inner::-webkit-scrollbar { display: none; }
+    .nav-link {
+      display: block; padding: 0.65rem 1.1rem; font-size: 13px; font-weight: 400;
+      color: var(--muted); text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-link.active { color: var(--accent); border-bottom-color: var(--accent); }
+    @media (max-width: 500px) { .nav-link { padding: 0.65rem 0.75rem; font-size: 12px; } }
+  
+    .article-body h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; color: var(--accent); margin: 1.5rem 0 0.5rem; font-style: italic; }
+    .article-body ol { margin: 0.75rem 0 1.25rem 1.5rem; color: var(--muted); }
+    .tip { background: var(--surface2); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 0.75rem 1rem; margin: 1.25rem 0; font-size: 14px; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<div class="lang-toggle">
+  <button id="btn-sv" onclick="setLang('sv')">SV</button>
+  <button id="btn-en" onclick="setLang('en')">EN</button>
+  <button id="btn-ro" onclick="setLang('ro')">RO</button>
+</div>
+
+
+
+<main>
+  <div class="article-card">
+    <div class="article-label" id="article-label">Article</div>
+    <h1 id="article-title">Cocktails and Food Pairing</h1>
+    <div class="divider"></div>
+    <div class="article-body" id="article-body"></div>
+  </div>
+</main>
+
+<footer>
+  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.27</span>
+</footer>
+
+<!-- Default Statcounter code for GinGenerator https://gingenerator.com -->
+<script type="text/javascript">
+var sc_project=13222790; 
+var sc_invisible=1; 
+var sc_security="6a216fae"; 
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/13222790/0/6a216fae/1/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+
+<script>
+  const navLabels = {
+    sv: { home: 'Generator', articles: 'Artiklar', about: 'Om', kontakt: 'Kontakt' },
+    en: { home: 'Generator', articles: 'Articles', about: 'About', kontakt: 'Contact' },
+    ro: { home: 'Generator', articles: 'Articole', about: 'Despre', kontakt: 'Contact' },
+  };
+  const pageSub = { sv: 'Cocktails och matparning', en: 'Cocktails and Food Pairing', ro: 'Cocktailuri și asocieri cu mâncarea' };
+  const i18n = {
+    en: { label: 'Article', title: `Cocktails and Food Pairing`, body: `<p>Just as wine pairs with food, cocktails can complement a meal to create a harmonious flavour experience. By matching tastes, textures and intensity, you can elevate both the drink and the dish.</p>
+<h2>Cheese and Cocktails</h2>
+<ul>
+<li><strong>Strong blue cheese (e.g. Roquefort)</strong> — pair with a <strong>Port Wine Cocktail</strong>. The sweetness balances the cheese's pungency.</li>
+<li><strong>Creamy brie</strong> — a <strong>French 75</strong> (gin, champagne, lemon) complements the cheese's mildness.</li>
+<li><strong>Hard cheese (e.g. Parmesan)</strong> — a <strong>Negroni</strong> (gin, Campari, vermouth) balances the saltiness.</li>
+</ul>
+<div class="tip">Serve cheese at room temperature to bring out the flavours at their best.</div>
+<h2>Seafood and Cocktails</h2>
+<ul>
+<li><strong>Oysters</strong> — a classic <strong>Martini</strong> or a citrus-based <strong>Gin Rickey</strong> cleanses the palate.</li>
+<li><strong>Prawns and lobster</strong> — a fruity <strong>Mojito</strong> pairs beautifully with sweet, juicy seafood.</li>
+<li><strong>Gravlax</strong> — a <strong>Bloody Mary</strong> with dill-infused vodka complements the Nordic flavours.</li>
+</ul>
+<h2>Chocolate and Cocktails</h2>
+<ul>
+<li><strong>Dark chocolate (70%+)</strong> — a <strong>Mezcal Old Fashioned</strong> or <strong>Espresso Martini</strong> balances the bitterness.</li>
+<li><strong>Milk chocolate</strong> — a <strong>White Russian</strong> or <strong>Chocolate Martini</strong> echoes the creaminess.</li>
+<li><strong>Chocolate dessert</strong> — a light <strong>Champagne Cocktail</strong> cleanses the palate between bites.</li>
+</ul>
+<h2>Grilled Meat and Cocktails</h2>
+<ul>
+<li><strong>Beef (e.g. ribeye)</strong> — a <strong>Bourbon Smash</strong> or <strong>Rye Manhattan</strong> stands up to the rich flavours.</li>
+<li><strong>Pork ribs</strong> — a <strong>Whiskey Sour</strong> or a <strong>Spiced Rum Punch</strong> adds complementary sweetness.</li>
+<li><strong>Chicken</strong> — a light <strong>Paloma</strong> or <strong>Moscow Mule</strong> balances the mild meat.</li>
+</ul>
+<h2>Asian Food and Cocktails</h2>
+<ul>
+<li><strong>Sushi and sashimi</strong> — a <strong>Sake Martini</strong> or <strong>Yuzu Sour</strong> cleanses the palate.</li>
+<li><strong>Spicy Thai food</strong> — a <strong>Thai Basil Smash</strong> or <strong>Mango Chili Margarita</strong> matches the heat.</li>
+<li><strong>Peking duck</strong> — a <strong>Chinese Five Spice Old Fashioned</strong> complements the rich, complex flavours.</li>
+</ul>
+<div class="tip">Use Asian ingredients such as yuzu, lemongrass or pandan in your drinks to create an authentic flavour experience.</div>`, footerAbout: 'About', footerContact: 'Contact' },
+    sv: { label: 'Artikel', title: `Cocktails och matparning`, body: `<p>Precis som vin kan cocktails kombineras med mat för att skapa en harmonisk smakupplevelse. Genom att matcha smaker, texturer och intensitet kan du lyfta både drinken och maträtten.</p>
+<h2>Ost och cocktails</h2>
+<ul>
+<li><strong>Kräftig blåmögelost</strong> — para med en <strong>Port Wine Cocktail</strong>. Sötman balanserar ostens styrka.</li>
+<li><strong>Krämig brie</strong> — en <strong>French 75</strong> kompletterar ostens mildhet.</li>
+<li><strong>Hårdost (t.ex. parmesan)</strong> — en <strong>Negroni</strong> balanserar saltigheten.</li>
+</ul>
+<h2>Skaldjur och cocktails</h2>
+<ul>
+<li><strong>Ostron</strong> — en klassisk <strong>Martini</strong> eller en <strong>Gin Rickey</strong> rensar gommen.</li>
+<li><strong>Räkor och hummer</strong> — en fruktig <strong>Mojito</strong> passar fint till de söta smakerna.</li>
+<li><strong>Gravad lax</strong> — en <strong>Bloody Mary</strong> med dillinfiltrerad vodka kompletterar de nordiska smakerna.</li>
+</ul>
+<h2>Choklad och cocktails</h2>
+<ul>
+<li><strong>Mörk choklad</strong> — en <strong>Mezcal Old Fashioned</strong> eller <strong>Espresso Martini</strong> balanserar bedskheten.</li>
+<li><strong>Mjölkchoklad</strong> — en <strong>White Russian</strong> eller <strong>Chocolate Martini</strong>.</li>
+<li><strong>Chokladdessert</strong> — en lätt <strong>Champagne Cocktail</strong> rensar gommen.</li>
+</ul>
+<h2>Grillat kött och cocktails</h2>
+<ul>
+<li><strong>Nötkött</strong> — en <strong>Bourbon Smash</strong> eller <strong>Rye Manhattan</strong>.</li>
+<li><strong>Fläsk</strong> — en <strong>Whiskey Sour</strong> eller <strong>Spiced Rum Punch</strong>.</li>
+<li><strong>Kyckling</strong> — en <strong>Paloma</strong> eller <strong>Moscow Mule</strong>.</li>
+</ul>
+<h2>Asiatisk mat och cocktails</h2>
+<ul>
+<li><strong>Sushi och sashimi</strong> — en <strong>Sake Martini</strong> eller <strong>Yuzu Sour</strong>.</li>
+<li><strong>Kryddig thaimat</strong> — en <strong>Thai Basil Smash</strong> eller <strong>Mango Chili Margarita</strong>.</li>
+<li><strong>Pekinganka</strong> — en <strong>Chinese Five Spice Old Fashioned</strong>.</li>
+</ul>`, footerAbout: 'Om', footerContact: 'Kontakt' },
+    ro: { label: 'Articol', title: `Cocktailuri și asocieri cu mâncarea`, body: `<p>La fel ca vinul, cocktailurile pot fi asociate cu mâncarea pentru a crea o experiență armonioasă de arome. Prin potrivirea gusturilor, texturilor și intensității, poți ridica atât băutura, cât și preparatul.</p>
+<h2>Brânzeturi și cocktailuri</h2>
+<ul>
+<li><strong>Brânză albastră puternică</strong> — asociată cu un <strong>Port Wine Cocktail</strong>.</li>
+<li><strong>Brie cremos</strong> — un <strong>French 75</strong> completează delicatețea brânzei.</li>
+<li><strong>Brânzeturi tari</strong> — un <strong>Negroni</strong> echilibrează săratul.</li>
+</ul>
+<h2>Fructe de mare și cocktailuri</h2>
+<ul>
+<li><strong>Stridii</strong> — un <strong>Martini</strong> clasic curăță palatul.</li>
+<li><strong>Creveți și homar</strong> — un <strong>Mojito</strong> fructat se potrivește perfect.</li>
+</ul>
+<h2>Ciocolată și cocktailuri</h2>
+<ul>
+<li><strong>Ciocolată neagră</strong> — un <strong>Espresso Martini</strong> sau <strong>Mezcal Old Fashioned</strong>.</li>
+<li><strong>Ciocolată cu lapte</strong> — un <strong>White Russian</strong> cremos.</li>
+</ul>
+<h2>Carne la grătar și cocktailuri</h2>
+<ul>
+<li><strong>Vită</strong> — un <strong>Bourbon Smash</strong> sau <strong>Manhattan</strong>.</li>
+<li><strong>Porc</strong> — un <strong>Whiskey Sour</strong> sau <strong>Spiced Rum Punch</strong>.</li>
+<li><strong>Pui</strong> — un <strong>Paloma</strong> sau <strong>Moscow Mule</strong>.</li>
+</ul>`, footerAbout: 'Despre', footerContact: 'Contact' },
+  };
+  let lang = localStorage.getItem('revben_lang') || 'en';
+  function applyNavLang() {
+    const labels = navLabels[lang] || navLabels.en;
+    Object.entries(labels).forEach(([k, v]) => { const el = document.getElementById('nav-' + k); if (el) el.textContent = v; });
+  }
+  function applySubtitle() {
+    const el = document.getElementById('header-sub'); if (el) el.textContent = pageSub[lang] || pageSub.en;
+  }
+  function applyLang() {
+    const d = i18n[lang] || i18n.en;
+    document.querySelector('html').lang = lang;
+    const set = (id, val) => { const e = document.getElementById(id); if (e) e.innerHTML = val; };
+    set('article-label', d.label);
+    set('article-title', d.title);
+    set('article-body', d.body);
+    applyNavLang();
+  }
+  function setLang(l) {
+    lang = l; localStorage.setItem('revben_lang', l);
+    ['sv','en','ro'].forEach(c => { const b = document.getElementById('btn-' + c); if (b) b.classList.toggle('active', c === l); });
+    applyLang();
+  }
+  document.addEventListener('DOMContentLoaded', () => setLang(lang));
+</script>
+</body>
+</html>

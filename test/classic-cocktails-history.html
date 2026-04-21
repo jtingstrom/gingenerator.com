@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classic Cocktails and Their History – The Gin Generator</title>
+  <meta name="description" content="From the Old Fashioned to the Margarita — the origins and stories behind five iconic cocktails that have shaped bar culture for centuries." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.gingenerator.com/classic-cocktails-history.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.gingenerator.com/classic-cocktails-history.html" />
+  <meta property="og:title" content="Classic Cocktails and Their History – The Gin Generator" />
+  <meta property="og:description" content="From the Old Fashioned to the Margarita — the origins and stories behind five iconic cocktails that have shaped bar culture for centuries." />
+  <meta property="og:image" content="https://www.gingenerator.com/preview.png" />
+  <meta property="og:site_name" content="The Gin Generator" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Classic Cocktails and Their History – The Gin Generator" />
+  <meta name="twitter:description" content="From the Old Fashioned to the Margarita — the origins and stories behind five iconic cocktails that have shaped bar culture for centuries." />
+  <meta name="twitter:image" content="https://www.gingenerator.com/preview.png" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #2c2418; --surface: #161616; --surface2: #1f1f1f;
+      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+      --text: #f0ece4; --muted: #888; --accent: #d4a84b;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+    .lang-toggle {
+      position: fixed; top: 1.2rem; right: 1.5rem; z-index: 999;
+      display: flex; background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 999px; padding: 2px; gap: 2px;
+    }
+    .lang-toggle button {
+      height: 28px; padding: 0 12px; background: none; border: none;
+      border-radius: 999px; color: var(--muted); font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 500; cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+    }
+    .lang-toggle button.active {
+      background: var(--surface2); color: var(--accent); border: 1px solid var(--border2);
+    }
+    .logo a { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+    .logo svg { color: var(--accent); flex-shrink: 0; }
+    .logo-text em { font-style: italic; color: var(--accent); }
+    main {
+      width: 100%; max-width: 1100px;
+      padding: 0 1.5rem 4rem; position: relative; z-index: 1;
+    }
+    .article-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 2.5rem;
+    }
+    .article-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 400; line-height: 1.2; color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .divider {
+      width: 50px; height: 1px; background: var(--accent);
+      opacity: 0.3; margin-bottom: 1.5rem;
+    }
+    .article-body { font-size: 16px; color: var(--text); line-height: 1.9; }
+    .article-body p { margin-bottom: 1.25rem; }
+    .article-body h2 {
+      font-family: 'Playfair Display', serif; font-size: 1.3rem;
+      font-weight: 400; color: var(--text); margin: 2rem 0 0.75rem;
+    }
+    .article-body ul {
+      margin: 0.75rem 0 1.25rem 1.5rem; color: var(--muted);
+    }
+    .article-body li { margin-bottom: 0.4rem; }
+    .article-body strong { color: var(--accent); font-weight: 500; }
+    footer {
+      width: 100%; max-width: 1100px; padding: 0 1.5rem 2rem;
+      text-align: center; font-size: 12px; color: rgba(255,255,255,0.2);
+      position: relative; z-index: 1;
+    }
+    footer a { color: rgba(212,168,75,0.4); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+    @media (max-width: 500px) {
+    }
+
+        header {
+      width: 100%;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 10;
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 0;
+    }
+    .logo-wrap {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 0.4rem;
+    }
+    .logo-wrap a { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+    .logo-wrap svg { color: var(--accent); flex-shrink: 0; }
+    .logo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 400; color: var(--text); line-height: 1.1;
+    }
+    .logo-title em { font-style: italic; color: var(--accent); }
+    .header-sub {
+      font-size: 15px; color: var(--muted);
+      font-weight: 300; padding-bottom: 1.25rem;
+    }
+    @media (max-width: 600px) {
+      .header-sub { display: none; }
+      .header-inner { padding-bottom: 0.75rem; }
+    }
+    nav.site-nav {
+      width: 100%;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: relative; z-index: 9;
+    }
+    .site-nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; gap: 0;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .site-nav-inner::-webkit-scrollbar { display: none; }
+    .nav-link {
+      display: block; padding: 0.65rem 1.1rem; font-size: 13px; font-weight: 400;
+      color: var(--muted); text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-link.active { color: var(--accent); border-bottom-color: var(--accent); }
+    @media (max-width: 500px) { .nav-link { padding: 0.65rem 0.75rem; font-size: 12px; } }
+  
+    .article-body h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; color: var(--accent); margin: 1.5rem 0 0.5rem; font-style: italic; }
+    .article-body ol { margin: 0.75rem 0 1.25rem 1.5rem; color: var(--muted); }
+    .tip { background: var(--surface2); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 0.75rem 1rem; margin: 1.25rem 0; font-size: 14px; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<div class="lang-toggle">
+  <button id="btn-sv" onclick="setLang('sv')">SV</button>
+  <button id="btn-en" onclick="setLang('en')">EN</button>
+  <button id="btn-ro" onclick="setLang('ro')">RO</button>
+</div>
+
+
+
+<main>
+  <div class="article-card">
+    <div class="article-label" id="article-label">Article</div>
+    <h1 id="article-title">Classic Cocktails and Their History</h1>
+    <div class="divider"></div>
+    <div class="article-body" id="article-body"></div>
+  </div>
+</main>
+
+<footer>
+  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.27</span>
+</footer>
+
+<!-- Default Statcounter code for GinGenerator https://gingenerator.com -->
+<script type="text/javascript">
+var sc_project=13222790; 
+var sc_invisible=1; 
+var sc_security="6a216fae"; 
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/13222790/0/6a216fae/1/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+
+<script>
+  const navLabels = {
+    sv: { home: 'Generator', articles: 'Artiklar', about: 'Om', kontakt: 'Kontakt' },
+    en: { home: 'Generator', articles: 'Articles', about: 'About', kontakt: 'Contact' },
+    ro: { home: 'Generator', articles: 'Articole', about: 'Despre', kontakt: 'Contact' },
+  };
+  const pageSub = { sv: 'Klassiska cocktails och deras historia', en: 'Classic Cocktails and Their History', ro: 'Cocktailuri clasice și istoria lor' };
+  const i18n = {
+    en: { label: 'Article', title: `Classic Cocktails and Their History`, body: `<p>Cocktails have a rich history spanning centuries and continents. From the earliest mixed drinks of the 1800s to the creative concoctions of today, they have always been a symbol of social gathering and innovation. Here we explore the origins of five classics: <strong>Old Fashioned, Martini, Negroni, Mojito and Margarita</strong>.</p>
+<h2>Old Fashioned — The Timeless Classic</h2>
+<p>The Old Fashioned is considered one of the oldest known cocktails, dating back to the early 1800s in the United States. It was created as a reaction against increasingly complicated drinks — a return to something <em>old fashioned</em>.</p>
+<h3>Recipe</h3>
+<ul>
+<li>60 ml bourbon or rye whiskey</li>
+<li>1 sugar cube</li>
+<li>2–3 dashes Angostura bitters</li>
+<li>Ice and orange peel to garnish</li>
+</ul>
+<p>Muddle the sugar with the bitters and a splash of water in the glass. Add whiskey and ice, stir and garnish with orange peel.</p>
+<div class="tip">The Old Fashioned is one of the few cocktails to survive Prohibition in the United States — a testament to its simplicity and enduring appeal.</div>
+<h2>Martini — Elegant Simplicity</h2>
+<p>The Martini's history is debated, but it is thought to have developed in the late 1800s as a variant of a drink called the Martinez. It quickly became a symbol of sophistication and remains one of the world's most iconic cocktails.</p>
+<h3>Recipe</h3>
+<ul>
+<li>60 ml gin or vodka</li>
+<li>10 ml dry vermouth</li>
+<li>Ice, olive or lemon peel to garnish</li>
+</ul>
+<div class="tip">James Bond popularised the variation "shaken, not stirred" and preferred vodka over gin — which purists still argue about today.</div>
+<h2>Negroni — Italian Bitterness</h2>
+<p>The Negroni was created in Florence, Italy, in the 1910s when a customer asked the bartender to replace the soda water in an Americano with gin. The result was a balanced, bitter and powerful cocktail that has never gone out of fashion.</p>
+<h3>Recipe</h3>
+<ul>
+<li>30 ml gin</li>
+<li>30 ml Campari</li>
+<li>30 ml sweet vermouth</li>
+<li>Orange peel to garnish</li>
+</ul>
+<div class="tip">The Negroni has become a symbol of aperitivo culture and is celebrated annually during Negroni Week, raising money for charitable causes.</div>
+<h2>Mojito — Caribbean Freshness</h2>
+<p>The Mojito has its roots in Cuba and is thought to have evolved from a drink called El Draque, drunk by sailors in the 16th century. The modern Mojito became popular in the 20th century thanks to its irresistibly refreshing flavour.</p>
+<h3>Recipe</h3>
+<ul>
+<li>40 ml white rum</li>
+<li>30 ml lime juice</li>
+<li>2 tsp caster sugar</li>
+<li>Soda water, fresh mint, ice</li>
+</ul>
+<div class="tip">The Mojito was Ernest Hemingway's favourite drink — he would often drink it at La Bodeguita del Medio in Havana.</div>
+<h2>Margarita — Mexican Celebration</h2>
+<p>The Margarita's origins are disputed, but it is thought to have been created in the 1930s or 1940s in Mexico or the United States. It became a favourite quickly, thanks to its perfect balance of sweet, sour and salty.</p>
+<h3>Recipe</h3>
+<ul>
+<li>50 ml tequila</li>
+<li>20 ml Cointreau or triple sec</li>
+<li>20 ml lime juice</li>
+<li>Salt rim, ice</li>
+</ul>
+<div class="tip">The Margarita is the world's best-selling cocktail and exists in countless variations — from fruity to spicy versions.</div>`, footerAbout: 'About', footerContact: 'Contact' },
+    sv: { label: 'Artikel', title: `Klassiska cocktails och deras historia`, body: `<p>Cocktails har en rik historia som sträcker sig över århundraden. Här utforskar vi ursprunget till fem klassiker: <strong>Old Fashioned, Martini, Negroni, Mojito och Margarita</strong>.</p>
+<h2>Old Fashioned — Den tidlösa klassikern</h2>
+<p>Old Fashioned anses vara en av de äldsta kända cocktails och dateras till början av 1800-talet i USA. Den skapades som en reaktion mot alltmer komplicerade drinkar.</p>
+<h3>Recept</h3>
+<ul><li>60 ml bourbon eller rågwhiskey</li><li>1 sockerbit</li><li>2–3 dashar Angostura bitter</li><li>Is och apelsinskal</li></ul>
+<div class="tip">Old Fashioned är en av få cocktails som överlevde förbudstiden i USA tack vare sin enkelhet.</div>
+<h2>Martini — Elegant enkelhet</h2>
+<p>Martinis historia är omdiskuterad men den tros ha utvecklats under 1800-talets slut. Den blev snabbt en symbol för sofistikering.</p>
+<h3>Recept</h3>
+<ul><li>60 ml gin eller vodka</li><li>10 ml torr vermouth</li><li>Oliv eller citronskal</li></ul>
+<div class="tip">James Bond populariserade varianten "shaken, not stirred" och föredrog vodka framför gin.</div>
+<h2>Negroni — Italiensk bitterhet</h2>
+<p>Negroni skapades i Florens på 1910-talet när en kund bad bartendern byta ut sodavattnet mot gin.</p>
+<h3>Recept</h3>
+<ul><li>30 ml gin</li><li>30 ml Campari</li><li>30 ml söt vermouth</li><li>Apelsinskal</li></ul>
+<h2>Mojito — Karibisk friskhet</h2>
+<p>Mojiton har rötter i Kuba och tros ha utvecklats från en drink kallad El Draque.</p>
+<h3>Recept</h3>
+<ul><li>40 ml vit rom</li><li>30 ml limejuice</li><li>2 tsk socker</li><li>Soda, mynta, is</li></ul>
+<div class="tip">Mojito var Ernest Hemingways favoritdrink.</div>
+<h2>Margarita — Mexikansk fest</h2>
+<p>Margaritaens ursprung är omtvistat men den tros ha skapats på 1930- eller 1940-talet.</p>
+<h3>Recept</h3>
+<ul><li>50 ml tequila</li><li>20 ml Cointreau</li><li>20 ml limejuice</li><li>Salt rand, is</li></ul>
+<div class="tip">Margarita är världens mest sålda cocktail.</div>`, footerAbout: 'Om', footerContact: 'Kontakt' },
+    ro: { label: 'Articol', title: `Cocktailuri clasice și istoria lor`, body: `<p>Cocktailurile au o istorie bogată care se întinde pe secole. Explorăm originile a cinci clasice: <strong>Old Fashioned, Martini, Negroni, Mojito și Margarita</strong>.</p>
+<h2>Old Fashioned — Clasicul atemporal</h2>
+<p>Considerat unul dintre cele mai vechi cocktailuri cunoscute, datând din începutul secolului XIX în SUA.</p>
+<ul><li>60 ml bourbon sau rye whiskey</li><li>1 cub de zahăr</li><li>2–3 picături Angostura bitters</li><li>Gheață și coajă de portocală</li></ul>
+<h2>Martini — Simplitate elegantă</h2>
+<ul><li>60 ml gin sau vodcă</li><li>10 ml vermut uscat</li><li>Măslină sau coajă de lămâie</li></ul>
+<h2>Negroni — Amărăciune italiană</h2>
+<p>Creat la Florența în anii 1910, când un client a cerut să se înlocuiască apa gazoasă cu gin.</p>
+<ul><li>30 ml gin, 30 ml Campari, 30 ml vermut dulce</li></ul>
+<h2>Mojito — Prospețime caribeeană</h2>
+<ul><li>40 ml rom alb</li><li>30 ml suc de lime</li><li>2 lingurițe zahăr, apă gazoasă, mentă, gheață</li></ul>
+<h2>Margarita — Sărbătoare mexicană</h2>
+<ul><li>50 ml tequila</li><li>20 ml Cointreau</li><li>20 ml suc de lime, sare, gheață</li></ul>`, footerAbout: 'Despre', footerContact: 'Contact' },
+  };
+  let lang = localStorage.getItem('revben_lang') || 'en';
+  function applyNavLang() {
+    const labels = navLabels[lang] || navLabels.en;
+    Object.entries(labels).forEach(([k, v]) => { const el = document.getElementById('nav-' + k); if (el) el.textContent = v; });
+  }
+  function applySubtitle() {
+    const el = document.getElementById('header-sub'); if (el) el.textContent = pageSub[lang] || pageSub.en;
+  }
+  function applyLang() {
+    const d = i18n[lang] || i18n.en;
+    document.querySelector('html').lang = lang;
+    const set = (id, val) => { const e = document.getElementById(id); if (e) e.innerHTML = val; };
+    set('article-label', d.label);
+    set('article-title', d.title);
+    set('article-body', d.body);
+    applyNavLang();
+  }
+  function setLang(l) {
+    lang = l; localStorage.setItem('revben_lang', l);
+    ['sv','en','ro'].forEach(c => { const b = document.getElementById('btn-' + c); if (b) b.classList.toggle('active', c === l); });
+    applyLang();
+  }
+  document.addEventListener('DOMContentLoaded', () => setLang(lang));
+</script>
+</body>
+</html>

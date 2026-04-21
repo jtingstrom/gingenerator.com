@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About – The Gin Generator</title>
+  <meta name="description" content="The Gin Generator is a cocktail discovery tool built for curious drinkers by Jan Tingström." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.gingenerator.com/about.html" />
+  <meta property="og:title" content="About — The Gin Generator – The Gin Generator" />
+  <meta property="og:description" content="The Gin Generator is a cocktail discovery tool built for curious drinkers by Jan Tingström." />
+  <meta property="og:image" content="https://www.gingenerator.com/preview.png" />
+  <meta property="og:site_name" content="The Gin Generator" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About — The Gin Generator – The Gin Generator" />
+  <meta name="twitter:description" content="The Gin Generator is a cocktail discovery tool built for curious drinkers by Jan Tingström." />
+  <meta name="twitter:image" content="https://www.gingenerator.com/preview.png" />
+  <link rel="canonical" href="https://www.gingenerator.com/about.html" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #2c2418; --surface: #161616; --surface2: #1f1f1f;
+      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+      --text: #f0ece4; --muted: #888; --accent: #d4a84b;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+    .lang-toggle {
+      position: fixed; top: 1.2rem; right: 1.5rem; z-index: 999;
+      display: flex; background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 999px; padding: 2px; gap: 2px;
+    }
+    .lang-toggle button {
+      height: 28px; padding: 0 12px; background: none; border: none;
+      border-radius: 999px; color: var(--muted); font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 500; cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+    }
+    .lang-toggle button.active {
+      background: var(--surface2); color: var(--accent); border: 1px solid var(--border2);
+    }
+    .logo a { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+    .logo svg { color: var(--accent); flex-shrink: 0; }
+    .logo-text em { font-style: italic; color: var(--accent); }
+    main {
+      width: 100%; max-width: 1100px;
+      padding: 0 1.5rem 4rem; position: relative; z-index: 1;
+    }
+    .about-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 2.5rem;
+    }
+    .article-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 400; line-height: 1.2; color: var(--text); margin-bottom: 1.5rem;
+    }
+    .divider { width: 50px; height: 1px; background: var(--accent); opacity: 0.3; margin-bottom: 1.5rem; }
+    .about-body { font-size: 16px; color: var(--text); line-height: 1.9; }
+    .about-body p { margin-bottom: 1.25rem; }
+    .about-body strong { color: var(--accent); font-weight: 500; }
+    .about-body a { color: var(--accent); text-decoration: none; }
+    .about-body a:hover { text-decoration: underline; }
+    footer {
+      width: 100%; max-width: 1100px; padding: 0 1.5rem 2rem;
+      text-align: center; font-size: 12px; color: rgba(255,255,255,0.2);
+      position: relative; z-index: 1;
+    }
+    footer a { color: rgba(212,168,75,0.4); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+    @media (max-width: 500px) {
+    }
+
+        header {
+      width: 100%;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 10;
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 0;
+    }
+    .logo-wrap {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 0.4rem;
+    }
+    .logo-wrap a { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+    .logo-wrap svg { color: var(--accent); flex-shrink: 0; }
+    .logo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 400; color: var(--text); line-height: 1.1;
+    }
+    .logo-title em { font-style: italic; color: var(--accent); }
+    .header-sub {
+      font-size: 15px; color: var(--muted);
+      font-weight: 300; padding-bottom: 1.25rem;
+    }
+    @media (max-width: 600px) {
+      .header-sub { display: none; }
+      .header-inner { padding-bottom: 0.75rem; }
+    }
+    nav.site-nav {
+      width: 100%;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: relative; z-index: 9;
+    }
+    .site-nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; gap: 0;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .site-nav-inner::-webkit-scrollbar { display: none; }
+    .nav-link {
+      display: block; padding: 0.65rem 1.1rem; font-size: 13px; font-weight: 400;
+      color: var(--muted); text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-link.active { color: var(--accent); border-bottom-color: var(--accent); }
+    @media (max-width: 500px) { .nav-link { padding: 0.65rem 0.75rem; font-size: 12px; } }
+  </style>
+</head>
+<body>
+
+<div class="lang-toggle">
+  <button id="btn-sv" onclick="setLang('sv')">SV</button>
+  <button id="btn-en" onclick="setLang('en')">EN</button>
+  <button id="btn-ro" onclick="setLang('ro')">RO</button>
+</div>
+
+
+
+<main>
+  <div class="about-card">
+    <div class="article-label" id="about-label">About</div>
+    <h1 id="about-title">The Gin Generator</h1>
+    <div class="divider"></div>
+    <div class="about-body" id="about-body">
+      <p><strong>The Gin Generator</strong> is a cocktail discovery tool built for curious drinkers — whether you are a seasoned bartender or someone who just wants to know what to make with the bottles sitting on your shelf.</p>
+      <p>The idea is simple: enter the ingredients you have at home, and the tool finds cocktails you can actually make. No login, no subscription, no fuss.</p>
+      <p>The site is built and maintained by <strong>Jan Tingström</strong>, based in Gothenburg, Sweden. It is a personal project born out of a genuine love of cocktails, good spirits and the craft of mixing drinks.</p>
+      <p>Recipes are sourced from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a>, a free and open cocktail database. The daily tip, articles and translations are written and curated by Jan.</p>
+      <p>If you have feedback, suggestions or just want to say hello, head over to the <a href="/kontakt.html">contact page</a>.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  Recipes from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a> · Av Jan Tingström · <span style="color:var(--muted);font-size:11px;">v1.24</span>
+</footer>
+
+<script>
+  const i18n = {
+    en: {
+      backLink: '← Back to the generator',
+      label: 'About',
+      title: 'The Gin Generator',
+      body: `<p><strong>The Gin Generator</strong> is a cocktail discovery tool built for curious drinkers — whether you are a seasoned bartender or someone who just wants to know what to make with the bottles sitting on your shelf.</p>
+<p>The idea is simple: enter the ingredients you have at home, and the tool finds cocktails you can actually make. No login, no subscription, no fuss.</p>
+<p>The site is built and maintained by <strong>Jan Tingström</strong>, based in Gothenburg, Sweden. It is a personal project born out of a genuine love of cocktails, good spirits and the craft of mixing drinks.</p>
+<p>Recipes are sourced from <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a>, a free and open cocktail database. The daily tip, articles and translations are written and curated by Jan.</p>
+<p>If you have feedback, suggestions or just want to say hello, head over to the <a href="/kontakt.html">contact page</a>.</p>`,
+      footerAbout: 'About', footerContact: 'Contact',
+    },
+    sv: {
+      backLink: '← Tillbaka till generatorn',
+      label: 'Om',
+      title: 'The Gin Generator',
+      body: `<p><strong>The Gin Generator</strong> är ett cocktailverktyg byggt för nyfikna drickare — oavsett om du är en erfaren bartender eller bara vill veta vad du kan göra med flaskorna som står i ditt skåp.</p>
+<p>Idén är enkel: ange de ingredienser du har hemma och verktyget hittar cocktails du faktiskt kan göra. Ingen inloggning, ingen prenumeration, ingen krångel.</p>
+<p>Sidan är byggd och underhålls av <strong>Jan Tingström</strong>, baserad i Göteborg, Sverige. Det är ett personligt projekt som vuxit fram ur en genuin kärlek till cocktails, bra sprit och konsten att blanda drinkar.</p>
+<p>Recept kommer från <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a>, en fri och öppen cocktaildatabas. Dagens tips, artiklar och översättningar är skrivna och kurerade av Jan.</p>
+<p>Om du har feedback, förslag eller bara vill säga hej, gå till <a href="/kontakt.html">kontaktsidan</a>.</p>`,
+      footerAbout: 'Om', footerContact: 'Kontakt',
+    },
+    ro: {
+      backLink: '← Înapoi la generator',
+      label: 'Despre',
+      title: 'The Gin Generator',
+      body: `<p><strong>The Gin Generator</strong> este un instrument de descoperire a cocktailurilor construit pentru băutorii curioși — fie că ești un barman experimentat, fie că vrei doar să știi ce să faci cu sticlele de pe raftul tău.</p>
+<p>Ideea este simplă: introdu ingredientele pe care le ai acasă, iar instrumentul găsește cocktailurile pe care le poți face cu adevărat. Fără autentificare, fără abonament, fără complicații.</p>
+<p>Site-ul este construit și întreținut de <strong>Jan Tingström</strong>, cu sediul în Göteborg, Suedia. Este un proiect personal născut dintr-o dragoste autentică față de cocktailuri, spirtoase bune și arta mixologiei.</p>
+<p>Rețetele provin de la <a href="https://www.thecocktaildb.com" target="_blank">TheCocktailDB</a>, o bază de date de cocktailuri gratuită și deschisă. Sfatul zilei, articolele și traducerile sunt scrise și îngrijite de Jan.</p>
+<p>Dacă ai feedback, sugestii sau vrei doar să spui salut, accesează <a href="/kontakt.html">pagina de contact</a>.</p>`,
+      footerAbout: 'Despre', footerContact: 'Contact',
+    },
+  };
+
+
+  // Nav labels i18n
+  const navLabels = {
+    sv: { home: 'Generator', articles: 'Artiklar', clarification: 'Klaring', clearice: 'Klar is', siphon: 'Sifon', distillation: 'Destillering', about: 'Om', kontakt: 'Kontakt' },
+    en: { home: 'Generator', articles: 'Articles', clarification: 'Clarification', clearice: 'Clear Ice', siphon: 'Siphon', distillation: 'Distillation', about: 'About', kontakt: 'Contact' },
+    ro: { home: 'Generator', articles: 'Articole', clarification: 'Clarificare', clearice: 'Gheată limpede', siphon: 'Sifon', distillation: 'Distilare', about: 'Despre', kontakt: 'Contact' },
+  };
+  function applyNavLang() {
+    const labels = navLabels[lang] || navLabels.en;
+    Object.entries(labels).forEach(([key, label]) => {
+      const el = document.getElementById('nav-' + key);
+      if (el) el.textContent = label;
+    });
+  }
+
+  // Page subtitle
+  const pageSub = { sv: 'Om The Gin Generator', en: 'About The Gin Generator', ro: 'Despre The Gin Generator' };
+  function applySubtitle() {
+    const el = document.getElementById('header-sub');
+    if (el) el.textContent = pageSub[lang] || pageSub.en;
+  }
+  let lang = localStorage.getItem('revben_lang') || 'en';
+
+  function applyLang() {
+    const set = (id, val) => { const e = document.getElementById(id); if (e) e.innerHTML = val; };
+    document.querySelector('html').lang = lang;
+    const d = i18n[lang] || i18n.en;
+    set('back-link', d.backLink);
+    set('about-label', d.label);
+    set('about-title', d.title);
+    set('about-body', d.body);
+    set('footer-about', d.footerAbout);
+    set('footer-contact', d.footerContact);
+  }
+
+  function setLang(l) {
+    lang = l;
+    localStorage.setItem('revben_lang', l);
+    ['sv','en','ro'].forEach(code => {
+      const b = document.getElementById('btn-' + code);
+      if (b) b.classList.toggle('active', code === l);
+    });
+    applyLang();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => setLang(lang));
+</script>
+<!-- Default Statcounter code for GinGenerator https://gingenerator.com -->
+<script type="text/javascript">
+var sc_project=13222790; 
+var sc_invisible=1; 
+var sc_security="6a216fae"; 
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/13222790/0/6a216fae/1/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+</body>
+</html>

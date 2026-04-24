@@ -114,7 +114,7 @@
     @media (max-width: 500px) {
     }
 
-        header {
+            header {
       width: 100%;
       background: var(--surface);
       border-bottom: 1px solid var(--border);
@@ -140,10 +140,10 @@
     .header-sub {
       font-size: 15px; color: var(--muted);
       font-weight: 300; padding-bottom: 1.25rem;
+      min-height: 2.5rem;
     }
     @media (max-width: 600px) {
-      .header-sub { display: none; }
-      .header-inner { padding-bottom: 0.75rem; }
+      .header-sub { min-height: 0; padding-bottom: 0.75rem; }
     }
     nav.site-nav {
       width: 100%;
@@ -288,7 +288,7 @@
   }
 
   // Page subtitle
-  const pageSub = { sv: 'Kontakta oss', en: 'Get in touch', ro: 'Contactează-ne' };
+      const pageSub = { sv: 'Kontakta oss', en: 'Get in touch', ro: 'Contactează-ne' };
   function applySubtitle() {
     const el = document.getElementById('header-sub');
     if (el) el.textContent = pageSub[lang] || pageSub.en;
